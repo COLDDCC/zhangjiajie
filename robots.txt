@@ -1,0 +1,7 @@
+# Zhangjiajie Field Notes
+# REPLACE https://example.com with your real domain before going live.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://example.com/sitemap.xml
