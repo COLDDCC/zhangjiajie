@@ -1,47 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Zhangjiajie Field Notes
-     REPLACE https://example.com with your real domain before going live. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://example.com/index.html</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://example.com/zhangjiajie-itinerary.html</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://example.com/tianmen-mountain.html</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://example.com/zhangjiajie-glass-bridge.html</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://example.com/best-time-to-visit-zhangjiajie.html</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://example.com/zhangjiajie-tickets-prices.html</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://example.com/chinese-mountains.html</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url><loc>https://colddcc.github.io/zhangjiajie/best-time-to-visit-zhangjiajie.html</loc><lastmod>2026-10-13</lastmod></url>
+<url><loc>https://colddcc.github.io/zhangjiajie/chinese-mountains.html</loc><lastmod>2026-10-13</lastmod></url>
+<url><loc>https://colddcc.github.io/zhangjiajie/</loc><lastmod>2026-10-13</lastmod></url>
+<url><loc>https://colddcc.github.io/zhangjiajie/tianmen-mountain.html</loc><lastmod>2026-10-13</lastmod></url>
+<url><loc>https://colddcc.github.io/zhangjiajie/where-to-stay-in-zhangjiajie.html</loc><lastmod>2026-10-13</lastmod></url>
+<url><loc>https://colddcc.github.io/zhangjiajie/zhangjiajie-glass-bridge.html</loc><lastmod>2026-10-13</lastmod></url>
+<url><loc>https://colddcc.github.io/zhangjiajie/zhangjiajie-itinerary.html</loc><lastmod>2026-10-13</lastmod></url>
+<url><loc>https://colddcc.github.io/zhangjiajie/zhangjiajie-map-transport.html</loc><lastmod>2026-10-13</lastmod></url>
+<url><loc>https://colddcc.github.io/zhangjiajie/zhangjiajie-national-forest-park.html</loc><lastmod>2026-10-13</lastmod></url>
+<url><loc>https://colddcc.github.io/zhangjiajie/zhangjiajie-tickets-prices.html</loc><lastmod>2026-10-13</lastmod></url>
 </urlset>
