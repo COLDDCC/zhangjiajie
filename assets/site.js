@@ -17,3 +17,16 @@
   var button=document.getElementById('copy-plan');if(button)button.addEventListener('click',function(){copy('Zhangjiajie suggested trip plan\n'+result.innerText,document.getElementById('copy-status'));});
   document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){copy(b.dataset.copy,document.getElementById('place-status'));});});
 })();
+
+// Each section remains visible if scripting or motion support is unavailable.
+if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('section h2, .card h3, .card p, .card .photo, .planner, .faq-layout .photo, details').forEach(el => observer.observe(el));
+}
