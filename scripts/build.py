@@ -10,17 +10,19 @@ assert URL.startswith('https://'), 'SITE_URL must be an https URL'
 if OUT.exists(): shutil.rmtree(OUT)
 OUT.mkdir()
 for p in ROOT.glob('*.html'):
-    s = p.read_text()
+    s = p.read_text(encoding='utf-8')
     page_url = URL + ('/' if p.name == 'index.html' else '/' + p.name)
     s = s.replace('<!-- HOST_META -->', '<link rel="canonical" href="'+escape(page_url, quote=True)+'">\n<meta property="og:url" content="'+escape(page_url, quote=True)+'">')
+    # Social crawlers cannot resolve a relative og:image, so it is made absolute here.
+    s = s.replace('content="img/', 'content="'+escape(URL, quote=True)+'/img/')
     # Root source files intentionally have no guessed canonical; deployment injects it.
-    (OUT/p.name).write_text(s)
-for name in ['assets', 'favicon.svg', '.nojekyll']:
+    (OUT/p.name).write_text(s, encoding='utf-8')
+for name in ['assets', 'img', 'favicon.svg', '.nojekyll']:
     p=ROOT/name
     if p.is_dir(): shutil.copytree(p,OUT/name)
     elif p.exists(): shutil.copy2(p,OUT/name)
 if (ROOT/'CNAME').exists(): shutil.copy2(ROOT/'CNAME',OUT/'CNAME')
 pages=sorted(OUT.glob('*.html'))
-(OUT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join('<url><loc>'+escape(URL+('/' if p.name=='index.html' else '/'+p.name))+'</loc><lastmod>2026-10-13</lastmod></url>\n' for p in pages if p.name!='404.html')+'</urlset>\n')
+(OUT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join('<url><loc>'+escape(URL+('/' if p.name=='index.html' else '/'+p.name))+'</loc><lastmod>2026-10-15</lastmod></url>\n' for p in pages if p.name!='404.html')+'</urlset>\n')
 (OUT/'robots.txt').write_text('User-agent: *\nAllow: /\n\nSitemap: '+URL+'/sitemap.xml\n')
 print('Built',len(pages),'pages for',URL)
