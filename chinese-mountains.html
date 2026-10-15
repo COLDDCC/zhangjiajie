@@ -5,342 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Which Mountain to Visit in China: Choosing Between the Six Big Ones</title>
 <meta name="description" content="China has six mountains worth building a trip around, and they are not interchangeable. A traveller's comparison of Huangshan, Huashan, Taishan, Zhangjiajie, Emeishan and Wudang — by what each one actually asks of you.">
-<link rel="canonical" href="https://example.com/chinese-mountains.html">
+<link rel="canonical" href="https://colddcc.github.io/zhangjiajie/chinese-mountains.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta property="og:type" content="article">
-<meta property="og:image" content="https://example.com/img/og-zhangjiajie.jpg">
+<meta property="og:image" content="https://colddcc.github.io/zhangjiajie/img/og-zhangjiajie.jpg">
 <meta property="og:title" content="Which Mountain to Visit in China">
 <meta property="og:description" content="Stairs or cable cars, temples or geology, one day or four. Six Chinese mountains compared by what they ask of you.">
+<meta property="og:url" content="https://colddcc.github.io/zhangjiajie/chinese-mountains.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://colddcc.github.io/zhangjiajie/img/og-zhangjiajie.jpg">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;0,6..96,900;1,6..96,400&family=Karla:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-/* ============================================================
-   Zhangjiajie Field Notes — shared design system
-   Palette: wet sandstone, valley mist, pine, Tujia brocade red
-   Type: Bodoni Moda (display) / Karla (body) / IBM Plex Mono (data)
-   ============================================================ */
-
-:root{
-  --ink:#101A18;
-  --stone:#4A5A54;
-  --mist:#E4EAE5;
-  --paper:#F7F9F5;
-  --pine:#2F5D46;
-  --brocade:#C4452F;
-  --brass:#9C7C2E;
-  --rule:rgba(16,26,24,.14);
-  --measure:74ch;
-}
-
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--mist);color:var(--ink);
-  font-family:"Karla",system-ui,sans-serif;font-size:17px;line-height:1.68;
-  -webkit-font-smoothing:antialiased}
-h1,h2,h3{font-family:"Bodoni Moda",Georgia,serif;font-weight:600;line-height:1.05;margin:0}
-a{color:var(--pine);text-underline-offset:3px}
-a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid var(--brocade);outline-offset:3px;border-radius:2px}
-img{max-width:100%;height:auto}
-.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
-.mono{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
-.skip{position:absolute;left:-9999px}
-.skip:focus{left:12px;top:12px;background:var(--paper);padding:10px 16px;z-index:99}
-
-/* ---------- site nav ---------- */
-.nav{background:var(--ink);color:var(--paper);position:relative;z-index:5}
-.nav-in{max-width:1080px;margin:0 auto;padding:16px 28px;display:flex;flex-wrap:wrap;
-  align-items:baseline;gap:10px 30px}
-.brand{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--paper);text-decoration:none;flex:none}
-.brand span{color:var(--brass)}
-.nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 22px;margin:0;padding:0}
-.nav a:not(.brand){color:#AFBEB7;text-decoration:none;font-size:.88rem}
-.nav a:not(.brand):hover,.nav a[aria-current="page"]{color:var(--paper);text-decoration:underline}
-
-/* ---------- hero ---------- */
-.hero{position:relative;background:var(--ink);color:var(--paper);overflow:hidden;isolation:isolate}
-.hero svg{position:absolute;inset:auto 0 0 0;width:100%;height:64%;display:block;z-index:0}
-.hero-inner{position:relative;z-index:2;padding:80px 28px 220px;max-width:1080px;margin:0 auto}
-.hero.compact .hero-inner{padding:62px 28px 150px}
-.eyebrow{color:var(--brass);display:block;margin-bottom:24px}
-.hero h1{font-size:clamp(2.6rem,9vw,7.4rem);font-weight:400;letter-spacing:-.02em;font-style:italic}
-.hero h1 em{font-style:normal;display:block;font-weight:900;letter-spacing:-.035em}
-.hero.compact h1{font-size:clamp(2.2rem,6vw,4.4rem);font-style:normal;font-weight:600;letter-spacing:-.02em}
-.hero p{max-width:48ch;margin:30px 0 0;font-size:1.12rem;color:#C9D4CE;font-weight:300}
-.hero-figs{display:flex;flex-wrap:wrap;gap:34px;margin-top:42px}
-.hero-figs div{border-top:1px solid rgba(255,255,255,.28);padding-top:9px}
-.hero-figs b{display:block;font-family:"IBM Plex Mono",monospace;font-size:1.4rem;font-weight:500;letter-spacing:-.02em}
-.hero-figs span{color:#93A69E}
-@keyframes rise{from{transform:translateY(46px);opacity:0}to{transform:translateY(0);opacity:1}}
-.pk{animation:rise 1.5s cubic-bezier(.16,.9,.3,1) both}
-.pk:nth-of-type(2){animation-delay:.1s}
-.pk:nth-of-type(3){animation-delay:.2s}
-@media (prefers-reduced-motion:reduce){.pk{animation:none}html{scroll-behavior:auto}}
-
-/* ---------- generic blocks ---------- */
-section{padding:74px 0}
-.lede{font-size:1.2rem;font-weight:300;max-width:var(--measure)}
-.lede strong{font-weight:500}
-h2{font-size:clamp(1.9rem,4.2vw,3rem);letter-spacing:-.015em;margin-bottom:20px}
-h3{font-size:1.44rem;letter-spacing:-.01em;margin-bottom:8px}
-p{max-width:var(--measure)}
-.kicker{color:var(--brocade);display:block;margin-bottom:14px}
-.tint{background:var(--paper);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-.stack > * + *{margin-top:1.05em}
-.stack h3{margin-top:2em}
-
-.crumb{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.12em;
-  text-transform:uppercase;color:#93A69E;margin-bottom:20px}
-.crumb a{color:#93A69E}
-
-/* zone / card grid */
-.zones{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:1px;
-  background:var(--rule);margin-top:36px;border:1px solid var(--rule)}
-.zone{background:var(--paper);padding:26px}
-.zone .mono{color:var(--brass);display:block;margin-bottom:10px}
-.zone h3{font-size:1.26rem}
-.zone p{font-size:.94rem;margin:0;color:#3B4A45}
-.zone a{font-size:.88rem;display:inline-block;margin-top:10px}
-
-/* the vertical index (signature component) */
-.item{display:grid;grid-template-columns:112px 1fr;gap:36px;padding:42px 0;
-  border-top:1px solid var(--rule);align-items:start}
-.item:first-of-type{border-top:2px solid var(--ink)}
-.gauge{position:sticky;top:26px;text-align:right}
-.gauge b{display:block;font-family:"IBM Plex Mono",monospace;font-size:1.24rem;font-weight:500;letter-spacing:-.03em}
-.gauge span{display:block;font-family:"IBM Plex Mono",monospace;font-size:.6rem;letter-spacing:.11em;
-  text-transform:uppercase;color:var(--stone);margin-top:3px}
-.bar{margin-left:auto;margin-top:12px;width:3px;background:var(--pine);border-radius:2px}
-.bar.flat{background:var(--brocade);height:3px;width:52px}
-.item h3 .n{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.14em;
-  color:var(--brocade);display:block;margin-bottom:10px}
-.item p{margin:.7em 0}
-
-/* fact strip */
-.facts{list-style:none;padding:0;margin:20px 0 0;display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px 26px;max-width:var(--measure)}
-.facts li{font-size:.9rem;border-left:2px solid var(--rule);padding-left:12px;line-height:1.45}
-.facts strong{display:block;font-family:"IBM Plex Mono",monospace;font-size:.6rem;letter-spacing:.11em;
-  text-transform:uppercase;color:var(--stone);font-weight:500}
-
-/* callout */
-.note{background:#FDF6E9;border-left:3px solid var(--brass);padding:16px 20px;margin:22px 0 0;
-  max-width:var(--measure);font-size:.94rem}
-.note b{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;
-  display:block;margin-bottom:5px;color:var(--brass)}
-.note.warn{background:#FBEEEB;border-left-color:var(--brocade)}
-.note.warn b{color:var(--brocade)}
-
-/* dark section */
-.dark{background:var(--ink);color:var(--paper)}
-.dark h2,.dark h3{color:var(--paper)}
-.dark .kicker{color:var(--brass)}
-.dark p,.dark li{color:#BDC9C3}
-.dark a{color:#E4EAE5}
-.plan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:30px;margin-top:38px}
-.plan{border-top:1px solid rgba(255,255,255,.3);padding-top:18px}
-.plan h3{font-size:1.3rem;margin-bottom:14px}
-.plan ol{margin:0;padding-left:1.15em;font-size:.94rem}
-.plan ol li{margin-bottom:9px}
-
-/* day-by-day timeline */
-.day{display:grid;grid-template-columns:96px 1fr;gap:30px;padding:34px 0;border-top:1px solid var(--rule)}
-.day:first-of-type{border-top:2px solid var(--ink)}
-.day .when{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--brocade);position:sticky;top:26px}
-.day .when b{display:block;font-size:1.6rem;letter-spacing:-.02em;color:var(--ink);margin-bottom:4px}
-.slots{list-style:none;margin:16px 0 0;padding:0}
-.slots li{display:grid;grid-template-columns:88px 1fr;gap:16px;padding:9px 0;
-  border-top:1px dotted var(--rule);font-size:.95rem;max-width:var(--measure)}
-.slots li span:first-child{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--stone);padding-top:3px}
-
-/* tables */
-table{width:100%;border-collapse:collapse;margin-top:28px;font-size:.94rem}
-caption{text-align:left;font-size:.86rem;color:var(--stone);margin-bottom:14px;max-width:var(--measure)}
-th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
-thead th{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--stone);font-weight:500;border-bottom:1px solid var(--ink)}
-td.num{font-family:"IBM Plex Mono",monospace;white-space:nowrap}
-.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
-tr.good td:first-child{box-shadow:inset 3px 0 0 var(--pine)}
-tr.avoid td:first-child{box-shadow:inset 3px 0 0 var(--brocade)}
-
-/* faq */
-details{border-bottom:1px solid var(--rule);padding:18px 0;max-width:var(--measure)}
-summary{cursor:pointer;font-family:"Bodoni Moda",serif;font-size:1.14rem;font-weight:600;
-  list-style:none;display:flex;justify-content:space-between;gap:18px}
-summary::-webkit-details-marker{display:none}
-summary::after{content:"+";font-family:"IBM Plex Mono",monospace;color:var(--brocade);flex:none}
-details[open] summary::after{content:"–"}
-details p{margin:14px 0 0;font-size:.97rem}
-
-/* related links */
-.related{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;
-  background:rgba(255,255,255,.2);margin-top:34px;border:1px solid rgba(255,255,255,.2)}
-.related a{background:var(--ink);padding:22px;text-decoration:none;display:block}
-.related a:hover{background:#182623}
-.related .mono{color:var(--brass);display:block;margin-bottom:8px}
-.related strong{font-family:"Bodoni Moda",serif;font-size:1.14rem;color:var(--paper);
-  display:block;line-height:1.2;font-weight:600}
-
-footer{background:var(--ink);color:#8FA39A;padding:42px 0;font-size:.85rem}
-footer p{max-width:var(--measure)}
-footer a{color:#AFBEB7}
-
-@media (max-width:660px){
-  body{font-size:16px}
-  .hero-inner{padding:56px 24px 160px}
-  .hero.compact .hero-inner{padding:44px 24px 110px}
-  .item,.day{grid-template-columns:1fr;gap:14px}
-  .gauge,.day .when{position:static;text-align:left;display:flex;align-items:baseline;gap:10px}
-  .gauge b{font-size:1.05rem}
-  .gauge span{margin:0}
-  .day .when b{font-size:1.2rem;margin:0}
-  .bar{display:none}
-  .slots li{grid-template-columns:1fr;gap:2px}
-  section{padding:52px 0}
-}
-
-/* ============================================================
-   EDITORIAL LAYER v2 — full-bleed photography, scroll reveals,
-   statement typography. Added Aug 2026.
-   Every image slot degrades to an intentional duotone gradient
-   if the photo is missing, so the site never looks broken.
-   ============================================================ */
-
-/* ---------- photo slots ---------- */
-.shot{
-  position:relative;
-  background-color:var(--ink);
-  background-size:cover;
-  background-position:center;
-  overflow:hidden;
-}
-/* duotone wash: sits under the photo as fallback, over it as grade */
-.shot::before{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(150deg,rgba(16,26,24,.62),rgba(47,93,70,.30) 55%,rgba(156,124,46,.24));
-  mix-blend-mode:multiply;z-index:1;
-}
-.shot::after{
-  content:"";position:absolute;inset:0;z-index:2;
-  background:radial-gradient(120% 90% at 50% 0%,transparent 40%,rgba(11,18,17,.55));
-}
-.shot > *{position:relative;z-index:3}
-
-/* ---------- full-bleed hero ---------- */
-.hero.photo{background:var(--ink)}
-.hero.photo .shot-bg{
-  position:absolute;inset:0;z-index:0;
-  background-color:#1A2724;
-  background-size:cover;background-position:center 42%;
-  transform:scale(1.06);
-  will-change:transform;
-}
-.hero.photo .veil{
-  position:absolute;inset:0;z-index:1;
-  background:
-    linear-gradient(180deg,rgba(11,18,17,.82) 0%,rgba(11,18,17,.28) 38%,rgba(11,18,17,.92) 100%),
-    linear-gradient(100deg,rgba(47,93,70,.30),transparent 60%);
-}
-.hero.photo .hero-inner{padding-top:120px;padding-bottom:120px}
-.hero.photo svg{display:none}
-
-/* grain — makes flat colour read as printed rather than digital */
-.grain{
-  position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.16;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
-}
-
-/* ---------- statement type ---------- */
-.statement{padding:120px 0;background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
-.statement .wrap{position:relative;z-index:3}
-.statement p{
-  font-family:"Bodoni Moda",Georgia,serif;
-  font-size:clamp(1.9rem,5.2vw,4.2rem);
-  line-height:1.06;letter-spacing:-.025em;font-weight:400;font-style:italic;
-  max-width:20ch;margin:0;color:var(--paper);
-}
-.statement p em{font-style:normal;font-weight:900;color:var(--brass)}
-.statement cite{
-  display:block;margin-top:30px;font-family:"IBM Plex Mono",monospace;
-  font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
-  color:#93A69E;font-style:normal;
-}
-
-/* ---------- editorial split ---------- */
-.split{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch}
-.split .shot{min-height:440px}
-.split .say{padding:64px 56px;background:var(--paper);display:flex;flex-direction:column;justify-content:center}
-.split.flip .shot{order:2}
-.split .say .mono{color:var(--brocade);display:block;margin-bottom:14px}
-.split .say h3{font-size:clamp(1.6rem,3vw,2.3rem);margin-bottom:14px}
-.split .say p{font-size:1.02rem;max-width:46ch}
-.split .say a{display:inline-block;margin-top:18px;font-family:"IBM Plex Mono",monospace;
-  font-size:.72rem;letter-spacing:.13em;text-transform:uppercase}
-
-/* ---------- horizontal gallery strip ---------- */
-.strip{padding:0 0 78px;background:var(--ink)}
-.strip-head{max-width:1080px;margin:0 auto;padding:0 28px 26px}
-.rail{
-  display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,30vw);
-  gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
-  padding:0 28px 14px;-webkit-overflow-scrolling:touch;
-  scrollbar-width:thin;scrollbar-color:var(--brass) transparent;
-}
-.rail::-webkit-scrollbar{height:4px}
-.rail::-webkit-scrollbar-thumb{background:var(--brass)}
-.rail figure{margin:0;scroll-snap-align:start}
-.rail .shot{aspect-ratio:4/5;display:flex;align-items:flex-end;padding:20px}
-.rail figcaption{color:var(--paper);font-family:"Bodoni Moda",serif;font-size:1.16rem;line-height:1.15}
-.rail figcaption span{
-  display:block;font-family:"IBM Plex Mono",monospace;font-size:.6rem;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--brass);margin-bottom:6px;
-}
-
-/* ---------- card image treatment ---------- */
-.related a{position:relative;overflow:hidden}
-.related a .shot{position:absolute;inset:0;z-index:0;opacity:.32;transition:transform .7s cubic-bezier(.16,.9,.3,1),opacity .5s}
-.related a > *{position:relative;z-index:2}
-.related a:hover .shot{transform:scale(1.07);opacity:.5}
-
-/* ---------- scroll reveal ---------- */
-.rv{opacity:0;transform:translateY(30px);
-  transition:opacity .85s cubic-bezier(.16,.9,.3,1),transform .85s cubic-bezier(.16,.9,.3,1)}
-.rv.in{opacity:1;transform:none}
-.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}
-
-/* ---------- sticky section rail (hub only) ---------- */
-.rail-nav{position:sticky;top:0;z-index:4;background:var(--paper);
-  border-bottom:1px solid var(--rule);overflow-x:auto;scrollbar-width:none}
-.rail-nav::-webkit-scrollbar{display:none}
-.rail-nav ol{display:flex;gap:0;margin:0;padding:0;list-style:none;
-  max-width:1080px;margin:0 auto}
-.rail-nav a{display:block;padding:14px 20px;text-decoration:none;white-space:nowrap;
-  font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.13em;
-  text-transform:uppercase;color:var(--stone);border-bottom:2px solid transparent}
-.rail-nav a.on{color:var(--ink);border-bottom-color:var(--brocade)}
-
-@media (prefers-reduced-motion:reduce){
-  .rv{opacity:1;transform:none;transition:none}
-  .hero.photo .shot-bg{transform:none}
-  .related a .shot{transition:none}
-}
-
-@media (max-width:860px){
-  .split{grid-template-columns:1fr}
-  .split.flip .shot{order:0}
-  .split .shot{min-height:300px}
-  .split .say{padding:44px 26px}
-}
-@media (max-width:660px){
-  .statement{padding:80px 0}
-  .hero.photo .hero-inner{padding-top:80px;padding-bottom:80px}
-  .rail{grid-auto-columns:78vw}
-}
-</style>
+<script>document.documentElement.classList.add("js")</script>
+<link rel="stylesheet" href="assets/site.css">
 
 <!-- ============================================================
      ANALYTICS (optional) — uncomment and paste your real ID.
@@ -383,7 +62,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})
 </nav>
 
 <header class="hero photo">
-  <div class="shot-bg" style="background-image:url('img/hero-huangshan.jpg'),url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%20700%22%20width=%221200%22%20height=%22700%22%20preserveAspectRatio=%22xMidYMid%20slice%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22s0%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22/%3E%3Cstop%20offset=%2254%25%22%20stop-color=%22%2333453F%22/%3E%3Cstop%20offset=%22100%25%22%20stop-color=%22%2363796D%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22f0%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%22.9%22/%3E%3Cstop%20offset=%2260%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width=%221200%22%20height=%22700%22%20fill=%22url(%23s0)%22/%3E%3Cg%20fill=%22%2331423C%22%20opacity='0.55'%3E%3Cpath%20d=%22M0%20700L0%20404%20Q100%20140%20200%20140%20Q300%20140%20400%20405%20Q500%20134%20600%20134%20Q700%20134%20800%20319%20Q900%20286%201000%20286%20Q1100%20286%201200%20342%20L1200%20700Z%22/%3E%3C/g%3E%3Crect%20x=%22-20%22%20y=%22350%22%20width=%221240%22%20height=%2217%22%20rx=%228%22%20fill=%22%23C3D0C7%22%20opacity=%220.18%22/%3E%3Crect%20x=%22-20%22%20y=%22448%22%20width=%221240%22%20height=%2219%22%20rx=%229%22%20fill=%22%23C3D0C7%22%20opacity=%220.18%22/%3E%3Crect%20x=%22-20%22%20y=%22546%22%20width=%221240%22%20height=%2223%22%20rx=%2212%22%20fill=%22%23C3D0C7%22%20opacity=%220.11%22/%3E%3Crect%20x=%22-20%22%20y=%22644%22%20width=%221240%22%20height=%2213%22%20rx=%226%22%20fill=%22%23C3D0C7%22%20opacity=%220.22%22/%3E%3Cg%20fill=%22%231B2925%22%20opacity='0.92'%3E%3Cpath%20d=%22M20%20700L62%20400L95%20442L144%20700Z%20M194%20700L235%20310L267%20352L315%20700Z%20M345%20700L387%20322L418%20364L466%20700Z%20M575%20700L606%20235L630%20277L667%20700Z%20M671%20700L719%20338L756%20380L813%20700Z%20M833%20700L885%20411L925%20453L986%20700Z%20M1061%20700L1105%20196L1138%20238L1189%20700Z%22/%3E%3C/g%3E%3Cg%20fill=%22%230B1211%22%3E%3Cpath%20d=%22M39%20700L121%20366L183%20408L278%20700Z%20M362%20700L444%20399L506%20441L601%20700Z%20M613%20700L683%20405L737%20447L819%20700Z%20M932%20700L1019%20184L1087%20226L1190%20700Z%22/%3E%3C/g%3E%3Crect%20width=%221200%22%20height=%22350%22%20fill=%22url(%23f0)%22/%3E%3C/svg%3E")"></div>
+  <div class="shot-bg slot-hero-huangshan"></div>
   <div class="veil"></div>
   <div class="grain"></div>
   <div class="hero-inner">
@@ -553,7 +232,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})
 </section>
 
 <section class="split rv" style="padding:0">
-  <div class="shot" style="background-image:url('img/split-avatar-pillars.jpg'),url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%201500%22%20width=%221200%22%20height=%221500%22%20preserveAspectRatio=%22xMidYMid%20slice%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22s13%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22/%3E%3Cstop%20offset=%2254%25%22%20stop-color=%22%2333453F%22/%3E%3Cstop%20offset=%22100%25%22%20stop-color=%22%2363796D%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22f13%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%22.9%22/%3E%3Cstop%20offset=%2260%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width=%221200%22%20height=%221500%22%20fill=%22url(%23s13)%22/%3E%3Cg%20fill=%22%2331423C%22%20opacity='0.55'%3E%3Cpath%20d=%22M12%201500V643q23-16%2045%200V1500z%20M150%201500V545q25-18%2051%200V1500z%20M288%201500V486q22-16%2045%200V1500z%20M440%201500V485q30-21%2059%200V1500z%20M596%201500V426q24-17%2047%200V1500z%20M758%201500V465q33-24%2066%200V1500z%20M911%201500V588q24-17%2048%200V1500z%20M1041%201500V482q28-20%2056%200V1500z%20M1213%201500V392q31-22%2062%200V1500z%22/%3E%3C/g%3E%3Crect%20x=%22-20%22%20y=%22750%22%20width=%221240%22%20height=%2244%22%20rx=%2222%22%20fill=%22%23C3D0C7%22%20opacity=%220.19%22/%3E%3Crect%20x=%22-20%22%20y=%22960%22%20width=%221240%22%20height=%2249%22%20rx=%2225%22%20fill=%22%23C3D0C7%22%20opacity=%220.20%22/%3E%3Crect%20x=%22-20%22%20y=%221170%22%20width=%221240%22%20height=%2259%22%20rx=%2230%22%20fill=%22%23C3D0C7%22%20opacity=%220.21%22/%3E%3Crect%20x=%22-20%22%20y=%221380%22%20width=%221240%22%20height=%2233%22%20rx=%2216%22%20fill=%22%23C3D0C7%22%20opacity=%220.13%22/%3E%3Cg%20fill=%22%230B1211%22%3E%3Cpath%20d=%22M-28%201500V825q65-47%20130%200V1500z%20M271%201500V694q55-40%20111%200V1500z%20M623%201500V711q65-47%20129%200V1500z%20M906%201500V706q54-39%20108%200V1500z%20M1196%201500V756q51-37%20102%200V1500z%22/%3E%3C/g%3E%3Crect%20width=%221200%22%20height=%22750%22%20fill=%22url(%23f13)%22/%3E%3C/svg%3E")"></div>
+  <div class="shot slot-split-avatar-pillars"></div>
   <div class="say">
     <span class="mono">The one we know best</span>
     <h3>Zhangjiajie, written out end to end</h3>
@@ -563,7 +242,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})
 </section>
 
 <section class="split flip rv" style="padding:0">
-  <div class="shot" style="background-image:url('img/split-glass-bridge.jpg'),url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%201500%22%20width=%221200%22%20height=%221500%22%20preserveAspectRatio=%22xMidYMid%20slice%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22s14%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22/%3E%3Cstop%20offset=%2254%25%22%20stop-color=%22%2333453F%22/%3E%3Cstop%20offset=%22100%25%22%20stop-color=%22%2363796D%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22f14%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%22.9%22/%3E%3Cstop%20offset=%2260%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width=%221200%22%20height=%221500%22%20fill=%22url(%23s14)%22/%3E%3Cg%20fill=%22%230B1211%22%3E%3Cpath%20d=%22M0%201500V510q192%20150%20288%20990Z%22/%3E%3C/g%3E%3Cg%20fill=%22%230B1211%22%3E%3Cpath%20d=%22M1200%201500V450q-204%20180%20-300%201050Z%22/%3E%3C/g%3E%3Cline%20x1=%220%22%20y1=%22690%22%20x2=%221200%22%20y2=%22690%22%20stroke=%22%239C7C2E%22%20stroke-width=%227%22/%3E%3Crect%20width=%221200%22%20height=%22750%22%20fill=%22url(%23f14)%22/%3E%3C/svg%3E")"></div>
+  <div class="shot slot-split-glass-bridge"></div>
   <div class="say">
     <span class="mono">The most confused booking in China</span>
     <h3>Two different sheets of glass</h3>
@@ -600,12 +279,12 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})
     <h2 class="rv" style="color:var(--paper);margin:0">Swipe through them</h2>
   </div>
   <div class="rail rv rv-d1">
-    <figure><div class="shot" style="background-image:url('img/rail-emeishan.jpg'),url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%201500%22%20width=%221200%22%20height=%221500%22%20preserveAspectRatio=%22xMidYMid%20slice%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22s7%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22/%3E%3Cstop%20offset=%2254%25%22%20stop-color=%22%2333453F%22/%3E%3Cstop%20offset=%22100%25%22%20stop-color=%22%2363796D%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22f7%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%22.9%22/%3E%3Cstop%20offset=%2260%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width=%221200%22%20height=%221500%22%20fill=%22url(%23s7)%22/%3E%3Cg%20fill=%22%2331423C%22%20opacity='0.5'%3E%3Cpath%20d=%22M0%201500L0%20721%20Q150%20623%20300%20623%20Q450%20623%20600%20675%20Q750%20675%20900%20685%20Q1050%20579%201200%20579%20L1200%201500Z%22/%3E%3C/g%3E%3Cg%20fill=%22%230B1211%22%3E%3Cpath%20d=%22M120%201500L600%20450L1080%201500Z%22/%3E%3C/g%3E%3Cpath%20d=%22M456%20660L600%20450L744%20660L600%20600Z%22%20fill=%22%23DCE4DD%22%20opacity=%22.6%22/%3E%3Crect%20x=%22-20%22%20y=%22750%22%20width=%221240%22%20height=%2262%22%20rx=%2231%22%20fill=%22%23C3D0C7%22%20opacity=%220.11%22/%3E%3Crect%20x=%22-20%22%20y=%221065%22%20width=%221240%22%20height=%2253%22%20rx=%2227%22%20fill=%22%23C3D0C7%22%20opacity=%220.17%22/%3E%3Crect%20x=%22-20%22%20y=%221380%22%20width=%221240%22%20height=%2261%22%20rx=%2230%22%20fill=%22%23C3D0C7%22%20opacity=%220.16%22/%3E%3Crect%20width=%221200%22%20height=%22750%22%20fill=%22url(%23f7)%22/%3E%3C/svg%3E")"><figcaption><span>Sichuan &middot; 3,099 m</span>Emeishan</figcaption></div></figure>
-    <figure><div class="shot" style="background-image:url('img/rail-huashan.jpg'),url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%201500%22%20width=%221200%22%20height=%221500%22%20preserveAspectRatio=%22xMidYMid%20slice%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22s8%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22/%3E%3Cstop%20offset=%2254%25%22%20stop-color=%22%2333453F%22/%3E%3Cstop%20offset=%22100%25%22%20stop-color=%22%2363796D%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22f8%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%22.9%22/%3E%3Cstop%20offset=%2260%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width=%221200%22%20height=%221500%22%20fill=%22url(%23s8)%22/%3E%3Cg%20fill=%22%2331423C%22%20opacity='0.5'%3E%3Cpath%20d=%22M0%201500L0%20439%20Q150%20439%20300%201065%20Q450%20192%20600%20192%20Q750%20192%20900%201090%20Q1050%20556%201200%20556%20L1200%201500Z%22/%3E%3C/g%3E%3Cg%20fill=%22%230B1211%22%3E%3Cpath%20d=%22M117%201500L194%20883L254%20973L345%201500Z%20M444%201500L537%20842L609%20932L718%201500Z%20M849%201500L945%20422L1018%20512L1130%201500Z%22/%3E%3C/g%3E%3Crect%20x=%22-20%22%20y=%22750%22%20width=%221240%22%20height=%2243%22%20rx=%2222%22%20fill=%22%23C3D0C7%22%20opacity=%220.14%22/%3E%3Crect%20x=%22-20%22%20y=%221380%22%20width=%221240%22%20height=%2260%22%20rx=%2230%22%20fill=%22%23C3D0C7%22%20opacity=%220.17%22/%3E%3Crect%20width=%221200%22%20height=%22750%22%20fill=%22url(%23f8)%22/%3E%3C/svg%3E")"><figcaption><span>Shaanxi &middot; 2,154 m</span>Huashan</figcaption></div></figure>
-    <figure><div class="shot" style="background-image:url('img/rail-huangshan.jpg'),url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%201500%22%20width=%221200%22%20height=%221500%22%20preserveAspectRatio=%22xMidYMid%20slice%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22s9%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22/%3E%3Cstop%20offset=%2254%25%22%20stop-color=%22%2333453F%22/%3E%3Cstop%20offset=%22100%25%22%20stop-color=%22%2363796D%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22f9%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%22.9%22/%3E%3Cstop%20offset=%2260%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width=%221200%22%20height=%221500%22%20fill=%22url(%23s9)%22/%3E%3Cg%20fill=%22%2331423C%22%20opacity='0.55'%3E%3Cpath%20d=%22M18%201500L79%20335L125%20425L197%201500Z%20M295%201500L363%20899L415%20989L494%201500Z%20M513%201500L561%20361L597%20451L653%201500Z%20M757%201500L798%20724L830%20814L879%201500Z%20M971%201500L1039%20764L1090%20854L1169%201500Z%22/%3E%3C/g%3E%3Crect%20x=%22-20%22%20y=%22750%22%20width=%221240%22%20height=%2230%22%20rx=%2215%22%20fill=%22%23C3D0C7%22%20opacity=%220.18%22/%3E%3Crect%20x=%22-20%22%20y=%22960%22%20width=%221240%22%20height=%2263%22%20rx=%2231%22%20fill=%22%23C3D0C7%22%20opacity=%220.15%22/%3E%3Crect%20x=%22-20%22%20y=%221170%22%20width=%221240%22%20height=%2247%22%20rx=%2223%22%20fill=%22%23C3D0C7%22%20opacity=%220.15%22/%3E%3Crect%20x=%22-20%22%20y=%221380%22%20width=%221240%22%20height=%2254%22%20rx=%2227%22%20fill=%22%23C3D0C7%22%20opacity=%220.20%22/%3E%3Cg%20fill=%22%230B1211%22%3E%3Cpath%20d=%22M44%201500L139%20652L212%20742L324%201500Z%20M450%201500L550%20608L627%20698L744%201500Z%20M885%201500L964%20393L1025%20483L1117%201500Z%22/%3E%3C/g%3E%3Crect%20width=%221200%22%20height=%22750%22%20fill=%22url(%23f9)%22/%3E%3C/svg%3E")"><figcaption><span>Anhui &middot; 1,864 m</span>Huangshan</figcaption></div></figure>
-    <figure><div class="shot" style="background-image:url('img/rail-wudang.jpg'),url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%201500%22%20width=%221200%22%20height=%221500%22%20preserveAspectRatio=%22xMidYMid%20slice%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22s10%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22/%3E%3Cstop%20offset=%2254%25%22%20stop-color=%22%2333453F%22/%3E%3Cstop%20offset=%22100%25%22%20stop-color=%22%2363796D%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22f10%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%22.9%22/%3E%3Cstop%20offset=%2260%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width=%221200%22%20height=%221500%22%20fill=%22url(%23s10)%22/%3E%3Cg%20fill=%22%2331423C%22%20opacity='0.5'%3E%3Cpath%20d=%22M0%201500L0%20618%20Q120%20494%20240%20494%20Q360%20494%20480%20755%20Q600%20467%20720%20467%20Q840%20467%20960%20904%20Q1080%20582%201200%20582%20L1200%201500Z%22/%3E%3C/g%3E%3Cg%20fill=%22%230B1211%22%3E%3Cpath%20d=%22M0%201500V930q600-360%201200%200V1500Z%22/%3E%3C/g%3E%3Crect%20x=%22504%22%20y=%22690%22%20width=%22192%22%20height=%22150%22%20fill=%22%239C7C2E%22%20opacity=%22.75%22/%3E%3Cpath%20d=%22M456%20690L600%20570L744%20690Z%22%20fill=%22%239C7C2E%22%20opacity=%22.9%22/%3E%3Crect%20width=%221200%22%20height=%22750%22%20fill=%22url(%23f10)%22/%3E%3C/svg%3E")"><figcaption><span>Hubei &middot; 1,612 m</span>Wudang</figcaption></div></figure>
-    <figure><div class="shot" style="background-image:url('img/rail-taishan.jpg'),url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%201500%22%20width=%221200%22%20height=%221500%22%20preserveAspectRatio=%22xMidYMid%20slice%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22s11%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22/%3E%3Cstop%20offset=%2254%25%22%20stop-color=%22%2333453F%22/%3E%3Cstop%20offset=%22100%25%22%20stop-color=%22%2363796D%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22f11%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%22.9%22/%3E%3Cstop%20offset=%2260%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width=%221200%22%20height=%221500%22%20fill=%22url(%23s11)%22/%3E%3Cg%20fill=%22%2331423C%22%20opacity='0.5'%3E%3Cpath%20d=%22M0%201500L0%201092%20Q150%20623%20300%20623%20Q450%20623%20600%201009%20Q750%20651%20900%20651%20Q1050%20651%201200%20722%20L1200%201500Z%22/%3E%3C/g%3E%3Cg%20fill=%22%230B1211%22%3E%3Cpath%20d=%22M0%201500L0%201290%20L133%201290L133%201192%20L267%201192L267%201084%20L400%201084L400%20977%20L533%20977L533%20868%20L667%20868L667%20746%20L800%20746L800%20614%20L933%20614L933%20500%20L1067%20500L1067%20378%20L1200%20378L1200%20270%20L1200%201500Z%22/%3E%3C/g%3E%3Crect%20width=%221200%22%20height=%22750%22%20fill=%22url(%23f11)%22/%3E%3C/svg%3E")"><figcaption><span>Shandong &middot; 1,545 m</span>Taishan</figcaption></div></figure>
-    <figure><div class="shot" style="background-image:url('img/rail-zhangjiajie.jpg'),url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%201500%22%20width=%221200%22%20height=%221500%22%20preserveAspectRatio=%22xMidYMid%20slice%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22s12%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22/%3E%3Cstop%20offset=%2254%25%22%20stop-color=%22%2333453F%22/%3E%3Cstop%20offset=%22100%25%22%20stop-color=%22%2363796D%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22f12%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%22.9%22/%3E%3Cstop%20offset=%2260%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width=%221200%22%20height=%221500%22%20fill=%22url(%23s12)%22/%3E%3Cg%20fill=%22%2331423C%22%20opacity='0.55'%3E%3Cpath%20d=%22M3%201500V740q26-18%2051%200V1500z%20M188%201500V649q30-22%2061%200V1500z%20M331%201500V537q26-19%2052%200V1500z%20M522%201500V741q26-19%2052%200V1500z%20M669%201500V477q26-18%2051%200V1500z%20M868%201500V592q29-21%2057%200V1500z%20M1022%201500V571q33-24%2066%200V1500z%20M1188%201500V541q30-21%2059%200V1500z%22/%3E%3C/g%3E%3Crect%20x=%22-20%22%20y=%22750%22%20width=%221240%22%20height=%2232%22%20rx=%2216%22%20fill=%22%23C3D0C7%22%20opacity=%220.19%22/%3E%3Crect%20x=%22-20%22%20y=%221065%22%20width=%221240%22%20height=%2233%22%20rx=%2217%22%20fill=%22%23C3D0C7%22%20opacity=%220.20%22/%3E%3Crect%20x=%22-20%22%20y=%221380%22%20width=%221240%22%20height=%2249%22%20rx=%2224%22%20fill=%22%23C3D0C7%22%20opacity=%220.15%22/%3E%3Cg%20fill=%22%230B1211%22%3E%3Cpath%20d=%22M25%201500V914q42-30%2084%200V1500z%20M252%201500V741q36-26%2073%200V1500z%20M485%201500V823q34-25%2068%200V1500z%20M740%201500V752q52-38%20104%200V1500z%20M938%201500V944q37-26%2073%200V1500z%20M1175%201500V749q37-26%2073%200V1500z%22/%3E%3C/g%3E%3Crect%20width=%221200%22%20height=%22750%22%20fill=%22url(%23f12)%22/%3E%3C/svg%3E")"><figcaption><span>Hunan &middot; 1,262 m</span>Zhangjiajie</figcaption></div></figure>
+    <figure><div class="shot slot-rail-emeishan"><figcaption><span>Sichuan &middot; 3,099 m</span>Emeishan</figcaption></div></figure>
+    <figure><div class="shot slot-rail-huashan"><figcaption><span>Shaanxi &middot; 2,154 m</span>Huashan</figcaption></div></figure>
+    <figure><div class="shot slot-rail-huangshan"><figcaption><span>Anhui &middot; 1,864 m</span>Huangshan</figcaption></div></figure>
+    <figure><div class="shot slot-rail-wudang"><figcaption><span>Hubei &middot; 1,612 m</span>Wudang</figcaption></div></figure>
+    <figure><div class="shot slot-rail-taishan"><figcaption><span>Shandong &middot; 1,545 m</span>Taishan</figcaption></div></figure>
+    <figure><div class="shot slot-rail-zhangjiajie"><figcaption><span>Hunan &middot; 1,262 m</span>Zhangjiajie</figcaption></div></figure>
   </div>
 </section>
 
@@ -660,12 +339,12 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})
     <h2 class="rv">Zhangjiajie, in full</h2>
     <p class="lede rv rv-d1">The mountain we have written out end to end, from which gate to enter to what the cable cars cost this year.</p>
     <div class="related rv rv-d2">
-      <a href="index.html"><div class="shot" style="background-image:url('img/card-overview.jpg'),url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%201500%22%20width=%221200%22%20height=%221500%22%20preserveAspectRatio=%22xMidYMid%20slice%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22s15%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22/%3E%3Cstop%20offset=%2254%25%22%20stop-color=%22%2333453F%22/%3E%3Cstop%20offset=%22100%25%22%20stop-color=%22%2363796D%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22f15%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%22.9%22/%3E%3Cstop%20offset=%2260%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width=%221200%22%20height=%221500%22%20fill=%22url(%23s15)%22/%3E%3Cg%20fill=%22%2331423C%22%20opacity='0.45'%3E%3Cpath%20d=%22M-15%201500V581q25-18%2050%200V1500z%20M148%201500V622q26-18%2051%200V1500z%20M282%201500V730q21-15%2042%200V1500z%20M397%201500V770q26-19%2053%200V1500z%20M544%201500V716q25-18%2051%200V1500z%20M650%201500V734q23-17%2046%200V1500z%20M809%201500V526q23-17%2047%200V1500z%20M928%201500V488q23-17%2046%200V1500z%20M1082%201500V625q26-19%2052%200V1500z%20M1189%201500V586q22-16%2043%200V1500z%22/%3E%3C/g%3E%3Crect%20x=%22-20%22%20y=%22750%22%20width=%221240%22%20height=%2245%22%20rx=%2223%22%20fill=%22%23C3D0C7%22%20opacity=%220.18%22/%3E%3Crect%20x=%22-20%22%20y=%221065%22%20width=%221240%22%20height=%2238%22%20rx=%2219%22%20fill=%22%23C3D0C7%22%20opacity=%220.23%22/%3E%3Crect%20x=%22-20%22%20y=%221380%22%20width=%221240%22%20height=%2253%22%20rx=%2227%22%20fill=%22%23C3D0C7%22%20opacity=%220.21%22/%3E%3Cg%20fill=%22%230B1211%22%20opacity='0.9'%3E%3Cpath%20d=%22M-21%201500V860q33-24%2067%200V1500z%20M221%201500V760q53-38%20106%200V1500z%20M482%201500V980q39-28%2078%200V1500z%20M704%201500V840q39-28%2079%200V1500z%20M948%201500V868q31-22%2062%200V1500z%20M1180%201500V769q46-33%2091%200V1500z%22/%3E%3C/g%3E%3Crect%20width=%221200%22%20height=%22750%22%20fill=%22url(%23f15)%22/%3E%3C/svg%3E")"></div><span class="mono">Overview</span><strong>Things to do in Zhangjiajie</strong></a>
-      <a href="zhangjiajie-itinerary.html"><div class="shot" style="background-image:url('img/card-itinerary.jpg'),url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%201500%22%20width=%221200%22%20height=%221500%22%20preserveAspectRatio=%22xMidYMid%20slice%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22s16%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22/%3E%3Cstop%20offset=%2254%25%22%20stop-color=%22%2333453F%22/%3E%3Cstop%20offset=%22100%25%22%20stop-color=%22%2363796D%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22f16%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%22.9%22/%3E%3Cstop%20offset=%2260%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width=%221200%22%20height=%221500%22%20fill=%22url(%23s16)%22/%3E%3Cg%20fill=%22%2331423C%22%20opacity='0.45'%3E%3Cpath%20d=%22M0%201500V550q25-18%2051%200V1500z%20M149%201500V701q27-19%2054%200V1500z%20M265%201500V692q28-21%2057%200V1500z%20M403%201500V599q19-13%2037%200V1500z%20M550%201500V575q25-18%2050%200V1500z%20M671%201500V558q19-14%2038%200V1500z%20M810%201500V578q24-17%2047%200V1500z%20M950%201500V599q24-17%2049%200V1500z%20M1052%201500V613q25-18%2051%200V1500z%20M1192%201500V656q30-21%2060%200V1500z%22/%3E%3C/g%3E%3Crect%20x=%22-20%22%20y=%22750%22%20width=%221240%22%20height=%2229%22%20rx=%2214%22%20fill=%22%23C3D0C7%22%20opacity=%220.11%22/%3E%3Crect%20x=%22-20%22%20y=%221065%22%20width=%221240%22%20height=%2242%22%20rx=%2221%22%20fill=%22%23C3D0C7%22%20opacity=%220.12%22/%3E%3Crect%20x=%22-20%22%20y=%221380%22%20width=%221240%22%20height=%2259%22%20rx=%2230%22%20fill=%22%23C3D0C7%22%20opacity=%220.11%22/%3E%3Cg%20fill=%22%230B1211%22%20opacity='0.9'%3E%3Cpath%20d=%22M22%201500V798q44-32%2089%200V1500z%20M262%201500V963q41-30%2082%200V1500z%20M458%201500V1011q35-25%2070%200V1500z%20M735%201500V878q32-23%2063%200V1500z%20M956%201500V777q37-26%2073%200V1500z%20M1191%201500V802q35-25%2069%200V1500z%22/%3E%3C/g%3E%3Crect%20width=%221200%22%20height=%22750%22%20fill=%22url(%23f16)%22/%3E%3C/svg%3E")"></div><span class="mono">Plan</span><strong>2, 3 and 4 day itineraries</strong></a>
-      <a href="tianmen-mountain.html"><div class="shot" style="background-image:url('img/card-tianmen.jpg'),url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%201500%22%20width=%221200%22%20height=%221500%22%20preserveAspectRatio=%22xMidYMid%20slice%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22s17%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22/%3E%3Cstop%20offset=%2254%25%22%20stop-color=%22%2333453F%22/%3E%3Cstop%20offset=%22100%25%22%20stop-color=%22%2363796D%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22f17%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%22.9%22/%3E%3Cstop%20offset=%2260%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width=%221200%22%20height=%221500%22%20fill=%22url(%23s17)%22/%3E%3Cg%20fill=%22%2331423C%22%20opacity='0.45'%3E%3Cpath%20d=%22M-16%201500V584q18-13%2037%200V1500z%20M119%201500V463q29-21%2059%200V1500z%20M268%201500V731q22-16%2044%200V1500z%20M388%201500V560q22-16%2044%200V1500z%20M524%201500V594q17-12%2035%200V1500z%20M652%201500V473q25-18%2051%200V1500z%20M793%201500V749q23-17%2047%200V1500z%20M919%201500V711q19-14%2038%200V1500z%20M1049%201500V639q29-21%2059%200V1500z%20M1192%201500V704q29-21%2057%200V1500z%22/%3E%3C/g%3E%3Crect%20x=%22-20%22%20y=%22750%22%20width=%221240%22%20height=%2262%22%20rx=%2231%22%20fill=%22%23C3D0C7%22%20opacity=%220.18%22/%3E%3Crect%20x=%22-20%22%20y=%221065%22%20width=%221240%22%20height=%2233%22%20rx=%2217%22%20fill=%22%23C3D0C7%22%20opacity=%220.24%22/%3E%3Crect%20x=%22-20%22%20y=%221380%22%20width=%221240%22%20height=%2242%22%20rx=%2221%22%20fill=%22%23C3D0C7%22%20opacity=%220.21%22/%3E%3Cg%20fill=%22%230B1211%22%20opacity='0.9'%3E%3Cpath%20d=%22M19%201500V968q37-26%2073%200V1500z%20M230%201500V845q49-35%2098%200V1500z%20M485%201500V751q46-33%2092%200V1500z%20M730%201500V886q35-25%2070%200V1500z%20M976%201500V953q46-33%2093%200V1500z%20M1190%201500V800q43-31%2086%200V1500z%22/%3E%3C/g%3E%3Crect%20width=%221200%22%20height=%22750%22%20fill=%22url(%23f17)%22/%3E%3C/svg%3E")"></div><span class="mono">Tianmen</span><strong>Routes A, B and C explained</strong></a>
-      <a href="zhangjiajie-glass-bridge.html"><div class="shot" style="background-image:url('img/card-bridge.jpg'),url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%201500%22%20width=%221200%22%20height=%221500%22%20preserveAspectRatio=%22xMidYMid%20slice%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22s18%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22/%3E%3Cstop%20offset=%2254%25%22%20stop-color=%22%2333453F%22/%3E%3Cstop%20offset=%22100%25%22%20stop-color=%22%2363796D%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22f18%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%22.9%22/%3E%3Cstop%20offset=%2260%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width=%221200%22%20height=%221500%22%20fill=%22url(%23s18)%22/%3E%3Cg%20fill=%22%2331423C%22%20opacity='0.45'%3E%3Cpath%20d=%22M17%201500V508q25-18%2049%200V1500z%20M150%201500V710q23-16%2046%200V1500z%20M250%201500V769q20-14%2039%200V1500z%20M411%201500V606q18-13%2035%200V1500z%20M531%201500V483q20-15%2041%200V1500z%20M660%201500V513q19-14%2038%200V1500z%20M813%201500V547q22-16%2044%200V1500z%20M930%201500V747q19-13%2037%200V1500z%20M1067%201500V776q26-19%2052%200V1500z%20M1186%201500V608q25-18%2050%200V1500z%22/%3E%3C/g%3E%3Crect%20x=%22-20%22%20y=%22750%22%20width=%221240%22%20height=%2259%22%20rx=%2230%22%20fill=%22%23C3D0C7%22%20opacity=%220.13%22/%3E%3Crect%20x=%22-20%22%20y=%221065%22%20width=%221240%22%20height=%2256%22%20rx=%2228%22%20fill=%22%23C3D0C7%22%20opacity=%220.14%22/%3E%3Crect%20x=%22-20%22%20y=%221380%22%20width=%221240%22%20height=%2254%22%20rx=%2227%22%20fill=%22%23C3D0C7%22%20opacity=%220.15%22/%3E%3Cg%20fill=%22%230B1211%22%20opacity='0.9'%3E%3Cpath%20d=%22M3%201500V873q45-32%2090%200V1500z%20M247%201500V878q43-31%2085%200V1500z%20M464%201500V919q34-25%2069%200V1500z%20M700%201500V896q47-34%2095%200V1500z%20M953%201500V854q50-36%2099%200V1500z%20M1196%201500V879q50-36%20101%200V1500z%22/%3E%3C/g%3E%3Crect%20width=%221200%22%20height=%22750%22%20fill=%22url(%23f18)%22/%3E%3C/svg%3E")"></div><span class="mono">Canyon</span><strong>The glass bridge, and the other one</strong></a>
-      <a href="best-time-to-visit-zhangjiajie.html"><div class="shot" style="background-image:url('img/card-season.jpg'),url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%201500%22%20width=%221200%22%20height=%221500%22%20preserveAspectRatio=%22xMidYMid%20slice%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22s19%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22/%3E%3Cstop%20offset=%2254%25%22%20stop-color=%22%2333453F%22/%3E%3Cstop%20offset=%22100%25%22%20stop-color=%22%2363796D%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22f19%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%22.9%22/%3E%3Cstop%20offset=%2260%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width=%221200%22%20height=%221500%22%20fill=%22url(%23s19)%22/%3E%3Cg%20fill=%22%2331423C%22%20opacity='0.45'%3E%3Cpath%20d=%22M14%201500V717q20-15%2041%200V1500z%20M126%201500V566q27-20%2054%200V1500z%20M271%201500V451q26-18%2051%200V1500z%20M408%201500V616q19-14%2039%200V1500z%20M545%201500V698q26-19%2052%200V1500z%20M659%201500V512q24-17%2048%200V1500z%20M800%201500V755q19-14%2038%200V1500z%20M925%201500V626q25-18%2051%200V1500z%20M1064%201500V661q29-21%2058%200V1500z%20M1210%201500V503q20-14%2039%200V1500z%22/%3E%3C/g%3E%3Crect%20x=%22-20%22%20y=%22750%22%20width=%221240%22%20height=%2248%22%20rx=%2224%22%20fill=%22%23C3D0C7%22%20opacity=%220.18%22/%3E%3Crect%20x=%22-20%22%20y=%221065%22%20width=%221240%22%20height=%2243%22%20rx=%2222%22%20fill=%22%23C3D0C7%22%20opacity=%220.19%22/%3E%3Crect%20x=%22-20%22%20y=%221380%22%20width=%221240%22%20height=%2244%22%20rx=%2222%22%20fill=%22%23C3D0C7%22%20opacity=%220.17%22/%3E%3Cg%20fill=%22%230B1211%22%20opacity='0.9'%3E%3Cpath%20d=%22M-22%201500V902q46-33%2092%200V1500z%20M221%201500V1004q32-23%2064%200V1500z%20M476%201500V930q38-28%2077%200V1500z%20M741%201500V1007q39-28%2077%200V1500z%20M951%201500V941q54-39%20109%200V1500z%20M1182%201500V779q53-38%20107%200V1500z%22/%3E%3C/g%3E%3Crect%20width=%221200%22%20height=%22750%22%20fill=%22url(%23f19)%22/%3E%3C/svg%3E")"></div><span class="mono">Timing</span><strong>Month by month</strong></a>
-      <a href="zhangjiajie-tickets-prices.html"><div class="shot" style="background-image:url('img/card-tickets.jpg'),url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%201500%22%20width=%221200%22%20height=%221500%22%20preserveAspectRatio=%22xMidYMid%20slice%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22s20%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22/%3E%3Cstop%20offset=%2254%25%22%20stop-color=%22%2333453F%22/%3E%3Cstop%20offset=%22100%25%22%20stop-color=%22%2363796D%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22f20%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%22.9%22/%3E%3Cstop%20offset=%2260%25%22%20stop-color=%22%23101A18%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width=%221200%22%20height=%221500%22%20fill=%22url(%23s20)%22/%3E%3Cg%20fill=%22%2331423C%22%20opacity='0.45'%3E%3Cpath%20d=%22M3%201500V601q25-18%2050%200V1500z%20M139%201500V606q24-17%2047%200V1500z%20M254%201500V657q19-14%2038%200V1500z%20M385%201500V628q26-19%2053%200V1500z%20M528%201500V578q28-20%2055%200V1500z%20M664%201500V608q28-20%2056%200V1500z%20M801%201500V658q17-12%2035%200V1500z%20M926%201500V659q20-14%2039%200V1500z%20M1063%201500V589q21-15%2041%200V1500z%20M1191%201500V695q23-16%2046%200V1500z%22/%3E%3C/g%3E%3Crect%20x=%22-20%22%20y=%22750%22%20width=%221240%22%20height=%2229%22%20rx=%2214%22%20fill=%22%23C3D0C7%22%20opacity=%220.19%22/%3E%3Crect%20x=%22-20%22%20y=%221065%22%20width=%221240%22%20height=%2247%22%20rx=%2224%22%20fill=%22%23C3D0C7%22%20opacity=%220.11%22/%3E%3Crect%20x=%22-20%22%20y=%221380%22%20width=%221240%22%20height=%2228%22%20rx=%2214%22%20fill=%22%23C3D0C7%22%20opacity=%220.23%22/%3E%3Cg%20fill=%22%230B1211%22%20opacity='0.9'%3E%3Cpath%20d=%22M21%201500V888q37-27%2074%200V1500z%20M222%201500V792q32-23%2064%200V1500z%20M487%201500V930q37-27%2074%200V1500z%20M730%201500V768q45-32%2089%200V1500z%20M941%201500V850q38-27%2076%200V1500z%20M1220%201500V869q48-35%2097%200V1500z%22/%3E%3C/g%3E%3Crect%20width=%221200%22%20height=%22750%22%20fill=%22url(%23f20)%22/%3E%3C/svg%3E")"></div><span class="mono">Budget</span><strong>Every 2026 ticket price</strong></a>
+      <a href="index.html"><div class="shot slot-card-overview"></div><span class="mono">Overview</span><strong>Things to do in Zhangjiajie</strong></a>
+      <a href="zhangjiajie-itinerary.html"><div class="shot slot-card-itinerary"></div><span class="mono">Plan</span><strong>2, 3 and 4 day itineraries</strong></a>
+      <a href="tianmen-mountain.html"><div class="shot slot-card-tianmen"></div><span class="mono">Tianmen</span><strong>Routes A, B and C explained</strong></a>
+      <a href="zhangjiajie-glass-bridge.html"><div class="shot slot-card-bridge"></div><span class="mono">Canyon</span><strong>The glass bridge, and the other one</strong></a>
+      <a href="best-time-to-visit-zhangjiajie.html"><div class="shot slot-card-season"></div><span class="mono">Timing</span><strong>Month by month</strong></a>
+      <a href="zhangjiajie-tickets-prices.html"><div class="shot slot-card-tickets"></div><span class="mono">Budget</span><strong>Every 2026 ticket price</strong></a>
     </div>
   </div>
 </section>
@@ -674,85 +353,13 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})
 
 <footer>
   <div class="wrap">
-    <p>Elevations are the accepted figures for each summit. Access arrangements, cable car operations and ticket prices change frequently across all six mountains — reconfirm with the scenic area before booking travel around any of them. Last reviewed August 2026.</p>
+    <p>Elevations are the accepted figures for each summit. Access arrangements, cable car operations and ticket prices change frequently across all six mountains — reconfirm with the scenic area before booking travel around any of them. Last reviewed August 2026. Photographs and licences: <a href="credits.html">image credits</a>.</p>
   </div>
 </footer>
 
-<script>
-/* Editorial layer — no dependencies, no layout shift, ~1KB gzipped.
-   Everything here is progressive: with JS off the page is fully readable. */
-(function () {
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  /* 1. Scroll reveal ------------------------------------------------- */
-  var targets = document.querySelectorAll(".rv");
-  if (!("IntersectionObserver" in window) || reduce) {
-    for (var i = 0; i < targets.length; i++) targets[i].classList.add("in");
-  } else {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
-      });
-    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.06 });
-    targets.forEach(function (t) { io.observe(t); });
-  }
-
-  /* 2. Hero parallax — transform only, never triggers layout --------- */
-  var bg = document.querySelector(".hero.photo .shot-bg");
-  if (bg && !reduce) {
-    var ticking = false;
-    window.addEventListener("scroll", function () {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(function () {
-        var y = window.scrollY;
-        if (y < window.innerHeight * 1.2) {
-          bg.style.transform = "scale(1.06) translate3d(0," + (y * 0.16) + "px,0)";
-        }
-        ticking = false;
-      });
-    }, { passive: true });
-  }
-
-  /* 3. Sticky section rail highlight --------------------------------- */
-  var links = document.querySelectorAll(".rail-nav a");
-  if (links.length && "IntersectionObserver" in window) {
-    var map = {};
-    links.forEach(function (a) {
-      var el = document.querySelector(a.getAttribute("href"));
-      if (el) map[el.id] = a;
-    });
-    var so = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          links.forEach(function (a) { a.classList.remove("on"); });
-          if (map[e.target.id]) map[e.target.id].classList.add("on");
-        }
-      });
-    }, { rootMargin: "-45% 0px -50% 0px" });
-    Object.keys(map).forEach(function (id) { so.observe(document.getElementById(id)); });
-  }
-})();
-
-</script>
+<script src="assets/site.js"></script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Zhangjiajie Field Notes","item":"https://example.com/"},{"@type":"ListItem","position":2,"name":"Which mountain to visit in China","item":"https://example.com/chinese-mountains.html"}]},
-{"@type":"Article","headline":"Which Mountain to Visit in China: Choosing Between the Six Big Ones","description":"A traveller's comparison of Huangshan, Huashan, Taishan, Zhangjiajie, Emeishan and Wudang, sorted by what each mountain asks of the visitor.","dateModified":"2026-08-05"},
-{"@type":"ItemList","name":"Mountains in China worth visiting","itemListElement":[
-{"@type":"ListItem","position":1,"item":{"@type":"Mountain","name":"Emeishan","elevation":"3099 m","address":{"@type":"PostalAddress","addressRegion":"Sichuan","addressCountry":"CN"}}},
-{"@type":"ListItem","position":2,"item":{"@type":"Mountain","name":"Huashan","elevation":"2154 m","address":{"@type":"PostalAddress","addressRegion":"Shaanxi","addressCountry":"CN"}}},
-{"@type":"ListItem","position":3,"item":{"@type":"Mountain","name":"Huangshan","elevation":"1864 m","address":{"@type":"PostalAddress","addressRegion":"Anhui","addressCountry":"CN"}}},
-{"@type":"ListItem","position":4,"item":{"@type":"Mountain","name":"Wudang Mountains","elevation":"1612 m","address":{"@type":"PostalAddress","addressRegion":"Hubei","addressCountry":"CN"}}},
-{"@type":"ListItem","position":5,"item":{"@type":"Mountain","name":"Taishan","elevation":"1545 m","address":{"@type":"PostalAddress","addressRegion":"Shandong","addressCountry":"CN"}}},
-{"@type":"ListItem","position":6,"item":{"@type":"Mountain","name":"Zhangjiajie","elevation":"1262 m","address":{"@type":"PostalAddress","addressRegion":"Hunan","addressCountry":"CN"}}}]},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"What is the most famous mountain in China?","acceptedAnswer":{"@type":"Answer","text":"Huangshan for scenery — the mountain classical landscape painting keeps returning to. Taishan is more culturally significant but less spectacular, and Zhangjiajie is more visually recognisable to foreign visitors because of Avatar."}},
-{"@type":"Question","name":"Which Chinese mountain is best for a first visit?","acceptedAnswer":{"@type":"Answer","text":"Huangshan if you want the archetype and have two days. Huashan if you are already in Xi'an and have one. Zhangjiajie if you want scenery unlike anywhere else and can give it three or four days."}},
-{"@type":"Question","name":"What are the Five Great Mountains of China?","acceptedAnswer":{"@type":"Answer","text":"Taishan in the east, Huashan in the west, Hengshan in the south, a second Hengshan in the north, and Songshan at the centre. It is a Taoist scheme tied to imperial ritual rather than a ranking of scenery, which is why Huangshan is not included."}},
-{"@type":"Question","name":"Do I need to be fit to climb Chinese mountains?","acceptedAnswer":{"@type":"Answer","text":"Not for most. Every mountain on this list has a cable car covering the hard elevation and paved, railed paths above. Taishan's full stairway and Huashan's peak circuit are genuine exertion; the rest is a day of walking on steps."}},
-{"@type":"Question","name":"Can I combine two Chinese mountains in one trip?","acceptedAnswer":{"@type":"Answer","text":"Yes if they share a hub — Xi'an gives you Huashan, Chengdu gives you Emeishan. Combining Huangshan and Zhangjiajie in a week means spending most of it in transit."}}
-]}]}
+{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Zhangjiajie Field Notes","item":"https://colddcc.github.io/zhangjiajie/"},{"@type":"ListItem","position":2,"name":"Which mountain to visit in China","item":"https://colddcc.github.io/zhangjiajie/chinese-mountains.html"}]},{"@type":"Article","headline":"Which Mountain to Visit in China: Choosing Between the Six Big Ones","description":"A traveller's comparison of Huangshan, Huashan, Taishan, Zhangjiajie, Emeishan and Wudang, sorted by what each mountain asks of the visitor.","dateModified":"2026-08-05"},{"@type":"ItemList","name":"Mountains in China worth visiting","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Mountain","name":"Emeishan","elevation":"3099 m","address":{"@type":"PostalAddress","addressRegion":"Sichuan","addressCountry":"CN"}}},{"@type":"ListItem","position":2,"item":{"@type":"Mountain","name":"Huashan","elevation":"2154 m","address":{"@type":"PostalAddress","addressRegion":"Shaanxi","addressCountry":"CN"}}},{"@type":"ListItem","position":3,"item":{"@type":"Mountain","name":"Huangshan","elevation":"1864 m","address":{"@type":"PostalAddress","addressRegion":"Anhui","addressCountry":"CN"}}},{"@type":"ListItem","position":4,"item":{"@type":"Mountain","name":"Wudang Mountains","elevation":"1612 m","address":{"@type":"PostalAddress","addressRegion":"Hubei","addressCountry":"CN"}}},{"@type":"ListItem","position":5,"item":{"@type":"Mountain","name":"Taishan","elevation":"1545 m","address":{"@type":"PostalAddress","addressRegion":"Shandong","addressCountry":"CN"}}},{"@type":"ListItem","position":6,"item":{"@type":"Mountain","name":"Zhangjiajie","elevation":"1262 m","address":{"@type":"PostalAddress","addressRegion":"Hunan","addressCountry":"CN"}}}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the most famous mountain in China?","acceptedAnswer":{"@type":"Answer","text":"Huangshan, for scenery — it is the mountain classical landscape painting keeps returning to, and the one most Chinese travellers name first. Taishan is more culturally significant but less spectacular, and Zhangjiajie is more recognisable to foreign visitors thanks to Avatar, even though many could not name it."}},{"@type":"Question","name":"Which Chinese mountain is best for a first visit?","acceptedAnswer":{"@type":"Answer","text":"Huangshan if you want the archetype and have two days. Huashan if you are already in Xi'an and have one. Zhangjiajie if you want something visually unlike anywhere else and can give it three or four days."}},{"@type":"Question","name":"What are the Five Great Mountains of China?","acceptedAnswer":{"@type":"Answer","text":"Taishan in the east, Huashan in the west, Hengshan in the south, another Hengshan (different character, in Shanxi) in the north, and Songshan at the centre. They are a Taoist scheme tied to imperial ritual, not a ranking of scenery — which is why Huangshan, the most beautiful of them all, is not on the list."}},{"@type":"Question","name":"Do I need to be fit to climb Chinese mountains?","acceptedAnswer":{"@type":"Answer","text":"Not for most of them. Every mountain here has a cable car covering the hard elevation, and the paths above are paved and railed. Taishan's full stairway and Huashan's peak-to-peak circuit are genuine exertion; everything else is a day of walking on steps at your own pace. Knees suffer more than lungs."}},{"@type":"Question","name":"Which one has the glass walkways?","acceptedAnswer":{"@type":"Answer","text":"Zhangjiajie has both kinds — short glass sections bolted to a cliff on Tianmen Mountain, and a 430-metre free-standing glass bridge in the Grand Canyon an hour away. They get confused constantly. The difference, and which ticket to buy."}},{"@type":"Question","name":"Can I combine two of these in one trip?","acceptedAnswer":{"@type":"Answer","text":"Yes, if you allow for the distances — these are different provinces, and the pairings that work are the ones sharing a hub. Xi'an gives you Huashan, Chengdu gives you Emeishan, and Zhangjiajie sits on the rail line between Changsha and western Hunan. Trying to string Huangshan and Zhangjiajie together in a week means spending most of it in transit."}}]}]}
 </script>
 </body>
 </html>

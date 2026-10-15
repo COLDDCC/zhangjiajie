@@ -1,0 +1,387 @@
+
+/* ============================================================
+   Zhangjiajie Field Notes — shared design system
+   Palette: wet sandstone, valley mist, pine, Tujia brocade red
+   Type: Bodoni Moda (display) / Karla (body) / IBM Plex Mono (data)
+   ============================================================ */
+
+:root{
+  --ink:#101A18;
+  --stone:#4A5A54;
+  --mist:#E4EAE5;
+  --paper:#F7F9F5;
+  --pine:#2F5D46;
+  --brocade:#B5402B;
+  --brass:#9C7C2E;
+  /* brass on ink clears AA at 4.51; on light paper it does not, so light-background
+     label text uses this darkened variant */
+  --brass-deep:#886C28;
+  --rule:rgba(16,26,24,.14);
+  --measure:74ch;
+  /* image-slot fallback: photo sits on top of this when it is missing or still loading */
+  --slot-fallback:linear-gradient(158deg,#101A18 0%,#33453F 54%,#63796D 100%);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--mist);color:var(--ink);
+  font-family:"Karla",system-ui,sans-serif;font-size:17px;line-height:1.68;
+  -webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Bodoni Moda",Georgia,serif;font-weight:600;line-height:1.05;margin:0}
+a{color:var(--pine);text-underline-offset:3px}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid var(--brocade);outline-offset:3px;border-radius:2px}
+img{max-width:100%;height:auto}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+.mono{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:12px;top:12px;background:var(--paper);padding:10px 16px;z-index:99}
+
+/* ---------- site nav ---------- */
+.nav{background:var(--ink);color:var(--paper);position:relative;z-index:5}
+.nav-in{max-width:1080px;margin:0 auto;padding:16px 28px;display:flex;flex-wrap:wrap;
+  align-items:baseline;gap:10px 30px}
+.brand{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--paper);text-decoration:none;flex:none}
+.brand span{color:var(--brass)}
+.nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 22px;margin:0;padding:0}
+.nav a:not(.brand){color:#AFBEB7;text-decoration:none;font-size:.88rem}
+.nav a:not(.brand):hover,.nav a[aria-current="page"]{color:var(--paper);text-decoration:underline}
+
+/* ---------- hero ---------- */
+.hero{position:relative;background:var(--ink);color:var(--paper);overflow:hidden;isolation:isolate}
+.hero svg{position:absolute;inset:auto 0 0 0;width:100%;height:64%;display:block;z-index:0}
+.hero-inner{position:relative;z-index:2;padding:80px 28px 220px;max-width:1080px;margin:0 auto}
+.hero.compact .hero-inner{padding:62px 28px 150px}
+.eyebrow{color:var(--brass);display:block;margin-bottom:24px}
+.hero h1{font-size:clamp(2.6rem,9vw,7.4rem);font-weight:400;letter-spacing:-.02em;font-style:italic}
+.hero h1 em{font-style:normal;display:block;font-weight:900;letter-spacing:-.035em}
+.hero.compact h1{font-size:clamp(2.2rem,6vw,4.4rem);font-style:normal;font-weight:600;letter-spacing:-.02em}
+.hero p{max-width:48ch;margin:30px 0 0;font-size:1.12rem;color:#C9D4CE;font-weight:300}
+.hero-figs{display:flex;flex-wrap:wrap;gap:34px;margin-top:42px}
+.hero-figs div{border-top:1px solid rgba(255,255,255,.28);padding-top:9px}
+.hero-figs b{display:block;font-family:"IBM Plex Mono",monospace;font-size:1.4rem;font-weight:500;letter-spacing:-.02em}
+.hero-figs span{color:#93A69E}
+@keyframes rise{from{transform:translateY(46px);opacity:0}to{transform:translateY(0);opacity:1}}
+.pk{animation:rise 1.5s cubic-bezier(.16,.9,.3,1) both}
+.pk:nth-of-type(2){animation-delay:.1s}
+.pk:nth-of-type(3){animation-delay:.2s}
+@media (prefers-reduced-motion:reduce){.pk{animation:none}html{scroll-behavior:auto}}
+
+/* ---------- generic blocks ---------- */
+section{padding:74px 0}
+.lede{font-size:1.2rem;font-weight:300;max-width:var(--measure)}
+.lede strong{font-weight:500}
+h2{font-size:clamp(1.9rem,4.2vw,3rem);letter-spacing:-.015em;margin-bottom:20px}
+h3{font-size:1.44rem;letter-spacing:-.01em;margin-bottom:8px}
+p{max-width:var(--measure)}
+.kicker{color:var(--brocade);display:block;margin-bottom:14px}
+.tint{background:var(--paper);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stack > * + *{margin-top:1.05em}
+.stack h3{margin-top:2em}
+
+.crumb{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.12em;
+  text-transform:uppercase;color:#93A69E;margin-bottom:20px}
+.crumb a{color:#93A69E}
+
+/* zone / card grid */
+.zones{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:1px;
+  background:var(--rule);margin-top:36px;border:1px solid var(--rule)}
+.zone{background:var(--paper);padding:26px}
+.zone .mono{color:var(--brass-deep);display:block;margin-bottom:10px}
+.zone h3{font-size:1.26rem}
+.zone p{font-size:.94rem;margin:0;color:#3B4A45}
+.zone a{font-size:.88rem;display:inline-block;margin-top:10px}
+
+/* the vertical index (signature component) */
+.item{display:grid;grid-template-columns:112px 1fr;gap:36px;padding:42px 0;
+  border-top:1px solid var(--rule);align-items:start}
+.item:first-of-type{border-top:2px solid var(--ink)}
+.gauge{position:sticky;top:26px;text-align:right}
+.gauge b{display:block;font-family:"IBM Plex Mono",monospace;font-size:1.24rem;font-weight:500;letter-spacing:-.03em}
+.gauge span{display:block;font-family:"IBM Plex Mono",monospace;font-size:.6rem;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--stone);margin-top:3px}
+.bar{margin-left:auto;margin-top:12px;width:3px;background:var(--pine);border-radius:2px}
+.bar.flat{background:var(--brocade);height:3px;width:52px}
+.item h3 .n{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.14em;
+  color:var(--brocade);display:block;margin-bottom:10px}
+.item p{margin:.7em 0}
+
+/* fact strip */
+.facts{list-style:none;padding:0;margin:20px 0 0;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px 26px;max-width:var(--measure)}
+.facts li{font-size:.9rem;border-left:2px solid var(--rule);padding-left:12px;line-height:1.45}
+.facts strong{display:block;font-family:"IBM Plex Mono",monospace;font-size:.6rem;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--stone);font-weight:500}
+
+/* callout */
+.note{background:#FDF6E9;border-left:3px solid var(--brass);padding:16px 20px;margin:22px 0 0;
+  max-width:var(--measure);font-size:.94rem}
+.note b{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;
+  display:block;margin-bottom:5px;color:var(--brass-deep)}
+.note.warn{background:#FBEEEB;border-left-color:var(--brocade)}
+.note.warn b{color:var(--brocade)}
+/* callout inside a dark section: the paper variants are unreadable on ink */
+.note.on-dark{background:#1D2A26;border-left-color:var(--brass)}
+.note.on-dark b{color:#B4933F}
+.dark .facts strong,.dark .slots li span:first-child,.dark .gauge span{color:#93A69E}
+
+/* dark section */
+.dark{background:var(--ink);color:var(--paper)}
+.dark h2,.dark h3{color:var(--paper)}
+.dark .kicker{color:var(--brass)}
+.dark p,.dark li{color:#BDC9C3}
+.dark a{color:#E4EAE5}
+/* tables on dark: the light-background --stone and --rule are near-invisible on ink */
+.dark thead th{color:#93A69E;border-bottom-color:rgba(255,255,255,.42)}
+.dark th,.dark td{border-bottom-color:rgba(255,255,255,.15)}
+.dark caption{color:#93A69E}
+.plan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:30px;margin-top:38px}
+.plan{border-top:1px solid rgba(255,255,255,.3);padding-top:18px}
+.plan h3{font-size:1.3rem;margin-bottom:14px}
+.plan ol{margin:0;padding-left:1.15em;font-size:.94rem}
+.plan ol li{margin-bottom:9px}
+
+/* day-by-day timeline */
+.day{display:grid;grid-template-columns:96px 1fr;gap:30px;padding:34px 0;border-top:1px solid var(--rule)}
+.day:first-of-type{border-top:2px solid var(--ink)}
+.day .when{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--brocade);position:sticky;top:26px}
+.day .when b{display:block;font-size:1.6rem;letter-spacing:-.02em;color:var(--ink);margin-bottom:4px}
+.slots{list-style:none;margin:16px 0 0;padding:0}
+.slots li{display:grid;grid-template-columns:88px 1fr;gap:16px;padding:9px 0;
+  border-top:1px dotted var(--rule);font-size:.95rem;max-width:var(--measure)}
+.slots li span:first-child{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--stone);padding-top:3px}
+
+/* tables */
+table{width:100%;border-collapse:collapse;margin-top:28px;font-size:.94rem}
+caption{text-align:left;font-size:.86rem;color:var(--stone);margin-bottom:14px;max-width:var(--measure)}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
+thead th{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--stone);font-weight:500;border-bottom:1px solid var(--ink)}
+td.num{font-family:"IBM Plex Mono",monospace;white-space:nowrap}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+tr.good td:first-child{box-shadow:inset 3px 0 0 var(--pine)}
+tr.avoid td:first-child{box-shadow:inset 3px 0 0 var(--brocade)}
+
+/* faq */
+details{border-bottom:1px solid var(--rule);padding:18px 0;max-width:var(--measure)}
+summary{cursor:pointer;font-family:"Bodoni Moda",serif;font-size:1.14rem;font-weight:600;
+  list-style:none;display:flex;justify-content:space-between;gap:18px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:"IBM Plex Mono",monospace;color:var(--brocade);flex:none}
+details[open] summary::after{content:"–"}
+details p{margin:14px 0 0;font-size:.97rem}
+
+/* related links */
+.related{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;
+  background:rgba(255,255,255,.2);margin-top:34px;border:1px solid rgba(255,255,255,.2)}
+.related a{background:var(--ink);padding:22px;text-decoration:none;display:block}
+.related a:hover{background:#182623}
+.related .mono{color:var(--brass);display:block;margin-bottom:8px}
+.related strong{font-family:"Bodoni Moda",serif;font-size:1.14rem;color:var(--paper);
+  display:block;line-height:1.2;font-weight:600}
+
+footer{background:var(--ink);color:#8FA39A;padding:42px 0;font-size:.85rem}
+footer p{max-width:var(--measure)}
+footer a{color:#AFBEB7}
+
+@media (max-width:660px){
+  body{font-size:16px}
+  .hero-inner{padding:56px 24px 160px}
+  .hero.compact .hero-inner{padding:44px 24px 110px}
+  .item,.day{grid-template-columns:1fr;gap:14px}
+  .gauge,.day .when{position:static;text-align:left;display:flex;align-items:baseline;gap:10px}
+  .gauge b{font-size:1.05rem}
+  .gauge span{margin:0}
+  .day .when b{font-size:1.2rem;margin:0}
+  .bar{display:none}
+  .slots li{grid-template-columns:1fr;gap:2px}
+  section{padding:52px 0}
+}
+
+/* ============================================================
+   EDITORIAL LAYER v2 — full-bleed photography, scroll reveals,
+   statement typography. Added Aug 2026.
+   Every image slot degrades to an intentional duotone gradient
+   if the photo is missing, so the site never looks broken.
+   ============================================================ */
+
+/* ---------- photo slots ---------- */
+.shot{
+  position:relative;
+  background-color:var(--ink);
+  background-size:cover;
+  background-position:center;
+  overflow:hidden;
+}
+/* duotone wash: sits under the photo as fallback, over it as grade */
+.shot::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(150deg,rgba(16,26,24,.62),rgba(47,93,70,.30) 55%,rgba(156,124,46,.24));
+  mix-blend-mode:multiply;z-index:1;
+}
+.shot::after{
+  content:"";position:absolute;inset:0;z-index:2;
+  background:radial-gradient(120% 90% at 50% 0%,transparent 40%,rgba(11,18,17,.55));
+}
+.shot > *{position:relative;z-index:3}
+
+/* ---------- full-bleed hero ---------- */
+.hero.photo{background:var(--ink)}
+.hero.photo .shot-bg{
+  position:absolute;inset:0;z-index:0;
+  background-color:#1A2724;
+  background-size:cover;background-position:center 42%;
+  transform:scale(1.06);
+  will-change:transform;
+}
+.hero.photo .veil{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(180deg,rgba(11,18,17,.82) 0%,rgba(11,18,17,.28) 38%,rgba(11,18,17,.92) 100%),
+    linear-gradient(100deg,rgba(47,93,70,.30),transparent 60%);
+}
+.hero.photo .hero-inner{padding-top:120px;padding-bottom:120px}
+.hero.photo svg{display:none}
+
+/* grain — makes flat colour read as printed rather than digital */
+.grain{
+  position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.16;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+/* ---------- statement type ---------- */
+.statement{padding:120px 0;background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.statement .wrap{position:relative;z-index:3}
+.statement p{
+  font-family:"Bodoni Moda",Georgia,serif;
+  font-size:clamp(1.9rem,5.2vw,4.2rem);
+  line-height:1.06;letter-spacing:-.025em;font-weight:400;font-style:italic;
+  max-width:20ch;margin:0;color:var(--paper);
+}
+.statement p em{font-style:normal;font-weight:900;color:var(--brass)}
+.statement cite{
+  display:block;margin-top:30px;font-family:"IBM Plex Mono",monospace;
+  font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+  color:#93A69E;font-style:normal;
+}
+
+/* ---------- editorial split ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch}
+.split .shot{min-height:440px}
+.split .say{padding:64px 56px;background:var(--paper);display:flex;flex-direction:column;justify-content:center}
+.split.flip .shot{order:2}
+.split .say .mono{color:var(--brocade);display:block;margin-bottom:14px}
+.split .say h3{font-size:clamp(1.6rem,3vw,2.3rem);margin-bottom:14px}
+.split .say p{font-size:1.02rem;max-width:46ch}
+.split .say a{display:inline-block;margin-top:18px;font-family:"IBM Plex Mono",monospace;
+  font-size:.72rem;letter-spacing:.13em;text-transform:uppercase}
+
+/* ---------- horizontal gallery strip ---------- */
+.strip{padding:0 0 78px;background:var(--ink)}
+.strip-head{max-width:1080px;margin:0 auto;padding:0 28px 26px}
+.rail{
+  display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,30vw);
+  gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:0 28px 14px;-webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;scrollbar-color:var(--brass) transparent;
+}
+.rail::-webkit-scrollbar{height:4px}
+.rail::-webkit-scrollbar-thumb{background:var(--brass)}
+.rail figure{margin:0;scroll-snap-align:start}
+.rail .shot{aspect-ratio:4/5;display:flex;align-items:flex-end;padding:20px}
+.rail figcaption{color:var(--paper);font-family:"Bodoni Moda",serif;font-size:1.16rem;line-height:1.15}
+.rail figcaption span{
+  display:block;font-family:"IBM Plex Mono",monospace;font-size:.6rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--brass);margin-bottom:6px;
+}
+
+/* ---------- card image treatment ---------- */
+.related a{position:relative;overflow:hidden}
+.related a .shot{position:absolute;inset:0;z-index:0;opacity:.32;transition:transform .7s cubic-bezier(.16,.9,.3,1),opacity .5s}
+.related a > *{position:relative;z-index:2}
+.related a:hover .shot{transform:scale(1.07);opacity:.5}
+
+/* ---------- scroll reveal ----------
+   Gated on .js (set by an inline script in each <head>): without it the hidden
+   state never applies, so the copy stays readable with scripting off. */
+.js .rv{opacity:0;transform:translateY(30px);
+  transition:opacity .85s cubic-bezier(.16,.9,.3,1),transform .85s cubic-bezier(.16,.9,.3,1)}
+.js .rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}
+
+/* ---------- sticky section rail (hub only) ---------- */
+.rail-nav{position:sticky;top:0;z-index:4;background:var(--paper);
+  border-bottom:1px solid var(--rule);overflow-x:auto;scrollbar-width:none}
+.rail-nav::-webkit-scrollbar{display:none}
+.rail-nav ol{display:flex;gap:0;margin:0;padding:0;list-style:none;
+  max-width:1080px;margin:0 auto}
+.rail-nav a{display:block;padding:14px 20px;text-decoration:none;white-space:nowrap;
+  font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--stone);border-bottom:2px solid transparent}
+.rail-nav a.on{color:var(--ink);border-bottom-color:var(--brocade)}
+
+@media (prefers-reduced-motion:reduce){
+  .js .rv{opacity:1;transform:none;transition:none}
+  .hero.photo .shot-bg{transform:none}
+  .related a .shot{transition:none}
+}
+
+@media (max-width:860px){
+  .split{grid-template-columns:1fr}
+  .split.flip .shot{order:0}
+  .split .shot{min-height:300px}
+  .split .say{padding:44px 26px}
+}
+@media (max-width:660px){
+  .statement{padding:80px 0}
+  .hero.photo .hero-inner{padding-top:80px;padding-bottom:80px}
+  .rail{grid-auto-columns:78vw}
+}
+
+/* ---------- image slots ----------
+   Photo layered over a duotone gradient in the site palette, so a missing
+   or still-loading image degrades to an intentional wash, never a grey box. */
+.slot-card-bridge{background-image:url("../img/card-bridge.jpg"),var(--slot-fallback)}
+.slot-card-itinerary{background-image:url("../img/card-itinerary.jpg"),var(--slot-fallback)}
+.slot-card-overview{background-image:url("../img/card-overview.jpg"),var(--slot-fallback)}
+.slot-card-season{background-image:url("../img/card-season.jpg"),var(--slot-fallback)}
+.slot-card-tianmen{background-image:url("../img/card-tianmen.jpg"),var(--slot-fallback)}
+.slot-card-tickets{background-image:url("../img/card-tickets.jpg"),var(--slot-fallback)}
+.slot-hero-glassbridge{background-image:url("../img/hero-glassbridge.jpg"),var(--slot-fallback)}
+.slot-hero-huangshan{background-image:url("../img/hero-huangshan.jpg"),var(--slot-fallback)}
+.slot-hero-itinerary{background-image:url("../img/hero-itinerary.jpg"),var(--slot-fallback)}
+.slot-hero-season{background-image:url("../img/hero-season.jpg"),var(--slot-fallback)}
+.slot-hero-tianmen{background-image:url("../img/hero-tianmen.jpg"),var(--slot-fallback)}
+.slot-hero-tickets{background-image:url("../img/hero-tickets.jpg"),var(--slot-fallback)}
+.slot-hero-zhangjiajie{background-image:url("../img/hero-zhangjiajie.jpg"),var(--slot-fallback)}
+.slot-rail-emeishan{background-image:url("../img/rail-emeishan.jpg"),var(--slot-fallback)}
+.slot-rail-huangshan{background-image:url("../img/rail-huangshan.jpg"),var(--slot-fallback)}
+.slot-rail-huashan{background-image:url("../img/rail-huashan.jpg"),var(--slot-fallback)}
+.slot-rail-taishan{background-image:url("../img/rail-taishan.jpg"),var(--slot-fallback)}
+.slot-rail-wudang{background-image:url("../img/rail-wudang.jpg"),var(--slot-fallback)}
+.slot-rail-zhangjiajie{background-image:url("../img/rail-zhangjiajie.jpg"),var(--slot-fallback)}
+.slot-split-avatar-pillars{background-image:url("../img/split-avatar-pillars.jpg"),var(--slot-fallback)}
+.slot-split-glass-bridge{background-image:url("../img/split-glass-bridge.jpg"),var(--slot-fallback)}
+/* splits on the zone pages reuse that page's own card photograph */
+.slot-split-itinerary{background-image:url("../img/card-itinerary.jpg"),var(--slot-fallback)}
+.slot-split-tianmen{background-image:url("../img/card-tianmen.jpg"),var(--slot-fallback)}
+.slot-split-season{background-image:url("../img/card-season.jpg"),var(--slot-fallback)}
+.slot-split-tickets{background-image:url("../img/card-tickets.jpg"),var(--slot-fallback)}
+
+/* ---------- credits page ---------- */
+code{font-family:"IBM Plex Mono",monospace;font-size:.82em}
+td .use{display:block;font-size:.78rem;color:var(--stone);margin-top:4px;max-width:34ch}
+.muted{color:var(--stone)}
+
+/* ---------- mobile nav ----------
+   Seven links wrap to three rows below ~720px and eat the first screen.
+   Keep one row and let the link list scroll instead. */
+@media (max-width:720px){
+  .nav-in{flex-wrap:nowrap;padding:12px 18px;gap:16px}
+  .brand{font-size:.62rem;letter-spacing:.14em}
+  .nav ul{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;margin-left:auto;mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 18px),transparent)}
+  .nav ul::-webkit-scrollbar{display:none}
+  .nav a:not(.brand){font-size:.8rem;white-space:nowrap}
+}
