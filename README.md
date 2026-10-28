@@ -1,6 +1,6 @@
 # Zhangjiajie Field Notes
 
-Buildless English travel guides with a browser-local 2/3/4-day itinerary selector. No API key, database or package installation.
+Buildless English travel guides with a browser-local 2/3/4-day itinerary selector. No API key or database. The deploy build uses Pillow for responsive images; source HTML still opens directly.
 
 ## GitHub Pages
 
@@ -14,7 +14,8 @@ For a custom domain, set the repository Actions variable `SITE_URL` to the full 
 
 - Production branch: `master`
 - Framework: None
-- Build command: `python scripts/build.py && python scripts/check.py`
+- Build command: `python -m pip install -r requirements-build.txt
+python scripts/build.py && python scripts/check.py`
 - Output directory: `dist`
 - Environment variable: `SITE_URL=https://your-actual-domain`
 
@@ -23,6 +24,7 @@ The build injects canonical URLs, makes `og:image` absolute and generates a matc
 ## Local checks
 
 ```sh
+python -m pip install -r requirements-build.txt
 python scripts/build.py
 python scripts/check.py
 node --check assets/site.js
@@ -57,6 +59,20 @@ The photographs are served from `/img`, so nothing hotlinks another domain at pa
 - Conflicting unverified exact ticket prices were removed. Current guides compare inclusions and direct visitors to confirm their selected product.
 - No analytics or bookings are installed. No visitor data is sent by the itinerary selector.
 
-## Verified in a browser
+## Browser verification status — 29 October 2026
+
+The final build passes all 12 pages at 390, 768 and 1024px with loaded images and no horizontal overflow, 36 planner combinations, URL restoration, and no-JS static fallback checks. The four-day rainy plan prints on one A4 page. New planner text passes computed contrast checks. Detailed evidence and remaining external checks are recorded in `docs/optimization-validation.md`.
+
+Previous baseline:
 
 Checked on a local server at 390, 768 and 1024 px: no horizontal overflow on any page, every photograph loads, and text colours clear WCAG 2.1 AA (4.5:1 small, 3:1 large) against their real rendered backgrounds, including caption bands measured over a white photograph as the worst case.
+
+## Field tools and responsive images
+
+The planner is generated from `snippets/planner.html` for both pages, with a static default retained in source HTML. URLs use `days`, `extra` and `pace`. Four days includes both extras. Less walking is not a step-free accessibility claim; weather mode may require postponement. Published timing suggestions are dated and linked; no fixed queue times are asserted.
+
+`images.py` creates WebP variants at 800/1200/1600px, capped at original width, in `dist/img`. The build inserts picture/source/srcset markup while retaining the original JPEG, alt and attribution. Variants inherit each source image’s licence in `credits.html`. The output package contains both formats, so total disk bytes increase; modern browsers select a WebP instead of downloading both.
+
+Optional interaction/browser checks (Node): install `jsdom` and `playwright`, then run `node scripts/planner-check.cjs`; install Chromium with `npx playwright install chromium`, run `node scripts/browser-check.cjs`. No browser or npm dependency is shipped to visitors.
+
+The three PRs are stacked for review: merge batch 1 first, retarget batch 2 to master, then merge it and retarget batch 3. Each production merge triggers a separate deployment. A pushed PR is not a verified live release.

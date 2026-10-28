@@ -1,8 +1,18 @@
 const {chromium}=require('playwright');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
+const http=require('node:http');
+const path=require('node:path');
 (async()=>{
- const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+ const root=path.resolve('dist');
+ const server=http.createServer((req,res)=>{
+  const file=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));
+  if(!file.startsWith(root+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile()){res.writeHead(404);res.end();return;}
+  const types={'.html':'text/html','.css':'text/css','.js':'text/javascript','.jpg':'image/jpeg','.webp':'image/webp','.svg':'image/svg+xml'};
+  res.setHeader('Content-Type',types[path.extname(file)]||'application/octet-stream');fs.createReadStream(file).pipe(res);
+ });
+ await new Promise(resolve=>server.listen(8765,'127.0.0.1',resolve));
+ const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined,headless:true,args:['--no-sandbox']});
  const pages=fs.readdirSync('dist').filter(x=>x.endsWith('.html'));
  let combinations=0;
  for(const width of [390,768,1024]){
@@ -32,9 +42,14 @@ const fs=require('node:fs');
   assert.equal(await page.locator('#plan-result li').count(),3);
   await page.selectOption('#days','2');assert(new URL(page.url()).searchParams.get('days')==='2');
   await page.reload();assert.equal(await page.locator('#days').inputValue(),'2');
+  await page.evaluate(()=>{window.__printed=0;window.print=()=>{window.__printed++};Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async text=>{window.__copied=text}}});});
+  await page.click('#print-plan');assert.equal(await page.evaluate(()=>window.__printed),1);
+  await page.click('#copy-plan');assert((await page.evaluate(()=>window.__copied)).includes(page.url()));
+  await page.evaluate(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:undefined}));
+  await page.click('#copy-plan');assert((await page.locator('#copy-status').innerText()).includes('Select and copy'));
   await page.close();
  }
  const nojs=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:900}});
  for(const file of pages){const p=await nojs.newPage();await p.goto('http://127.0.0.1:8765/'+file);assert(await p.locator('h1').isVisible());if(['index.html','zhangjiajie-itinerary.html'].includes(file))assert.equal(await p.locator('#plan-result li').count(),3);await p.close();}
- await browser.close();console.log(`PASS: ${pages.length} pages at 390/768/1024px; all images; ${combinations} planner cases; invalid/share URL; no-JS fallback`);
+ await browser.close();await new Promise(resolve=>server.close(resolve));console.log(`PASS: ${pages.length} pages at 390/768/1024px; all images; ${combinations} planner cases; invalid/share URL; no-JS fallback`);
 })().catch(e=>{console.error(e);process.exit(1)});

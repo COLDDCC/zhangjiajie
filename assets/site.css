@@ -326,3 +326,5 @@ code{font-family:"IBM Plex Mono",monospace;font-size:.86em}
  #planner h2{font-size:20pt;margin-bottom:8px}.plan-days{padding-left:16px}.plan-days>li{padding:8px 0;break-inside:avoid}.plan-days h3{font-size:12pt}
  .plan-days dl{grid-template-columns:75px 1fr;gap:3px 8px;margin:8px 0}.plan-days dd{margin:0}.source{font-size:8pt!important}a{color:#101A18}
 }
+
+.map-preview .area-map{max-width:330px}

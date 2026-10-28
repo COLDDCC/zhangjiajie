@@ -4,6 +4,7 @@ import os, re, shutil, json
 from datetime import datetime
 from pathlib import Path
 from html import escape
+from images import generate, responsive
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'dist'
 URL = os.environ.get('SITE_URL', 'https://colddcc.github.io/zhangjiajie').rstrip('/')
@@ -46,6 +47,9 @@ for name in ['assets', 'img', 'favicon.svg', '.nojekyll']:
     p=ROOT/name
     if p.is_dir(): shutil.copytree(p,OUT/name)
     elif p.exists(): shutil.copy2(p,OUT/name)
+variants = generate(OUT/'img')
+for built in OUT.glob('*.html'):
+    built.write_text(responsive(built.read_text(), variants), encoding='utf-8')
 if (ROOT/'CNAME').exists(): shutil.copy2(ROOT/'CNAME',OUT/'CNAME')
 pages=sorted(OUT.glob('*.html'))
 (OUT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join('<url><loc>'+escape(URL+('/' if p.name=='index.html' else '/'+p.name))+'</loc><lastmod>'+dates[p.name]+'</lastmod></url>\n' for p in pages if p.name!='404.html')+'</urlset>\n')
