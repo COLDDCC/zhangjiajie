@@ -54,3 +54,11 @@ PRs are stacked for review. Merge #2 first, retarget #3 to master and merge afte
 - Without JavaScript, inactive selects, print/copy actions and Chinese-name copy buttons are hidden; static plans and names remain readable. Direct `file://` opening remains interactive without attempting an unsupported history mutation.
 - Re-ran build, all static checks, both JS syntax checks, 36 DOM cases, full 12-page × three-width browser checks, file URLs, clipboard success/failure, print visibility and no-JS checks.
 - Generated all 36 PDFs (18 combinations on each planner page); every PDF is one A4 page. These local checks do not establish mobile map pin accuracy, Lighthouse results or production deployment.
+
+## Destination lookup and mobile map usability — 29 October 2026
+
+- The destination table becomes individual cards below 600px. Explicit table/row/cell roles retain tabular semantics; desktop keeps the original comparison table. All 10 Chinese names and three map services per place remain in the static HTML.
+- Optional search matches English or Chinese text, ignoring case and surrounding spaces. Includes an announced result count, an empty state and a show-all button. No requests, storage or analytics are added.
+- Following a schematic anchor clears filtering so its target is visible. Printing restores all ten destination rows regardless of the active query. With JavaScript disabled the lookup controls stay hidden and all destinations remain available.
+- Browser regression checks pass for airport/West station/Chinese queries, case/whitespace, no results, reset, anchor recovery, mobile card fit, 44px map targets, copying the airport’s Chinese name, full print output, and no-JS fallback. Re-ran the existing 12-page three-width and 36-case planner regression suite.
+- This validates the interface and generated links, not the accuracy of external map search results on an actual phone in mainland China.

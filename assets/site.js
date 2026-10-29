@@ -40,5 +40,27 @@
   async function copy(text,status){try{if(!navigator.clipboard)throw new Error('Clipboard unavailable');await navigator.clipboard.writeText(text);status.textContent='Copied.';}catch(e){status.textContent='Copy is unavailable here. Select and copy the text above.';}}
   var button=document.getElementById('copy-plan');if(button)button.addEventListener('click',function(){route(true);copy('Zhangjiajie suggested trip plan\n'+document.getElementById('plan-summary').textContent+'\n'+result.innerText+'\nTiming references reviewed 28 October 2026; see sources on the shared page.\n'+location.href,document.getElementById('copy-status'));});
   var print=document.getElementById('print-plan');if(print)print.addEventListener('click',function(){window.print();});
+
+  var search=document.getElementById('place-search');
+  if(search){
+    var rows=Array.from(document.querySelectorAll('#place-table tbody tr'));
+    var count=document.getElementById('place-count'),empty=document.getElementById('place-empty');
+    function filterPlaces(){
+      var query=search.value.trim().toLocaleLowerCase(),shown=0;
+      rows.forEach(function(row){var matches=row.textContent.toLocaleLowerCase().includes(query);row.hidden=!matches;if(matches)shown++;});
+      count.textContent=shown+' of '+rows.length+' places shown.';empty.hidden=shown!==0;
+    }
+    function showAll(){search.value='';filterPlaces();}
+    document.querySelector('.place-tools').hidden=false;
+    search.addEventListener('input',filterPlaces);
+    document.getElementById('clear-places').addEventListener('click',function(){showAll();search.focus();});
+    // A schematic link must still reach a row hidden by an earlier search.
+    document.querySelectorAll('a[href^="#place-"]').forEach(function(link){link.addEventListener('click',showAll);});
+    window.addEventListener('hashchange',function(){
+      var target=rows.find(function(row){return '#'+row.id===location.hash;});
+      if(target&&target.hidden){showAll();target.scrollIntoView();}
+    });
+    filterPlaces();
+  }
   document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){copy(b.dataset.copy,document.getElementById('place-status'));});});
 })();
