@@ -315,16 +315,23 @@ code{font-family:"IBM Plex Mono",monospace;font-size:.86em}
 .plan-days{padding-left:24px}.plan-days>li{padding:16px 0;border-bottom:1px solid var(--rule)}
 .plan-days h3{font-size:1.25rem}.plan-days dl{display:grid;grid-template-columns:110px minmax(0,1fr);gap:7px 14px;margin:15px 0}
 .plan-days dt{font-weight:700}.plan-days dd{margin:0}.plan-actions{display:flex;flex-wrap:wrap;gap:10px}
-.fields>div{min-width:0}select{max-width:100%}select:focus-visible{outline:2px solid var(--brocade);outline-offset:3px}
+.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.fields>div{min-width:0}select{max-width:100%}select:focus-visible{outline:2px solid var(--brocade);outline-offset:3px}
 .places td:last-child a{display:inline-block;margin:4px 10px 4px 0}.places td{scroll-margin-top:16px}
 @media(max-width:480px){.plan-days dl{grid-template-columns:1fr;gap:3px}.plan-days dd{margin-bottom:9px}.fields{grid-template-columns:1fr}}
 @media print{
  @page{size:A4;margin:12mm}
  body{background:white;color:#101A18;font-size:9pt;line-height:1.25}
- body>*:not(main),main>section:not(#planner),.fields,.plan-actions,#copy-status,#planner .kicker,#planner noscript,#planner .planner>p:last-child{display:none!important}
+ body.planner-page>*:not(main),body.planner-page main>section:not(#planner),.fields,.plan-actions,#copy-status,#planner .kicker,#planner noscript,#planner .route-link{display:none!important}
  #planner{padding:0;background:white;border:0}#planner .wrap,#planner .planner{padding:0;max-width:none;border:0;background:white;box-shadow:none}
  #planner h2{font-size:20pt;margin-bottom:8px}.plan-days{padding-left:16px}.plan-days>li{padding:8px 0;break-inside:avoid}.plan-days h3{font-size:12pt}
  .plan-days dl{grid-template-columns:75px 1fr;gap:3px 8px;margin:8px 0}.plan-days dd{margin:0}.source{font-size:8pt!important}a{color:#101A18}
 }
 
 .map-preview .area-map{max-width:330px}
+
+/* Progressive controls: the static plan and Chinese names remain without JS. */
+html:not(.enhanced) .fields,html:not(.enhanced) .plan-actions,html:not(.enhanced) [data-copy]{display:none}
+.plan-summary{font-weight:700}.plan-link{overflow-wrap:anywhere;font-size:.8rem}
+#extra-note{font-size:.85rem;margin-top:-8px}
+@media(max-width:480px){.fields{grid-template-columns:1fr}.fields select,.plan-actions button,.places td button{min-height:44px}.plan-actions button{flex:1 1 100%}}
+@media print{.plan-link{font-size:8pt}#extra-note{display:none}body:not(.planner-page) section{break-inside:auto}}

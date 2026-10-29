@@ -45,3 +45,12 @@ No personal about page: real byline and visit history have not been supplied. No
 ## Release order
 
 PRs are stacked for review. Merge #2 first, retarget #3 to master and merge after checks; then retarget batch 3 to master. Each merge deploys separately. Verify the live site after each deployment. Revert the relevant PR to roll back that batch.
+
+## Follow-up usability regression fixes — 29 October 2026
+
+- Scoped planner-only print isolation to the two planner pages. Previously, the shared print rule also hid sections in ordinary guides. All ten non-planner pages now retain visible titles, main content and first sections in print media tests.
+- Replaced the accidentally wrapping flex controls with an explicit responsive grid: three columns on desktop, one on phones. Browser assertions check vertical stacking and 44px minimum select height at 390px.
+- Added the selected days/style/extra summary and a fully parameterized reopen link to the printed plan. Clarified that four days includes both extras. The copy text includes the selected summary.
+- Without JavaScript, inactive selects, print/copy actions and Chinese-name copy buttons are hidden; static plans and names remain readable. Direct `file://` opening remains interactive without attempting an unsupported history mutation.
+- Re-ran build, all static checks, both JS syntax checks, 36 DOM cases, full 12-page × three-width browser checks, file URLs, clipboard success/failure, print visibility and no-JS checks.
+- Generated all 36 PDFs (18 combinations on each planner page); every PDF is one A4 page. These local checks do not establish mobile map pin accuracy, Lighthouse results or production deployment.

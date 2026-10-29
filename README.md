@@ -61,7 +61,7 @@ The photographs are served from `/img`, so nothing hotlinks another domain at pa
 
 ## Browser verification status — 29 October 2026
 
-The final build passes all 12 pages at 390, 768 and 1024px with loaded images and no horizontal overflow, 36 planner combinations, URL restoration, and no-JS static fallback checks. The four-day rainy plan prints on one A4 page. New planner text passes computed contrast checks. Detailed evidence and remaining external checks are recorded in `docs/optimization-validation.md`.
+The final build passes all 12 pages at 390, 768 and 1024px with loaded images and no horizontal overflow, 36 planner combinations, URL restoration, and no-JS static fallback checks. All 36 planner combinations print on one A4 page, with selected travel style and a reopen link; ordinary guides retain their printed content. Mobile selects stack vertically and inactive controls are hidden without JavaScript. New planner text passes computed contrast checks. Detailed evidence and remaining external checks are recorded in `docs/optimization-validation.md`.
 
 Previous baseline:
 

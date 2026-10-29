@@ -34,10 +34,16 @@ const path=require('node:path');
    assert(text.includes('Tianmen Mountain')===(days===4||extra==='tianmen'));
    assert(text.includes('Grand Canyon & Glass Bridge')===(days===4||extra==='canyon'));
    assert.equal(await page.locator('#extra').isDisabled(),days===4);
+   assert((await page.locator('#plan-summary').innerText()).startsWith(days+' full days'));
+   assert(new URL(await page.locator('#plan-link a').getAttribute('href')).searchParams.get('pace')===pace);
    if(pace==='rain')assert(text.includes('postpone'));
    if(pace==='family')assert(text.includes('Bailong Elevator'));
+   if(process.env.QA_PDF_DIR){fs.mkdirSync(process.env.QA_PDF_DIR,{recursive:true});await page.pdf({path:path.join(process.env.QA_PDF_DIR,`${file}-${days}-${extra}-${pace}.pdf`),preferCSSPageSize:true});}
    combinations++;
   }
+  const boxes=await page.locator('.fields select').evaluateAll(els=>els.map(el=>{const r=el.getBoundingClientRect();return {top:r.top,height:r.height,width:r.width};}));
+  assert(boxes[1].top>=boxes[0].top+boxes[0].height,'mobile controls must stack');
+  assert(boxes.every(box=>box.height>=44),'mobile targets must be at least 44px high');
   await page.goto(`http://127.0.0.1:8765/${file}?days=bogus&extra=bogus&pace=bogus`);
   assert.equal(await page.locator('#plan-result li').count(),3);
   await page.selectOption('#days','2');assert(new URL(page.url()).searchParams.get('days')==='2');
@@ -47,9 +53,21 @@ const path=require('node:path');
   await page.click('#copy-plan');assert((await page.evaluate(()=>window.__copied)).includes(page.url()));
   await page.evaluate(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:undefined}));
   await page.click('#copy-plan');assert((await page.locator('#copy-status').innerText()).includes('Select and copy'));
+  await page.emulateMedia({media:'print'});assert(await page.locator('#planner').isVisible());assert(await page.locator('#plan-summary').isVisible());assert(await page.locator('#plan-link').isVisible());
   await page.close();
  }
+ // Non-planner guides must retain their content when the browser prints.
+ const printPage=await browser.newPage();await printPage.emulateMedia({media:'print'});
+ for(const file of pages.filter(x=>!['index.html','zhangjiajie-itinerary.html'].includes(x))){
+  await printPage.goto('http://127.0.0.1:8765/'+file);
+  assert(await printPage.locator('h1').isVisible(),file+' print title hidden');
+  assert(await printPage.locator('main').isVisible(),file+' print content hidden');
+  assert(await printPage.locator('main section').first().isVisible(),file+' print section hidden');
+ }
+ await printPage.close();
+ const local=await browser.newPage();const errors=[];local.on('pageerror',e=>errors.push(e.message));
+ await local.goto('file://'+path.resolve('dist/index.html'));await local.selectOption('#days','4');assert.equal(await local.locator('#plan-result li').count(),4);assert.deepEqual(errors,[]);await local.close();
  const nojs=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:900}});
- for(const file of pages){const p=await nojs.newPage();await p.goto('http://127.0.0.1:8765/'+file);assert(await p.locator('h1').isVisible());if(['index.html','zhangjiajie-itinerary.html'].includes(file))assert.equal(await p.locator('#plan-result li').count(),3);await p.close();}
- await browser.close();await new Promise(resolve=>server.close(resolve));console.log(`PASS: ${pages.length} pages at 390/768/1024px; all images; ${combinations} planner cases; invalid/share URL; no-JS fallback`);
+ for(const file of pages){const p=await nojs.newPage();await p.goto('http://127.0.0.1:8765/'+file);assert(await p.locator('h1').isVisible());if(['index.html','zhangjiajie-itinerary.html'].includes(file)){assert.equal(await p.locator('#plan-result li').count(),3);assert.equal(await p.locator('.fields').isVisible(),false);assert.equal(await p.locator('.plan-actions').isVisible(),false);}await p.close();}
+ await browser.close();await new Promise(resolve=>server.close(resolve));console.log(`PASS: ${pages.length} pages at 390/768/1024px; all images; ${combinations} planner cases; invalid/share/file URL; mobile targets; print content; no-JS fallback`);
 })().catch(e=>{console.error(e);process.exit(1)});
