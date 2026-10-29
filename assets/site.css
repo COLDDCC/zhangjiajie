@@ -358,3 +358,9 @@ html:not(.enhanced) .fields,html:not(.enhanced) .plan-actions,html:not(.enhanced
  .places td:last-child button{padding:8px 10px}.places tbody tr[hidden]{display:none}
 }
 @media print{.place-tools,#place-empty{display:none!important}.places tr[hidden]{display:table-row!important}.places tr:target{outline:none}}
+
+.day-links{display:flex;flex-wrap:wrap;gap:10px 16px;margin-bottom:0}
+.day-links a{display:inline-flex;align-items:center;min-height:44px}
+@media print{.day-links,#return-plan{display:none!important}}
+
+.places tr:focus-visible{outline:2px solid var(--pine);outline-offset:-2px}

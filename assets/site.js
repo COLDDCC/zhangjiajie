@@ -19,6 +19,13 @@
     if(n>2)stops.push({title:'Golden Whip Stream',sleep:(n===3&&!canyon)?'Zhangjiajie city, after visiting':'Wulingyuan',sights:'Valley walk; optional park area only if time permits',time:'Stream walk: 1–3 hours (source below); allow longer for the full trail and stops.',note:'Keep time for your evening transfer when changing base.'});
     if(n===4||canyon)stops.push({title:'Grand Canyon & Glass Bridge',sleep:n===4?'Zhangjiajie city, after visiting':'Wulingyuan, or arrange departure',sights:'Glass Bridge and canyon walk',time:'Half a day for sightseeing (source below); road transfers are additional.',note:'Confirm the ticket includes the canyon, rather than just the bridge.'});
     if(n===4||!canyon){if(n===2)stops[0].sleep='Zhangjiajie city, after visiting';stops.push({title:'Tianmen Mountain',sleep:'Zhangjiajie city, or arrange departure',sights:'Tianmen Cave and summit, via Route C',time:'3–5 hours for sightseeing (source below); queues and transfers are additional.',note:'The long city cableway is closed; follow your booked entry slot.'});}
+    var destinations={
+      'Forest park viewpoints':['zhangjiajie-national-forest-park.html','place-3'],
+      'Golden Whip Stream':['zhangjiajie-national-forest-park.html','place-4'],
+      'Grand Canyon & Glass Bridge':['zhangjiajie-glass-bridge.html','place-7'],
+      'Tianmen Mountain':['tianmen-mountain.html','place-6']
+    };
+    var selected=new URLSearchParams({days:days.value,extra:extra.value,pace:pace.value});
     var ol=document.createElement('ol');ol.className='plan-days';
     stops.forEach(function(stop,i){
       if(style==='family'){
@@ -29,10 +36,15 @@
       }
       if(style==='rain'){stop.sights='Weather reserve: '+stop.sights;stop.note='If the operator closes access or visibility is poor, postpone this outdoor stop. Rest near your base; check notices before travelling.';stop.time='Keep the day flexible; the fair-weather timing reference does not apply during closures.';}
       var li=document.createElement('li'),h=document.createElement('h3'),dl=document.createElement('dl');h.textContent='Day '+(i+1)+' · '+stop.title;li.appendChild(h);
-      [['Sleep',stop.sleep],['Main sights',stop.sights],['Visit time',stop.time],['Remember',stop.note]].forEach(function(pair){var dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=pair[0];dd.textContent=pair[1];dl.append(dt,dd);});li.appendChild(dl);ol.appendChild(li);
+      [['Sleep',stop.sleep],['Main sights',stop.sights],['Visit time',stop.time],['Remember',stop.note]].forEach(function(pair){var dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=pair[0];dd.textContent=pair[1];dl.append(dt,dd);});li.appendChild(dl);
+      var destination=destinations[stop.title],links=document.createElement('p');links.className='day-links';
+      [[destination[0],'Read guide'],['zhangjiajie-map-transport.html?'+selected.toString()+'#'+destination[1],'Map & Chinese name']].forEach(function(pair){var a=document.createElement('a');a.href=pair[0];a.textContent=pair[1];links.appendChild(a);});
+      li.appendChild(links);ol.appendChild(li);
     });result.replaceChildren(ol);
     var u=new URL(location.href);u.searchParams.set('days',days.value);u.searchParams.set('extra',extra.value);u.searchParams.set('pace',pace.value);
     if(updateURL&&/^https?:$/.test(u.protocol))history.replaceState(null,'',u);
+    var fullRoute=document.querySelector('#planner .route-link a');
+    if(fullRoute)fullRoute.href='zhangjiajie-itinerary.html?'+selected.toString()+'#planner';
     var saved=document.getElementById('plan-link');saved.replaceChildren();
     if(/^https?:$/.test(u.protocol)){var link=document.createElement('a');link.href=u.href;link.textContent='Reopen this plan: '+u.href;saved.appendChild(link);}
   }
@@ -45,6 +57,11 @@
   if(search){
     var rows=Array.from(document.querySelectorAll('#place-table tbody tr'));
     var count=document.getElementById('place-count'),empty=document.getElementById('place-empty');
+    var incoming=new URLSearchParams(location.search),back=document.getElementById('return-plan');
+    if(['2','3','4'].includes(incoming.get('days'))&&['tianmen','canyon'].includes(incoming.get('extra'))&&['standard','family','rain'].includes(incoming.get('pace'))){
+      var restored=new URLSearchParams();['days','extra','pace'].forEach(function(key){restored.set(key,incoming.get(key));});
+      back.href='zhangjiajie-itinerary.html?'+restored.toString()+'#planner';back.textContent='Return to my '+incoming.get('days')+'-day plan';
+    }
     function filterPlaces(){
       var query=search.value.trim().toLocaleLowerCase(),shown=0;
       rows.forEach(function(row){var matches=row.textContent.toLocaleLowerCase().includes(query);row.hidden=!matches;if(matches)shown++;});
@@ -61,6 +78,8 @@
       if(target&&target.hidden){showAll();target.scrollIntoView();}
     });
     filterPlaces();
+    var arrival=rows.find(function(row){return '#'+row.id===location.hash;});
+    if(arrival)arrival.focus({preventScroll:true});
   }
   document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){copy(b.dataset.copy,document.getElementById('place-status'));});});
 })();

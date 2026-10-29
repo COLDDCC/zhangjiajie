@@ -69,7 +69,7 @@ Checked on a local server at 390, 768 and 1024 px: no horizontal overflow on any
 
 ## Field tools and responsive images
 
-The planner is generated from `snippets/planner.html` for both pages, with a static default retained in source HTML. URLs use `days`, `extra` and `pace`. Four days includes both extras. Less walking is not a step-free accessibility claim; weather mode may require postponement. Published timing suggestions are dated and linked; no fixed queue times are asserted.
+The planner is generated from `snippets/planner.html` for both pages, with a static default retained in source HTML. URLs use `days`, `extra` and `pace`. Four days includes both extras. Every day links to its guide and Chinese-name/map row; selection parameters survive the home → itinerary → map → itinerary journey. Less walking is not a step-free accessibility claim; weather mode may require postponement. Published timing suggestions are dated and linked; no fixed queue times are asserted.
 
 `images.py` creates WebP variants at 800/1200/1600px, capped at original width, in `dist/img`. The build inserts picture/source/srcset markup while retaining the original JPEG, alt and attribution. Variants inherit each source image’s licence in `credits.html`. The output package contains both formats, so total disk bytes increase; modern browsers select a WebP instead of downloading both.
 

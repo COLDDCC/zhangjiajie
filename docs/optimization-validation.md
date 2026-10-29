@@ -62,3 +62,11 @@ PRs are stacked for review. Merge #2 first, retarget #3 to master and merge afte
 - Following a schematic anchor clears filtering so its target is visible. Printing restores all ten destination rows regardless of the active query. With JavaScript disabled the lookup controls stay hidden and all destinations remain available.
 - Browser regression checks pass for airport/West station/Chinese queries, case/whitespace, no results, reset, anchor recovery, mobile card fit, 44px map targets, copying the airport’s Chinese name, full print output, and no-JS fallback. Re-ran the existing 12-page three-width and 36-case planner regression suite.
 - This validates the interface and generated links, not the accuracy of external map search results on an actual phone in mainland China.
+
+## Planner-to-map handoff — 29 October 2026
+
+- Each sightseeing day links to its guide and Chinese-name/map row: East gate for viewpoint days, South gate for Golden Whip Stream, Grand Canyon, or Tianmen mountain gate. Ticket and route notices still govern the actual meeting point; these are planning links, not a claim of verified navigation pins.
+- Home-to-itinerary and itinerary-to-map links carry the validated days/extra/style choices. The map page provides a return link restoring the same plan. Only these three selection parameters are passed between pages.
+- Matching map rows have accessible labels and programmatic focus targets. A trip link focuses the destination row; pressing Tab reaches its first map service. Static default-day links remain usable without JavaScript.
+- Day navigation links are omitted from the compact print layout; the existing parameterized reopen link remains.
+- Passed: all 36 planner variants have the intended map anchors and selection parameters; home → itinerary → Tianmen map → itinerary round trip retains four days, canyon preference and family style. Keyboard focus and next-Tab navigation are covered. Existing static, three-width layout, image, bilingual lookup, clipboard and no-JS checks pass. All 36 generated plan PDFs remain one A4 page.
