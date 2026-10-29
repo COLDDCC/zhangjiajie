@@ -71,8 +71,10 @@ Checked on a local server at 390, 768 and 1024 px: no horizontal overflow on any
 
 The planner is generated from `snippets/planner.html` for both pages, with a static default retained in source HTML. URLs use `days`, `extra` and `pace`. Four days includes both extras. Every day links to its guide and Chinese-name/map row; selection parameters survive the home → itinerary → map → itinerary journey. Less walking is not a step-free accessibility claim; weather mode may require postponement. Published timing suggestions are dated and linked; no fixed queue times are asserted.
 
-`images.py` creates WebP variants at 800/1200/1600px, capped at original width, in `dist/img`. The build inserts picture/source/srcset markup while retaining the original JPEG, alt and attribution. Variants inherit each source image’s licence in `credits.html`. The output package contains both formats, so total disk bytes increase; modern browsers select a WebP instead of downloading both.
+`images.py` creates WebP variants at 320/480/800/1200/1600px, capped at original width, in `dist/img`. The build inserts picture/source/srcset markup while retaining the original JPEG, alt and attribution. Variants inherit each source image’s licence in `credits.html`. The output package contains both formats, so total disk bytes increase; modern browsers select a WebP instead of downloading both.
 
 Optional interaction/browser checks (Node): install `jsdom` and `playwright`, then run `node scripts/planner-check.cjs`; install Chromium with `npx playwright install chromium`, run `node scripts/browser-check.cjs`. No browser or npm dependency is shipped to visitors.
 
 The three PRs are stacked for review: merge batch 1 first, retarget batch 2 to master, then merge it and retarget batch 3. Each production merge triggers a separate deployment. A pushed PR is not a verified live release.
+
+`node scripts/image-budget.cjs` checks real Chromium image selection on the homepage and mountain comparison page at 390/768/1024px and DPR 1/2. Set `IMAGE_BASELINE_DIR` to an older `dist` to compare response body bytes under the same conditions. `CHROMIUM_PATH` can select an existing browser. CI saves the measurements as a workflow artifact. Layout-specific `sizes` are derived from HTML ancestors so a reused photo can request different sizes in a card and an editorial split.

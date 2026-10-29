@@ -38,6 +38,12 @@ jobs:
         run: node scripts/planner-check.cjs
       - name: Check browser layouts and no-JS fallback
         run: node scripts/browser-check.cjs
+      - name: Check responsive image selection
+        run: node scripts/image-budget.cjs > image-budget.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: responsive-image-measurements
+          path: image-budget.json
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist

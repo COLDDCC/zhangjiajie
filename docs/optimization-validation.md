@@ -70,3 +70,22 @@ PRs are stacked for review. Merge #2 first, retarget #3 to master and merge afte
 - Matching map rows have accessible labels and programmatic focus targets. A trip link focuses the destination row; pressing Tab reaches its first map service. Static default-day links remain usable without JavaScript.
 - Day navigation links are omitted from the compact print layout; the existing parameterized reopen link remains.
 - Passed: all 36 planner variants have the intended map anchors and selection parameters; home → itinerary → Tianmen map → itinerary round trip retains four days, canyon preference and family style. Keyboard focus and next-Tab navigation are covered. Existing static, three-width layout, image, bilingual lookup, clipboard and no-JS checks pass. All 36 generated plan PDFs remain one A4 page.
+
+## Responsive image selection refinement — 29 October 2026
+
+The original responsive implementation offered no variant below 800px and used the same `sizes` for every layout. It over-delivered pixels to cards, small comparison thumbnails and the narrow desktop hero. Added 320/480px WebP variants; the HTML parser assigns `sizes` from hero/card/rail/split ancestors. Reused photographs therefore follow their actual placement. JPEG fallbacks, source dimensions, alt, credits and licences remain.
+
+Measured with fresh Chromium contexts, all page images loaded, unchanged WebP quality, local uncompressed HTTP. These compare the immediately preceding WebP build against this refinement, not the original JPEG-only baseline.
+
+| Viewport / density | Page | Previous image bytes | Refined image bytes | Reduction |
+|---|---|---:|---:|---:|
+| 390px / DPR 1 | Home | 347,442 | 128,734 | 62.9% |
+| 390px / DPR 2 | Home | 347,442 | 347,442 | 0.0% |
+| 768px / DPR 1 | Home | 347,442 | 59,278 | 82.9% |
+| 1024px / DPR 1 | Home | 347,442 | 75,690 | 78.2% |
+| 390px / DPR 1 | Mountains comparison | 680,964 | 162,100 | 76.2% |
+| 390px / DPR 2 | Mountains comparison | 680,964 | 387,068 | 43.2% |
+
+All twelve page/width/density comparisons show no image-byte increase. Image directory grows from 9,655,533 to 10,638,079 bytes: 23 original JPEGs plus 88 WebP variants, without upscaling. This is a transfer reduction, not a smaller deployment package or a Lighthouse/LCP result.
+
+Passed: build/static checks for all 111 files; complete browser regression and 36 DOM planner cases; selection checks at 390/768/1024px and DPR 1/2 on both measured pages. New `scripts/image-budget.cjs` repeats these measurements, checks small-image selection and optionally compares an old build via `IMAGE_BASELINE_DIR`. CI runs the selection checks and uploads the JSON measurements.
