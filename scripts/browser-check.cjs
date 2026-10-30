@@ -28,7 +28,8 @@ const path=require('node:path');
  for(const file of pages){
   await reflow.goto('http://127.0.0.1:8765/'+file);
   await reflow.addStyleTag({content:'html{font-size:200%}body{font-size:34px}'});
-  assert(await reflow.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${file}: overflow with enlarged text at 320px`);
+  const overflowReport=await reflow.evaluate(()=>({scroll:document.documentElement.scrollWidth,width:innerWidth,offenders:[...document.querySelectorAll('body *')].map(e=>({tag:e.tagName,className:typeof e.className==='string'?e.className:'',id:e.id,right:Math.round(e.getBoundingClientRect().right),left:Math.round(e.getBoundingClientRect().left),scrollWidth:e.scrollWidth})).filter(e=>e.right>innerWidth+2||e.left< -2).slice(0,15)}));
+  assert(overflowReport.scroll<=overflowReport.width,`${file}: overflow with enlarged text at 320px ${JSON.stringify(overflowReport)}`);
   assert(await reflow.locator('h1').evaluate(el=>el.scrollWidth<=el.clientWidth+1),`${file}: clipped enlarged title`);
  }
  await reflow.close();
