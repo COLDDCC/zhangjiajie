@@ -108,3 +108,7 @@ body.planner-page{--ink:#172c27;--pine:#295746;--stone:#51635b;--mist:#eaece6;--
  .planner-page .hero-brand{font-size:clamp(3.75rem,12vw,4.5rem)}
 }
 @media print{.planner-page .hero-brand{color:#172c27}.planner-page .brand-wordmark{color:#172c27}}
+
+/* Override the legacy generic .brand span color so the new logo remains legible. */
+.planner-page .nav .brand .brand-wordmark{color:#f6f3ec}
+.planner-page .nav .brand .brand-wordmark .brand-bang{color:#d9b879}
