@@ -455,3 +455,47 @@ h1,h2,h3,p,figcaption,summary,.content li{overflow-wrap:anywhere}
 .booking-guide{display:inline-block;font-weight:700;font-size:.9rem;margin-top:7px}
 @media(max-width:580px){.planner-steps{gap:6px}.planner-steps span{font-size:.7rem;padding:6px 9px}.plan-days{grid-template-columns:1fr}.booking-checklist{padding:18px!important}}
 @media print{.planner-steps,.booking-checklist{display:none!important}.plan-days{display:block}.plan-days .plan-card{box-shadow:none;padding:8px 0;border:0;break-inside:avoid}}
+
+/* Stage 2 · route → map → tickets connections. No guessed coordinates. */
+.trip-connection{margin:0 0 32px;padding:26px;background:#ecf1ec;border:1px solid #cbdacc;border-radius:16px}
+.trip-connection[hidden]{display:none!important}
+.trip-connection h2{font-size:clamp(1.55rem,3vw,2.1rem);margin:0 0 9px}
+.trip-connection p{font-size:.93rem;margin:8px 0 13px}
+.trip-connection ol,.trip-connection ul{padding-left:23px;margin:13px 0}
+.trip-connection li{padding:7px 0;line-height:1.45}
+.map-trip-stop a{font-weight:700}
+.map-trip-stop span{display:block;color:#4a5a54;font-size:.9rem}
+.trip-connection-actions{display:flex;flex-wrap:wrap;gap:9px 22px}
+.trip-connection-actions a{font-weight:700}
+#place-table tr.selected-place td:first-child{border-left:4px solid #2f5d46;font-weight:700}
+@media(max-width:550px){.trip-connection{padding:18px}.trip-connection-actions{display:grid;gap:8px}}
+
+/* Stage 3: consistent task navigation, keyboard access and responsive typography */
+.decision-nav{max-width:1080px;margin:24px auto 0;padding:18px 28px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.decision-nav-title{width:100%;margin:0 0 2px;color:var(--stone);font:600 .77rem "IBM Plex Mono",monospace;letter-spacing:.04em}
+.decision-nav a{display:inline-flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #bacbbf;background:#fff;padding:10px 14px;border-radius:8px;min-height:44px;font-weight:700;text-decoration:none;font-size:.86rem;line-height:1.35}
+.decision-nav a:hover{border-color:var(--pine);text-decoration:underline}
+.decision-nav a:focus-visible,.fields select:focus-visible,.trip-connection a:focus-visible{outline:3px solid #a77434;outline-offset:3px}
+.planner-page .plan-days .plan-card{border-radius:12px}
+.plan-days .plan-card .day-links a,.booking-guide{display:inline-flex;align-items:center;min-height:44px}
+#place-table tr:target{outline:3px solid #295746;outline-offset:-3px;background:#eef4eb}
+@media(max-width:640px){
+ .decision-nav{padding:16px 20px;margin-top:8px;display:grid;grid-template-columns:1fr;gap:8px}
+ .decision-nav a{width:100%}
+ .nav-in{align-items:flex-start}
+ .nav ul{gap:8px 14px}
+ .nav a:not(.brand){display:inline-flex;align-items:center;min-height:40px}
+ .planner-steps{margin-bottom:16px}
+ .plan-days .plan-card{padding:18px}
+ .trip-connection{overflow-wrap:anywhere}
+}
+@media(prefers-reduced-motion:reduce){.decision-nav a{transition:none}}
+@media print{.decision-nav{display:none!important}}
+
+/* Accessible 320px / 200% type reflow; maintain real content, no clipped text. */
+@media(max-width:400px){
+ .wrap,.content,.planner,.planner-page .wrap{min-width:0;max-width:100%}
+ .wrap li,.wrap dd,.content li,.planner li{overflow-wrap:anywhere;min-width:0}
+ .wrap ul,.wrap ol,.content ul,.content ol{max-width:100%;min-width:0}
+ .wrap .scroll-x,.content .scroll-x{max-width:100%;overflow-x:auto}
+}
