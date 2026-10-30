@@ -55,6 +55,7 @@
     if(updateURL&&/^https?:$/.test(u.protocol))history.replaceState(null,'',u);
     var fullRoute=document.querySelector('#planner .route-link a');
     if(fullRoute)fullRoute.href='zhangjiajie-itinerary.html?'+selected.toString()+'#planner';
+    var ticketsLink=document.querySelector('#planner .booking-guide');if(ticketsLink)ticketsLink.href='zhangjiajie-tickets-prices.html?'+selected.toString()+'#ticket-plan';
     var saved=document.getElementById('plan-link');saved.replaceChildren();
     if(/^https?:$/.test(u.protocol)){var link=document.createElement('a');link.href=u.href;link.textContent='Reopen this plan: '+u.href;saved.appendChild(link);}
   }
@@ -96,6 +97,51 @@
   }
   var button=document.getElementById('copy-plan');if(button)button.addEventListener('click',function(){route(true);copy(planText(),document.getElementById('copy-status'),button);});
   var print=document.getElementById('print-plan');if(print)print.addEventListener('click',function(){window.print();});
+
+
+  // Stage 2: preserve selected days/extra/pace across maps and ticket decisions.
+  function selectedTrip(){
+    var q=new URLSearchParams(location.search),n=q.get('days'),x=q.get('extra'),p=q.get('pace');
+    if(!['2','3','4'].includes(n)||!['tianmen','canyon'].includes(x)||!['standard','family','rain'].includes(p))return null;
+    return {days:Number(n),extra:x,pace:p,query:new URLSearchParams({days:n,extra:x,pace:p})};
+  }
+  var trip=selectedTrip();
+  function plannedStops(t){return [{id:'place-3',name:'Forest Park East entrance',cn:'吴家峪门票站',ticket:'Forest Park admission; check optional lifts and transport'}]
+    .concat(t.days>2?[{id:'place-4',name:'Forest Park South entrance',cn:'张家界国家森林公园南门',ticket:'Forest Park entry / return-entry requirements; confirm entrance'}]:[])
+    .concat((t.days===4||t.extra==='canyon')?[{id:'place-7',name:'Grand Canyon',cn:'张家界大峡谷',ticket:'Confirm Glass Bridge and canyon access are included'}]:[])
+    .concat((t.days===4||t.extra==='tianmen')?[{id:'place-6',name:'Tianmen Mountain gate',cn:'天门山山门',ticket:'Confirm Route C, operator notice and reserved entry time'}]:[]);}
+  var mapTrip=document.getElementById('map-trip-stops');
+  if(mapTrip&&trip){
+    var mapPanel=document.getElementById('map-trip-panel');mapPanel.hidden=false;
+    document.getElementById('map-trip-summary').textContent=trip.days+'-day route · '+(trip.pace==='rain'?'Weather-flexible':trip.pace==='family'?'Less walking':'Standard');
+    mapTrip.replaceChildren();plannedStops(trip).forEach(function(s,i){
+      var li=document.createElement('li');li.className='map-trip-stop';
+      var a=document.createElement('a');a.href='#'+s.id;a.textContent='Day '+(i+1)+' · '+s.name;
+      var sub=document.createElement('span');sub.textContent=s.cn;
+      li.append(a,sub);mapTrip.appendChild(li);
+    });
+    var ticketJump=document.getElementById('map-trip-tickets');if(ticketJump)ticketJump.href='zhangjiajie-tickets-prices.html?'+trip.query.toString()+'#ticket-plan';
+    document.querySelectorAll('#place-table tr[id]').forEach(function(r){
+      if(plannedStops(trip).some(function(s){return s.id===r.id;}))r.classList.add('selected-place');
+    });
+  }
+  var ticketPanel=document.getElementById('ticket-plan');
+  if(ticketPanel&&trip){
+    ticketPanel.hidden=false;
+    document.getElementById('ticket-trip-title').textContent='For your '+trip.days+'-day route';
+    var list=document.getElementById('ticket-trip-items');list.replaceChildren();
+    var seen=new Set();
+    plannedStops(trip).forEach(function(s){
+      var category=s.id==='place-3'||s.id==='place-4'?'forest':s.id;
+      if(seen.has(category))return;seen.add(category);
+      var li=document.createElement('li');li.textContent=s.ticket;list.appendChild(li);
+    });
+    var li=document.createElement('li');li.textContent='Hotels and inter-area transfers are separate from attraction admission';list.appendChild(li);
+    if(trip.pace==='rain'){li=document.createElement('li');li.textContent='Check weather notices and rescheduling rules before purchasing nonrefundable tickets';list.appendChild(li);}
+    if(trip.pace==='family'){li=document.createElement('li');li.textContent='Check lift availability and walking requirements; this is not an accessible-route guarantee';list.appendChild(li);}
+    var mapLink=document.getElementById('ticket-map-link');mapLink.href='zhangjiajie-map-transport.html?'+trip.query.toString()+'#map-trip-panel';
+    var backLink=document.getElementById('ticket-plan-back');backLink.href='zhangjiajie-itinerary.html?'+trip.query.toString()+'#planner';
+  }
 
   var search=document.getElementById('place-search');
   if(search){
