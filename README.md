@@ -80,3 +80,5 @@ The three PRs are stacked for review: merge batch 1 first, retarget batch 2 to m
 `node scripts/image-budget.cjs` checks real Chromium image selection on the homepage and mountain comparison page at 390/768/1024px and DPR 1/2. Set `IMAGE_BASELINE_DIR` to an older `dist` to compare response body bytes under the same conditions. `CHROMIUM_PATH` can select an existing browser. CI saves the measurements as a workflow artifact. Layout-specific `sizes` are derived from HTML ancestors so a reused photo can request different sizes in a card and an editorial split.
 
 Clipboard access is optional: when unavailable or denied, a selectable-text dialog provides the same copy content, with Escape/Done returning focus to the originating button. Full-plan copies retain guide, map and timing-source URLs. Browser checks cover this fallback and 320px enlarged-text reflow in addition to the normal layout suite.
+
+Deployment HTML uses content-fingerprinted CSS/JS filenames so a newly published page cannot reuse an older cached app asset. The checker verifies each fingerprint against file bytes. Source HTML continues to use the original asset paths for direct local opening.
