@@ -13,6 +13,12 @@ OUT.mkdir()
 dates = {}
 for p in ROOT.glob('*.html'):
     s = p.read_text(encoding='utf-8')
+    if p.name in {'index.html', 'zhangjiajie-itinerary.html'}:
+        fragment = (ROOT/'snippets/planner.html').read_text()
+        on_routes = p.name == 'zhangjiajie-itinerary.html'
+        fragment = fragment.replace('{noscript}', 'Alternative routes are below.' if on_routes else 'Alternative routes are available on the itinerary page.')
+        fragment = fragment.replace('{route_link}', '' if on_routes else '<p><a href="zhangjiajie-itinerary.html">Read routes, overnight bases and alternatives →</a></p>')
+        s = re.sub(r'<section id="planner".*?</section>', lambda m: fragment, s, flags=re.S)
     review = re.search(r'Editorial review: (\d{1,2} [A-Za-z]+ \d{4})', s)
     assert review, f'{p.name}: missing editorial review date'
     dates[p.name] = datetime.strptime(review[1], '%d %B %Y').date().isoformat()

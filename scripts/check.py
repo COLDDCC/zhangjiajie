@@ -62,7 +62,16 @@ for name,pg in pages.items():
     assert web['author']['name'] and any(x['@type']=='BreadcrumbList' for x in graph)
     if name!='404.html':assert lastmods[pg.canonical[0]]==date,(name,'sitemap date')
 transport=(ROOT/'zhangjiajie-map-transport.html').read_text()
-rows=re.findall(r'<tr>.*?data-copy=.*?</tr>',transport)
+rows=re.findall(r'<tr(?: [^>]*)?>.*?data-copy=.*?</tr>',transport)
 assert len(rows)==10
 assert all('uri.amap.com/search?' in row and 'maps.apple.com/?q=' in row and 'google.com/maps/' in row for row in rows)
 print('PASS: China map alternatives, no file self-links, editorial/schema/sitemap dates and breadcrumbs')
+
+for name in ['index.html','zhangjiajie-map-transport.html']:
+    html=(ROOT/name).read_text()
+    assert re.search(r'<svg[^>]*role="img"[^>]*aria-label="[^"]+"',html),(name,'accessible schematic')
+for name in ['index.html','zhangjiajie-itinerary.html']:
+    html=(ROOT/name).read_text()
+    assert 'id="pace"' in html and 'id="print-plan"' in html
+    assert all(x in html for x in ['<dt>Sleep</dt>','<dt>Main sights</dt>','<dt>Visit time</dt>','<dt>Remember</dt>'])
+print('PASS: accessible schematics and static daily plan fallback')
