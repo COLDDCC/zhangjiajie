@@ -491,3 +491,11 @@ h1,h2,h3,p,figcaption,summary,.content li{overflow-wrap:anywhere}
 }
 @media(prefers-reduced-motion:reduce){.decision-nav a{transition:none}}
 @media print{.decision-nav{display:none!important}}
+
+/* Accessible 320px / 200% type reflow; maintain real content, no clipped text. */
+@media(max-width:400px){
+ .wrap,.content,.planner,.planner-page .wrap{min-width:0;max-width:100%}
+ .wrap li,.wrap dd,.content li,.planner li{overflow-wrap:anywhere;min-width:0}
+ .wrap ul,.wrap ol,.content ul,.content ol{max-width:100%;min-width:0}
+ .wrap .scroll-x,.content .scroll-x{max-width:100%;overflow-x:auto}
+}
