@@ -35,12 +35,22 @@
         if(stop.title==='Tianmen Mountain')stop.note+=' Use available escalators and shorten summit walks; confirm accessible routing directly.';
       }
       if(style==='rain'){stop.sights='Weather reserve: '+stop.sights;stop.note='If the operator closes access or visibility is poor, postpone this outdoor stop. Rest near your base; check notices before travelling.';stop.time='Keep the day flexible; the fair-weather timing reference does not apply during closures.';}
-      var li=document.createElement('li'),h=document.createElement('h3'),dl=document.createElement('dl');h.textContent='Day '+(i+1)+' · '+stop.title;li.appendChild(h);
+      var li=document.createElement('li'),h=document.createElement('h3'),dl=document.createElement('dl');h.textContent='Day '+(i+1)+' · '+stop.title;li.className='plan-card';var dayTag=document.createElement('span');dayTag.className='plan-card-tag';dayTag.textContent='DAY '+String(i+1).padStart(2,'0');li.appendChild(dayTag);li.appendChild(h);
       [['Sleep',stop.sleep],['Main sights',stop.sights],['Visit time',stop.time],['Remember',stop.note]].forEach(function(pair){var dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=pair[0];dd.textContent=pair[1];dl.append(dt,dd);});li.appendChild(dl);
       var destination=destinations[stop.title],links=document.createElement('p');links.className='day-links';
       [[destination[0],'Read guide'],['zhangjiajie-map-transport.html?'+selected.toString()+'#'+destination[1],'Map & Chinese name']].forEach(function(pair){var a=document.createElement('a');a.href=pair[0];a.textContent=pair[1];links.appendChild(a);});
       li.appendChild(links);ol.appendChild(li);
     });result.replaceChildren(ol);
+    var booking=document.getElementById('booking-items');
+    if(booking){
+      var checks=['Forest Park: confirm admission date, passport details and separate elevator/cableway rides'];
+      if(stops.some(function(s){return s.title==='Grand Canyon & Glass Bridge';}))checks.push('Grand Canyon: check whether your product includes the canyon walk as well as the Glass Bridge');
+      if(stops.some(function(s){return s.title==='Tianmen Mountain';}))checks.push('Tianmen Mountain: verify Route C, operating notice and timed entry before paying');
+      checks.push('Overnight bases: '+stops.map(function(s){return s.sleep;}).filter(function(s,i,a){return a.indexOf(s)===i;}).join(' → '));
+      if(style==='rain')checks.push('Weather: check same-day closure and visibility notices; postpone outdoor visits if needed');
+      if(style==='family')checks.push('Less walking: confirm steps, gradients and facilities directly; this is not an accessible-route guarantee');
+      booking.replaceChildren();checks.forEach(function(s){var item=document.createElement('li');item.textContent=s;booking.appendChild(item);});
+    }
     var u=new URL(location.href);u.searchParams.set('days',days.value);u.searchParams.set('extra',extra.value);u.searchParams.set('pace',pace.value);
     if(updateURL&&/^https?:$/.test(u.protocol))history.replaceState(null,'',u);
     var fullRoute=document.querySelector('#planner .route-link a');
