@@ -179,3 +179,80 @@ body.planner-page{--ink:#172c27;--pine:#295746;--stone:#51635b;--mist:#eaece6;--
 .planner-page.home-page .home-hero .quick a:first-child{background:#B8F36B!important;border-color:#93C85D!important;color:#173E2B!important}
 .planner-page.home-page .home-hero>.photo{box-shadow:0 15px 45px rgba(31,74,48,.12)}
 @media print{.planner-page.home-page .hero{background:#fff!important}}
+
+/* Airy GoGoGo · homepage only. Soft landscape light, clear task hierarchy.
+   Keep this scoped layer removable without changing the planner or guide pages. */
+body.planner-page.home-page{--paper:#fbfcf8;--rule:#dce7dd;background:var(--paper)}
+.home-page.planner-page h1,.home-page.planner-page h2,.home-page.planner-page h3{font-family:"DM Sans",system-ui,sans-serif;font-weight:500;letter-spacing:-.045em;line-height:1.15}
+.home-page.planner-page .nav{background:#fbfcf8;color:#234b34;border-bottom:1px solid #e2eadf}
+.home-page.planner-page .nav-in{padding-block:19px}
+.home-page.planner-page .nav .brand .brand-wordmark,.home-page.planner-page .nav .brand .brand-wordmark .brand-bang{color:#347d46}
+.home-page.planner-page .brand-place{color:#42634d!important}
+.home-page.planner-page .nav a:not(.brand){color:#42634d;font-size:.86rem}
+.home-page.planner-page .nav a:not(.brand):hover,.home-page.planner-page .nav a[aria-current="page"]{color:#205234;text-underline-offset:6px}
+.home-page.planner-page .alert{background:#edf5e8;border-color:transparent;color:#405a4a;font-size:.8rem;padding:10px 24px}
+.home-page.planner-page .hero{background:radial-gradient(ellipse at 78% 35%,#dcefc9 0,transparent 58%),radial-gradient(ellipse at 6% 10%,#edf5df 0,transparent 55%),#fbfcf8;border:0}
+.home-page.planner-page .hero-inner.home-hero{max-width:1320px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding-block:clamp(60px,7vw,106px);gap:clamp(32px,5vw,80px)}
+.home-page.planner-page .hero-brand.hero-brand-green{font-size:clamp(3.2rem,7.3vw,7.1rem);letter-spacing:-.09em;margin-bottom:28px}
+.home-page.planner-page .home-hero .eyebrow{font-family:inherit;letter-spacing:.14em;font-size:.7rem;margin-bottom:16px}
+.home-page.planner-page .home-hero h1{font-size:clamp(2.4rem,3.9vw,3.8rem);max-width:15ch;line-height:1.12}
+.home-page.planner-page .home-hero p{font-size:1rem;line-height:1.7;max-width:40ch;margin-top:20px}
+.home-page.planner-page .home-hero p strong{font-family:inherit;font-size:1.05rem;font-weight:500}
+.home-page.planner-page .home-hero>.photo{min-height:450px;align-self:center;aspect-ratio:1.08;border-radius:46% 46% 24px 24px;overflow:hidden;box-shadow:0 24px 65px -34px #55854c55}
+.home-page.planner-page .home-hero>.photo img{border-radius:0;object-position:center}
+.home-page.planner-page .home-hero>.photo::after{top:auto;bottom:58px;left:22px;border-radius:100px;background:#f7fcf0;color:#2e5638;font-size:.6rem;letter-spacing:.1em}
+.home-page.planner-page .home-hero>.photo figcaption{width:100%;text-align:center;background:#183b2de8;padding:10px 14px;font-size:.65rem}
+.home-page.planner-page .quick{gap:12px;align-items:center}
+.home-page.planner-page .quick a{border-radius:100px;padding:14px 22px;min-height:48px;font-size:.88rem;box-shadow:none}
+.home-page.planner-page .home-hero .quick a:first-child{background:#c4f28f!important;border-color:#b3dd82!important;color:#21442d!important}
+.home-page.planner-page .quick a:hover{transform:translateY(-3px);box-shadow:0 8px 20px #345b3210}
+.home-page.planner-page .choose-first,.home-page.planner-page .map-preview,.home-page.planner-page #essentials,.home-page.planner-page #sources{background:#fbfcf8}
+.home-page.planner-page .choose-heading{max-width:640px;margin-bottom:36px}
+.home-page.planner-page .choose-heading h2{font-size:clamp(2rem,3.5vw,3rem);max-width:22ch}
+.home-page.planner-page .kicker,.home-page.planner-page .choose-index{color:#4a7051}
+.home-page.planner-page .choose-grid{gap:24px}
+.home-page.planner-page .choose-grid .choose-tile{background:transparent;border:0;border-radius:22px;overflow:hidden}
+.home-page.planner-page .choose-tile .photo{border-radius:22px;overflow:hidden}
+.home-page.planner-page .choose-tile .photo img{aspect-ratio:1.25}
+.home-page.planner-page .choose-body{padding:22px 6px}
+.home-page.planner-page .choose-body h3{font-size:1.7rem}
+.home-page.planner-page .choose-body .choose-link{padding-top:15px}
+.home-page.planner-page .choose-tile:hover{box-shadow:none;transform:translateY(-4px)}
+.home-page.planner-page #planner{background:#eff5eb}
+.home-page.planner-page #planner .planner{background:#fff;border:1px solid #e0e9dc;border-radius:28px;box-shadow:0 20px 60px -40px #28543e40}
+.home-page.planner-page #planner h2{font-size:clamp(2rem,3.5vw,3rem)}
+.home-page.planner-page #planner select{border-radius:14px;background:#fbfcf8}
+.home-page.planner-page #planner button{border-radius:100px}
+.home-page.planner-page #areas{background:#f2f6ee}
+.home-page.planner-page #areas .card{border-radius:24px;background:#fff;border-color:#e0e9dc}
+.home-page.planner-page #areas .card h3{font-size:1.6rem}
+.home-page.planner-page h2{font-size:clamp(2rem,3.4vw,3rem)}
+.home-page.planner-page #faq{background:#fff}
+.home-page.planner-page #faq details{padding:24px 0}
+.home-page.planner-page footer{background:#eaf2e4;color:#44624d}
+.home-page.planner-page footer a{color:#28553a}
+.home-page.planner-page :is(a,button,select):focus-visible{outline:3px solid #347d46;outline-offset:4px}
+@keyframes gogogo-arrive{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:no-preference){
+ .home-page.planner-page .hero-brand{animation:gogogo-arrive .65s ease-out both}
+ .home-page.planner-page .home-hero h1{animation:gogogo-arrive .65s .08s ease-out both}
+ .home-page.planner-page .home-hero>.photo{animation:gogogo-arrive .8s .12s ease-out both}
+ .home-page.planner-page .choose-tile:focus-within{transform:translateY(-4px)}
+}
+@media(max-width:1000px){.home-page.planner-page .home-hero>.photo{min-height:380px}}
+@media(max-width:760px){
+ .home-page.planner-page .nav-in{gap:18px;padding:18px 20px}
+ .home-page.planner-page .nav ul{gap:12px 18px}
+ .home-page.planner-page .nav a:not(.brand){display:inline-block;padding-block:5px}
+ .home-page.planner-page .hero-inner.home-hero{grid-template-columns:1fr;padding:48px 24px 38px;gap:36px}
+ .home-page.planner-page .hero-brand.hero-brand-green{font-size:clamp(3.2rem,12.4vw,6rem);margin-bottom:24px}
+ .home-page.planner-page .home-hero h1{font-size:clamp(2.4rem,8vw,3.5rem);max-width:16ch}
+ .home-page.planner-page .home-hero>div{order:0}
+ .home-page.planner-page .home-hero>.photo{order:1;width:100%;min-height:0;aspect-ratio:1.3;border-radius:30px}
+ .home-page.planner-page .home-hero>.photo::after{bottom:60px}
+ .home-page.planner-page .choose-grid .choose-tile{grid-template-columns:1fr}
+ .home-page.planner-page .choose-tile .photo{height:auto;min-height:0}
+ .home-page.planner-page .choose-tile .photo img{aspect-ratio:1.5;height:auto}
+ .home-page.planner-page #planner .planner{padding:24px 20px;border-radius:24px}
+}
+@media print{.home-page.planner-page .hero,.home-page.planner-page #planner{background:#fff!important}.home-page.planner-page *{animation:none!important;box-shadow:none!important}}
