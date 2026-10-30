@@ -3,6 +3,8 @@
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit,unquote
+import re
+from datetime import datetime
 import json,xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1]/'dist'
 class Page(HTMLParser):
@@ -34,6 +36,8 @@ for p in ROOT.glob('*.html'):
 for name,page in pages.items():
     for href in page.links:
         u=urlsplit(href)
+        assert not (u.path==name and not u.fragment and not u.scheme and not u.netloc),(name,'self link',href)
+        u=urlsplit(href)
         if u.scheme or u.netloc:continue
         path=unquote(u.path) or name
         target=ROOT/path
@@ -47,3 +51,18 @@ tree=ET.parse(ROOT/'sitemap.xml');locations=[e.text for e in tree.iter('{http://
 assert len(locations)==len(pages)-(1 if '404.html' in pages else 0),(len(locations),len(pages))
 assert all('example.com' not in u for u in locations)
 print('PASS:',len(pages),'pages,',len(on_disk),'photographs; local links, assets, anchors, unique IDs, H1, alt text, JSON-LD and sitemap')
+
+ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
+lastmods={e.find('s:loc',ns).text:e.find('s:lastmod',ns).text for e in tree.getroot()}
+for name,pg in pages.items():
+    graph=pg.schemas[0]['@graph']
+    web=next(x for x in graph if x['@type']=='WebPage')
+    date=datetime.strptime(re.search(r'Editorial review: (\d{1,2} [A-Za-z]+ \d{4})',(ROOT/name).read_text())[1],'%d %B %Y').date().isoformat()
+    assert web['dateModified']==date,(name,'schema date')
+    assert web['author']['name'] and any(x['@type']=='BreadcrumbList' for x in graph)
+    if name!='404.html':assert lastmods[pg.canonical[0]]==date,(name,'sitemap date')
+transport=(ROOT/'zhangjiajie-map-transport.html').read_text()
+rows=re.findall(r'<tr>.*?data-copy=.*?</tr>',transport)
+assert len(rows)==10
+assert all('uri.amap.com/search?' in row and 'maps.apple.com/?q=' in row and 'google.com/maps/' in row for row in rows)
+print('PASS: China map alternatives, no file self-links, editorial/schema/sitemap dates and breadcrumbs')
