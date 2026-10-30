@@ -38,7 +38,7 @@ for p in ROOT.glob('*.html'):
     assert all(alt and alt.strip() for src,alt in parser.imgs),(p,'an <img> has no alt text')
 for name in ('index.html', 'zhangjiajie-itinerary.html'):
     source=(ROOT/name).read_text(encoding='utf-8')
-    assert re.search(r'assets/editorial-home-[0-9a-f]{12}\\.css', source), (name,'editorial stylesheet is not cache-busted')
+    assert re.search(r'assets/editorial-home-[0-9a-f]{12}\.css', source), (name,'editorial stylesheet is not cache-busted')
 for name,page in pages.items():
     for href in page.links:
         u=urlsplit(href)
