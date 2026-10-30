@@ -1,4 +1,6 @@
-# Zhangjiajie Field Notes
+# Zhangjiajie GoGoGo
+
+**Less guessing. More exploring.** An independent Zhangjiajie travel planning guide for English-speaking visitors.
 
 Buildless English travel guides with a browser-local 2/3/4-day itinerary selector. No API key or database. The deploy build uses Pillow for responsive images; source HTML still opens directly.
 
