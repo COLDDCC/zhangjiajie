@@ -31,14 +31,14 @@ for p in ROOT.glob('*.html'):
     page.pop('@context', None)
     page.update({'@id': page_url + '#webpage', 'url': page_url,
                  'dateModified': dates[p.name],
-                 'author': {'@type': 'Organization', 'name': 'Zhangjiajie Field Notes'}})
+                 'author': {'@type': 'Organization', 'name': 'Zhangjiajie GoGoGo'}})
     crumbs = [{'@type': 'ListItem', 'position': 1, 'name': 'Start here', 'item': URL + '/'}]
     if p.name != 'index.html':
         crumbs.append({'@type': 'ListItem', 'position': 2, 'name': page['name'], 'item': page_url})
     graph = [page, {'@type': 'BreadcrumbList', '@id': page_url + '#breadcrumbs', 'itemListElement': crumbs}]
     page['breadcrumb'] = {'@id': page_url + '#breadcrumbs'}
     if p.name == 'index.html':
-        graph.append({'@type': 'WebSite', '@id': URL + '/#website', 'name': 'Zhangjiajie Field Notes', 'url': URL + '/'})
+        graph.append({'@type': 'WebSite', '@id': URL + '/#website', 'name': 'Zhangjiajie GoGoGo', 'url': URL + '/'})
     s = s[:match.start(1)] + json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False).replace('<', '\\u003c') + s[match.end(1):]
     # Social crawlers cannot resolve a relative og:image, so it is made absolute here.
     s = s.replace('content="img/', 'content="'+escape(URL, quote=True)+'/img/')
