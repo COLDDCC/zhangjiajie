@@ -112,3 +112,53 @@ body.planner-page{--ink:#172c27;--pine:#295746;--stone:#51635b;--mist:#eaece6;--
 /* Override the legacy generic .brand span color so the new logo remains legible. */
 .planner-page .nav .brand .brand-wordmark{color:#f6f3ec}
 .planner-page .nav .brand .brand-wordmark .brand-bang{color:#d9b879}
+
+/* Stage 3: scope the oversized wordmark to the actual home page. */
+.planner-page:not(.home-page) .hero-brand{display:none}
+.planner-page:not(.home-page) .home-hero h1{font-size:clamp(2.25rem,4.4vw,4.6rem);max-width:19ch}
+.planner-page:not(.home-page) .hero-inner.home-hero{padding-block:clamp(48px,5vw,82px)}
+.planner-page .decision-nav{max-width:1200px;padding-inline:clamp(20px,4vw,56px)}
+.planner-page .decision-nav a{background:#fffdfa;border-color:#d1d9ce;color:#295746}
+@media(max-width:760px){.planner-page:not(.home-page) .home-hero>.photo{min-height:300px}}
+
+/* Stage 4 · distinctive green GoGoGo wordmark.
+   Bold brand green on deep pine; maintains live text for responsive rendering. */
+:root{--gogogo-green:#B8F36B;--gogogo-green-deep:#265C3C}
+.planner-page .nav .brand .brand-wordmark,
+.planner-page .nav .brand .brand-wordmark .brand-bang{color:var(--gogogo-green)}
+.planner-page .brand-place{color:#e2eedc!important}
+.planner-page.home-page .hero-brand.hero-brand-green{
+  display:flex;gap:0;align-items:baseline;white-space:nowrap;
+  width:max-content;max-width:100%;margin:0 0 25px;
+  font-family:"DM Sans",system-ui,sans-serif;
+  font-weight:700;font-style:normal;font-size:clamp(3.15rem,6.5vw,7rem);
+  line-height:.9;letter-spacing:-.105em;color:var(--gogogo-green);
+  text-transform:uppercase;
+}
+.planner-page.home-page .hero-brand.hero-brand-green>span,
+.planner-page.home-page .hero-brand.hero-brand-green>span:nth-child(2),
+.planner-page.home-page .hero-brand.hero-brand-green>span:nth-child(3),
+.planner-page.home-page .hero-brand.hero-brand-green em{color:var(--gogogo-green)}
+.planner-page.home-page .hero-brand.hero-brand-green em{font-size:.92em;letter-spacing:-.07em}
+.planner-page.home-page .home-hero .quick a:first-child{
+  background:var(--gogogo-green)!important;border-color:var(--gogogo-green)!important;
+  color:#172c27!important;
+}
+@media(max-width:760px){
+ .planner-page.home-page .hero-brand.hero-brand-green{font-size:clamp(3.2rem,11.5vw,6.1rem);letter-spacing:-.11em}
+}
+@media(max-width:390px){
+ .planner-page.home-page .hero-brand.hero-brand-green{font-size:clamp(2.8rem,11.25vw,4.3rem)}
+}
+@media print{
+ .planner-page.home-page .hero-brand.hero-brand-green,
+ .planner-page.home-page .hero-brand.hero-brand-green>span{color:#265C3C!important}
+}
+
+/* Enlarged-text reflow: keep wordmark readable rather than forcing page overflow. */
+@media(max-width:580px){
+ .planner-page.home-page .hero-brand.hero-brand-green{width:100%;max-width:100%;white-space:normal;flex-wrap:wrap;overflow-wrap:normal}
+ .planner-page.home-page .hero-brand.hero-brand-green>span{white-space:nowrap;flex:0 0 auto}
+ .planner-page .hero-inner.home-hero>div{min-width:0}
+ .planner-page .nav-in,.planner-page .quick{min-width:0;max-width:100%}
+}
