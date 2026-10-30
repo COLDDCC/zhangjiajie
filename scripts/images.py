@@ -44,6 +44,8 @@ def responsive(html, variants):
                 if name in variants:
                     if 'home-hero' in classes:
                         sizes = '(max-width: 760px) calc(100vw - 40px), (max-width: 1080px) calc(40.48vw - 35.62px), 402px'
+                    elif 'choose-tile' in classes:
+                        sizes = '(max-width: 390px) calc(37vw - 20px), (max-width: 700px) calc(40vw - 20px), (max-width: 1080px) calc(33.333vw - 31px), 325px'
                     elif 'rail' in classes:
                         sizes = '(max-width: 520px) calc(50vw - 28px), (max-width: 900px) calc(33.333vw - 29.333px), (max-width: 1080px) calc(16.667vw - 21px), 159px'
                     elif 'card' in classes:
