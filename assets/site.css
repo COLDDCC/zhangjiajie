@@ -455,3 +455,17 @@ h1,h2,h3,p,figcaption,summary,.content li{overflow-wrap:anywhere}
 .booking-guide{display:inline-block;font-weight:700;font-size:.9rem;margin-top:7px}
 @media(max-width:580px){.planner-steps{gap:6px}.planner-steps span{font-size:.7rem;padding:6px 9px}.plan-days{grid-template-columns:1fr}.booking-checklist{padding:18px!important}}
 @media print{.planner-steps,.booking-checklist{display:none!important}.plan-days{display:block}.plan-days .plan-card{box-shadow:none;padding:8px 0;border:0;break-inside:avoid}}
+
+/* Stage 2 · route → map → tickets connections. No guessed coordinates. */
+.trip-connection{margin:0 0 32px;padding:26px;background:#ecf1ec;border:1px solid #cbdacc;border-radius:16px}
+.trip-connection[hidden]{display:none!important}
+.trip-connection h2{font-size:clamp(1.55rem,3vw,2.1rem);margin:0 0 9px}
+.trip-connection p{font-size:.93rem;margin:8px 0 13px}
+.trip-connection ol,.trip-connection ul{padding-left:23px;margin:13px 0}
+.trip-connection li{padding:7px 0;line-height:1.45}
+.map-trip-stop a{font-weight:700}
+.map-trip-stop span{display:block;color:#4a5a54;font-size:.9rem}
+.trip-connection-actions{display:flex;flex-wrap:wrap;gap:9px 22px}
+.trip-connection-actions a{font-weight:700}
+#place-table tr.selected-place td:first-child{border-left:4px solid #2f5d46;font-weight:700}
+@media(max-width:550px){.trip-connection{padding:18px}.trip-connection-actions{display:grid;gap:8px}}
