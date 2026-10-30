@@ -11,7 +11,7 @@ URL = os.environ.get('SITE_URL', 'https://colddcc.github.io/zhangjiajie').rstrip
 assert URL.startswith('https://'), 'SITE_URL must be an https URL'
 if OUT.exists(): shutil.rmtree(OUT)
 OUT.mkdir()
-asset_names = {name: 'assets/' + Path(name).stem + '-' + hashlib.sha256((ROOT/'assets'/name).read_bytes()).hexdigest()[:12] + Path(name).suffix for name in ('site.css', 'site.js')}
+asset_names = {name: 'assets/' + Path(name).stem + '-' + hashlib.sha256((ROOT/'assets'/name).read_bytes()).hexdigest()[:12] + Path(name).suffix for name in ('site.css', 'site.js', 'editorial-home.css')}
 dates = {}
 for p in ROOT.glob('*.html'):
     s = p.read_text(encoding='utf-8')
