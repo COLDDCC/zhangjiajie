@@ -256,3 +256,12 @@ body.planner-page.home-page{--paper:#fbfcf8;--rule:#dce7dd;background:var(--pape
  .home-page.planner-page #planner .planner{padding:24px 20px;border-radius:24px}
 }
 @media print{.home-page.planner-page .hero,.home-page.planner-page #planner{background:#fff!important}.home-page.planner-page *{animation:none!important;box-shadow:none!important}}
+
+/* Consistent drawn arrows, independent of the visitor's font glyphs. */
+.home-page.planner-page .link-arrow{display:inline-block;position:static;inset:auto;width:18px;height:18px;vertical-align:-3px;margin-left:8px;flex:none;z-index:auto}
+.home-page.planner-page .quick a{display:inline-flex;align-items:center;justify-content:center;gap:12px}
+.home-page.planner-page .quick .link-arrow{margin-left:0}
+@media(prefers-reduced-motion:no-preference){
+ .home-page.planner-page .link-arrow{transition:transform .2s ease}
+ .home-page.planner-page a:hover>.link-arrow{transform:translateX(3px)}
+}
