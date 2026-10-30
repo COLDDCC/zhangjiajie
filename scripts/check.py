@@ -12,6 +12,9 @@ class Page(HTMLParser):
     def handle_starttag(self,tag,attrs):
         a=dict(attrs)
         if 'id' in a:self.ids.append(a['id'])
+        if tag=='source' and a.get('srcset'):
+            for candidate in a['srcset'].split(','):
+                self.links.append(candidate.strip().split()[0])
         if tag=='h1':self.h1+=1
         if tag=='img':self.imgs.append((a.get('src'),a.get('alt')))
         if tag=='script' and a.get('type')=='application/ld+json':self.schema=True;self.buf=''
@@ -50,7 +53,7 @@ assert not on_disk-used,(sorted(on_disk-used),'photographs shipped but never pla
 tree=ET.parse(ROOT/'sitemap.xml');locations=[e.text for e in tree.iter('{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
 assert len(locations)==len(pages)-(1 if '404.html' in pages else 0),(len(locations),len(pages))
 assert all('example.com' not in u for u in locations)
-print('PASS:',len(pages),'pages,',len(on_disk),'photographs; local links, assets, anchors, unique IDs, H1, alt text, JSON-LD and sitemap')
+print('PASS:',len(pages),'pages,',len(on_disk),'image files; local links, assets, anchors, unique IDs, H1, alt text, JSON-LD and sitemap')
 
 ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
 lastmods={e.find('s:loc',ns).text:e.find('s:lastmod',ns).text for e in tree.getroot()}
@@ -75,3 +78,10 @@ for name in ['index.html','zhangjiajie-itinerary.html']:
     assert 'id="pace"' in html and 'id="print-plan"' in html
     assert all(x in html for x in ['<dt>Sleep</dt>','<dt>Main sights</dt>','<dt>Visit time</dt>','<dt>Remember</dt>'])
 print('PASS: accessible schematics and static daily plan fallback')
+
+for name,pg in pages.items():
+    for link in pg.links:
+        if link.endswith('.webp'):assert (ROOT/link).is_file() and (ROOT/link).stat().st_size>0,(name,'missing/empty srcset target',link)
+    html=(ROOT/name).read_text()
+    assert html.count('<picture>')==len(pg.imgs),(name,'responsive image coverage')
+print('PASS: every responsive source exists, is used and has a JPEG fallback')
