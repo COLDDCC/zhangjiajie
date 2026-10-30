@@ -112,3 +112,11 @@ body.planner-page{--ink:#172c27;--pine:#295746;--stone:#51635b;--mist:#eaece6;--
 /* Override the legacy generic .brand span color so the new logo remains legible. */
 .planner-page .nav .brand .brand-wordmark{color:#f6f3ec}
 .planner-page .nav .brand .brand-wordmark .brand-bang{color:#d9b879}
+
+/* Stage 3: scope the oversized wordmark to the actual home page. */
+.planner-page:not(.home-page) .hero-brand{display:none}
+.planner-page:not(.home-page) .home-hero h1{font-size:clamp(2.25rem,4.4vw,4.6rem);max-width:19ch}
+.planner-page:not(.home-page) .hero-inner.home-hero{padding-block:clamp(48px,5vw,82px)}
+.planner-page .decision-nav{max-width:1200px;padding-inline:clamp(20px,4vw,56px)}
+.planner-page .decision-nav a{background:#fffdfa;border-color:#d1d9ce;color:#295746}
+@media(max-width:760px){.planner-page:not(.home-page) .home-hero>.photo{min-height:300px}}
