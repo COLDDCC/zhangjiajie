@@ -1,0 +1,80 @@
+/* Taste-inspired editorial direction — homepage only.
+   Principles: scenery as hero, restrained pine/ivory palette, typography over decoration.
+   Existing semantic HTML, image credits, data and interactive planner remain intact. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
+body.planner-page{--ink:#172c27;--pine:#295746;--stone:#51635b;--mist:#eaece6;--paper:#f6f3ec;--brocade:#956a40;--brass:#c4a779;--rule:rgba(23,44,39,.12);font-family:"DM Sans",system-ui,sans-serif;background:var(--paper);line-height:1.62}
+.planner-page h1,.planner-page h2,.planner-page h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;letter-spacing:-.025em;line-height:1.13}
+.planner-page .wrap{max-width:1200px;padding-inline:clamp(20px,4vw,56px)}
+.planner-page section{padding-block:clamp(56px,7vw,104px)}
+.planner-page .nav{background:#172c27;border-bottom:1px solid rgba(255,255,255,.12)}
+.planner-page .nav-in{max-width:1440px;padding:20px clamp(20px,4vw,56px);gap:16px 38px;justify-content:space-between}
+.planner-page .brand{font-family:"DM Sans",sans-serif;font-size:.94rem;letter-spacing:-.035em}
+.planner-page .brand::before{background:#c4a779;color:#172c27;border-radius:50%;width:2.05em;height:2.05em}
+.planner-page .brand span{color:#e9d4aa}
+.planner-page .nav ul{column-gap:24px;row-gap:12px}
+.planner-page .nav a:not(.brand){font-size:.82rem;color:#d5dfd8;font-weight:500}
+.planner-page .nav a:not(.brand):hover{color:white}
+.planner-page .alert{background:#eae6db;border-bottom:1px solid #dbd3c2;color:#3f4c43;padding-block:10px;font-size:.83rem}
+.planner-page .alert p{max-width:1300px}
+.planner-page .alert a{color:#295746;font-weight:700}
+.planner-page .hero{background:#172c27;overflow:hidden}
+.planner-page .hero-inner.home-hero{max-width:1440px;display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(26px,4vw,72px);align-items:center;padding:clamp(54px,6vw,100px) clamp(20px,4vw,56px)}
+.planner-page .home-hero>.photo{position:relative;align-self:stretch;min-height:590px;margin:0}
+.planner-page .home-hero>.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;aspect-ratio:auto;border-radius:2px}
+.planner-page .home-hero>.photo::after{content:"ZHANGJIAJIE / 29.12° N";position:absolute;top:20px;left:22px;padding:8px 12px;background:rgba(23,44,39,.75);color:#f7f3e9;font:500 .62rem "DM Sans",sans-serif;letter-spacing:.16em;pointer-events:none}
+.planner-page .home-hero>.photo figcaption{position:absolute;right:0;bottom:0;padding:8px 11px;background:rgba(23,44,39,.83);font-size:.61rem;max-width:100%;line-height:1.4}
+.planner-page .home-hero .eyebrow{font-size:.66rem;letter-spacing:.21em;color:#d8bd8a;margin-bottom:22px}
+.planner-page .home-hero h1{font-size:clamp(3.55rem,6.5vw,7rem);font-style:normal;font-weight:400;letter-spacing:-.045em;line-height:.99;text-wrap:balance;max-width:10ch}
+.planner-page .home-hero p{font-size:clamp(1rem,1.4vw,1.12rem);color:#cbd9d1;max-width:46ch;line-height:1.75;margin-top:30px}
+.planner-page .home-hero p strong{font-family:"DM Serif Display",Georgia,serif;font-size:1.43rem;line-height:1.3;color:#f1e5cf;font-weight:400;margin-bottom:14px}
+.planner-page .quick{margin-top:34px;gap:10px}
+.planner-page .quick a{border:1px solid rgba(255,255,255,.3);padding:12px 18px;border-radius:2px;font-size:.81rem;font-weight:600;transition:background .2s,border-color .2s,transform .2s}
+.planner-page .home-hero .quick a:first-child{background:#c4a779!important;border-color:#c4a779!important;color:#172c27!important}
+.planner-page .quick a:hover{background:rgba(255,255,255,.11);transform:translateY(-2px)}
+.planner-page .choose-first{background:#f6f3ec}
+.planner-page .choose-heading{max-width:740px;margin-bottom:32px}
+.planner-page .kicker{color:#8c6949;font-weight:600;letter-spacing:.16em}
+.planner-page .choose-heading h2{font-size:clamp(2.15rem,4.4vw,4.15rem);max-width:15ch;margin-bottom:16px}
+.planner-page .choose-heading p{font-size:1rem;color:#596b62}
+.planner-page .choose-grid{gap:20px}
+.planner-page .choose-grid .choose-tile{background:#fffdfa;border:1px solid #e5dfd3;border-radius:3px;box-shadow:none;transition:transform .24s ease,box-shadow .24s ease}
+.planner-page .choose-tile:hover{transform:translateY(-5px);border-color:#d1c5b3;box-shadow:0 18px 40px rgba(23,44,39,.11)}
+.planner-page .choose-tile .photo img{aspect-ratio:4/3;transition:transform .5s ease}
+.planner-page .choose-tile:hover .photo img{transform:scale(1.035)}
+.planner-page .choose-body{padding:23px 25px 26px}
+.planner-page .choose-index{font-size:.66rem;letter-spacing:.12em;color:#8d7454}
+.planner-page .choose-body h3{font-size:clamp(1.55rem,2.2vw,2.15rem);margin:12px 0 6px}
+.planner-page .choose-body p{color:#617068}
+.planner-page .choose-body .choose-link{font-size:.85rem;padding-top:23px}
+.planner-page .choose-foot{margin-top:24px}
+.planner-page #planner{background:#e9eee8}
+.planner-page #planner .planner{max-width:none;background:#fcfbf7;border:1px solid #dde2d9;border-radius:4px;padding:clamp(24px,4.5vw,64px);box-shadow:0 24px 50px rgba(23,44,39,.05)}
+.planner-page #planner h2{font-size:clamp(2.3rem,4.3vw,3.9rem);max-width:20ch}
+.planner-page #planner .fields{gap:16px;margin:28px 0}
+.planner-page #planner select{background:#fff;border:1px solid #ccd4cc;border-radius:3px;padding:14px 16px;min-height:50px}
+.planner-page #planner label{font-weight:700;color:#34463c}
+.planner-page #planner button{background:#295746;border-radius:3px;min-height:48px;padding:12px 18px}
+.planner-page #planner button:hover{background:#193f30}
+.planner-page .plan-days>li{border-color:#dbe1d9}
+.planner-page .map-preview{background:#f6f3ec}
+.planner-page #areas{background:#e9eee8}
+.planner-page #areas .card{padding:0 0 24px;background:#fffdfa;border:1px solid #e0e3da;border-radius:3px;overflow:hidden;box-shadow:none}
+.planner-page #areas .card>.photo{margin:0 0 18px}
+.planner-page #areas .card>.photo img{aspect-ratio:4/3}
+.planner-page #areas .card>.photo figcaption{padding:7px 22px 0}
+.planner-page #areas .card>:not(.photo){margin-left:22px;margin-right:22px}
+.planner-page #areas .card h3{font-size:1.8rem}
+.planner-page #areas .card p{color:#52645b}
+.planner-page #essentials table{background:#fffdfa}
+.planner-page #essentials td,.planner-page #essentials th{padding:17px 20px}
+.planner-page #faq{background:#fffdfa}
+.planner-page #faq summary{font-family:"DM Sans",sans-serif;font-size:1rem;font-weight:600}
+.planner-page #sources{background:#f6f3ec}
+.planner-page footer{background:#172c27;padding:48px 0}
+.planner-page h2{font-size:clamp(2.15rem,4vw,3.35rem)}
+.planner-page a:focus-visible,.planner-page button:focus-visible,.planner-page select:focus-visible{outline:3px solid #b69055;outline-offset:3px}
+@media(max-width:1000px){.planner-page .hero-inner.home-hero{grid-template-columns:1fr 1fr;gap:24px}.planner-page .home-hero>.photo{min-height:480px}.planner-page .home-hero h1{font-size:clamp(3rem,6vw,5.5rem)}}
+@media(max-width:760px){.planner-page .nav-in{padding:16px 20px}.planner-page .nav ul{gap:9px 16px}.planner-page .hero-inner.home-hero{grid-template-columns:1fr;padding:46px 20px 28px;gap:32px}.planner-page .home-hero h1{font-size:clamp(3.3rem,11vw,5rem);max-width:12ch}.planner-page .home-hero>.photo{display:block;min-height:0;aspect-ratio:4/3}.planner-page .choose-grid{grid-template-columns:1fr;gap:15px}.planner-page .choose-grid .choose-tile{display:grid;grid-template-columns:40% minmax(0,1fr)}.planner-page .choose-tile .photo{min-height:175px}.planner-page .choose-tile .photo img{height:100%;aspect-ratio:auto}.planner-page .choose-body{padding:18px}.planner-page .choose-body h3{font-size:1.55rem}.planner-page .choose-body .choose-link{padding-top:12px}.planner-page .grid{grid-template-columns:1fr}.planner-page #planner .planner{padding:24px}.planner-page section{padding-block:52px}}
+@media(max-width:450px){.planner-page .choose-grid .choose-tile{grid-template-columns:1fr}.planner-page .choose-tile .photo{height:210px}.planner-page .choose-body{padding:18px 20px}.planner-page .home-hero>.photo{aspect-ratio:5/4}.planner-page .quick a{flex:1 1 auto;text-align:center}}
+@media(prefers-reduced-motion:reduce){.planner-page .quick a,.planner-page .choose-tile,.planner-page .choose-tile .photo img{transition:none}.planner-page .quick a:hover,.planner-page .choose-tile:hover,.planner-page .choose-tile:hover .photo img{transform:none}}
+@media print{.planner-page .home-hero>.photo{display:none!important}.planner-page #planner .planner{box-shadow:none}.planner-page .hero-inner.home-hero{display:block}}
