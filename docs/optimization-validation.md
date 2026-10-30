@@ -89,3 +89,12 @@ Measured with fresh Chromium contexts, all page images loaded, unchanged WebP qu
 All twelve page/width/density comparisons show no image-byte increase. Image directory grows from 9,655,533 to 10,638,079 bytes: 23 original JPEGs plus 88 WebP variants, without upscaling. This is a transfer reduction, not a smaller deployment package or a Lighthouse/LCP result.
 
 Passed: build/static checks for all 111 files; complete browser regression and 36 DOM planner cases; selection checks at 390/768/1024px and DPR 1/2 on both measured pages. New `scripts/image-budget.cjs` repeats these measurements, checks small-image selection and optionally compares an old build via `IMAGE_BASELINE_DIR`. CI runs the selection checks and uploads the JSON measurements.
+
+## Copy reliability and enlarged-text reflow — 30 October 2026
+
+- Clipboard rejection or absence now opens a labelled, selectable-text dialog instead of asking readers to find and select unrelated text on the page. It handles both full plans and Chinese destination names. Escape and Done close it and restore focus to the initiating button. The panel fits the tested 667×375 landscape viewport and scrolls internally when needed.
+- Destination copy feedback appears beside the pressed button, rather than at the end of all ten rows. Full-plan exports contain labelled daily fields, actual guide/map URLs and the visible dated timing references with their source URLs. Local-file exports omit machine-local `file://` links.
+- Enlarged-text tests exposed overflow from the mobile brand, comparison-photo credits, FAQ summaries and long list words. Mobile navigation now puts the brand above a contained guide list; text wraps when necessary. Planner controls use a minimum width in rem so they reflow as text grows.
+- Added browser coverage for missing and rejecting clipboard APIs, selected fallback text, Escape/Done focus restoration, panel reuse, local-file export, adjacent destination feedback and browser Back restoration of plan choices.
+- All twelve pages pass a 320px layout with root font size 200% and body text 34px, without document-level horizontal overflow or clipped H1 titles. This targeted text-enlargement simulation is not a complete accessibility audit. Tables retain their contained horizontal scrolling.
+- Re-ran build/static assertions, 36 planner cases, all three standard viewport widths, map search, image loading, no-JS fallback and all 36 one-page A4 plan PDFs.

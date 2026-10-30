@@ -259,13 +259,13 @@ body{background:var(--paper)}section{padding:42px 0}h2{font-size:clamp(1.7rem,3v
 .note b{color:var(--brass-deep)}
 .note.warn b{color:var(--brocade)}
 
-/* the six links fit one row from ~720px down; below that they wrap to
-   three rows and eat the first screen, so let the list scroll instead */
+/* On phones, keep the brand above a contained, horizontally scrollable
+   guide list. Both rows must still fit when the reader enlarges text. */
 @media (max-width:720px){
-  .nav-in{flex-wrap:nowrap;padding:12px 20px;gap:14px}
-  .brand{font-size:.62rem;letter-spacing:.14em}
+  .nav-in{flex-wrap:wrap;padding:12px 20px;gap:14px}
+  .brand{font-size:.62rem;letter-spacing:.14em;max-width:100%;overflow-wrap:anywhere}
   .nav ul{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
-    -webkit-overflow-scrolling:touch;margin-left:auto;
+    -webkit-overflow-scrolling:touch;flex:1 1 100%;min-width:0;max-width:100%;margin-left:0;
     mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 18px),transparent)}
   .nav ul::-webkit-scrollbar{display:none}
   .nav a:not(.brand){font-size:.8rem;white-space:nowrap}
@@ -315,7 +315,7 @@ code{font-family:"IBM Plex Mono",monospace;font-size:.86em}
 .plan-days{padding-left:24px}.plan-days>li{padding:16px 0;border-bottom:1px solid var(--rule)}
 .plan-days h3{font-size:1.25rem}.plan-days dl{display:grid;grid-template-columns:110px minmax(0,1fr);gap:7px 14px;margin:15px 0}
 .plan-days dt{font-weight:700}.plan-days dd{margin:0}.plan-actions{display:flex;flex-wrap:wrap;gap:10px}
-.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.fields>div{min-width:0}select{max-width:100%}select:focus-visible{outline:2px solid var(--brocade);outline-offset:3px}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr))}.fields>div{min-width:0}select{max-width:100%}select:focus-visible{outline:2px solid var(--brocade);outline-offset:3px}
 .places td:last-child a{display:inline-block;margin:4px 10px 4px 0}.places td{scroll-margin-top:16px}
 @media(max-width:480px){.plan-days dl{grid-template-columns:1fr;gap:3px}.plan-days dd{margin-bottom:9px}.fields{grid-template-columns:1fr}}
 @media print{
@@ -364,3 +364,15 @@ html:not(.enhanced) .fields,html:not(.enhanced) .plan-actions,html:not(.enhanced
 @media print{.day-links,#return-plan{display:none!important}}
 
 .places tr:focus-visible{outline:2px solid var(--pine);outline-offset:-2px}
+
+/* A blocked clipboard still leaves a selectable, keyboard-accessible copy. */
+.place-copy-status{align-self:center;font-size:.85rem;color:var(--pine)}
+.copy-fallback{width:min(38rem,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;border:1px solid var(--stone);border-radius:8px;padding:24px;background:var(--paper);color:var(--ink)}
+.copy-fallback::backdrop{background:rgba(16,26,24,.55)}
+.copy-fallback h2{font-size:1.6rem;margin-bottom:12px}.copy-fallback label{display:block;font-weight:700;margin:12px 0 6px}
+.copy-fallback textarea{display:block;width:100%;max-height:45dvh;resize:vertical;font:inherit;line-height:1.5;padding:12px;background:white;color:var(--ink);border:1px solid var(--stone);border-radius:5px}
+.copy-fallback textarea:focus-visible{outline:2px solid var(--pine);outline-offset:2px}.copy-fallback button{min-height:44px;margin-top:16px}
+@media print{.copy-fallback,.place-copy-status{display:none!important}}
+
+/* Reflow long titles, names and words at enlarged text sizes. */
+h1,h2,h3,p,figcaption,summary,.content li{overflow-wrap:anywhere}

@@ -24,6 +24,14 @@ const path=require('node:path');
   }
   await page.close();
  }
+ const reflow=await browser.newPage({viewport:{width:320,height:700}});
+ for(const file of pages){
+  await reflow.goto('http://127.0.0.1:8765/'+file);
+  await reflow.addStyleTag({content:'html{font-size:200%}body{font-size:34px}'});
+  assert(await reflow.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${file}: overflow with enlarged text at 320px`);
+  assert(await reflow.locator('h1').evaluate(el=>el.scrollWidth<=el.clientWidth+1),`${file}: clipped enlarged title`);
+ }
+ await reflow.close();
  for(const file of ['index.html','zhangjiajie-itinerary.html']){
   const page=await browser.newPage({viewport:{width:390,height:900}});
   for(const days of [2,3,4])for(const extra of ['tianmen','canyon'])for(const pace of ['standard','family','rain']){
@@ -56,9 +64,17 @@ const path=require('node:path');
   await page.reload();assert.equal(await page.locator('#days').inputValue(),'2');
   await page.evaluate(()=>{window.__printed=0;window.print=()=>{window.__printed++};Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async text=>{window.__copied=text}}});});
   await page.click('#print-plan');assert.equal(await page.evaluate(()=>window.__printed),1);
-  await page.click('#copy-plan');assert((await page.evaluate(()=>window.__copied)).includes(page.url()));
+  await page.click('#copy-plan');const copied=await page.evaluate(()=>window.__copied);assert(copied.includes(page.url()));
+  assert(copied.includes('Map & Chinese name: http://127.0.0.1:8765/zhangjiajie-map-transport.html?'));
+  assert(copied.includes('https://www.chinadiscovery.com/hunan/zhangjiajie/golden-whip-stream.html'));
   await page.evaluate(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:undefined}));
   await page.click('#copy-plan');assert((await page.locator('#copy-status').innerText()).includes('Select and copy'));
+  assert(await page.getByRole('dialog',{name:'Copy this text'}).isVisible());assert.equal(await page.locator('#manual-copy-text').inputValue(),copied);
+  assert(await page.locator('#manual-copy-text').evaluate(el=>el.selectionStart===0&&el.selectionEnd===el.value.length));
+  await page.keyboard.press('Escape');assert.equal(await page.locator('.copy-fallback').isVisible(),false);assert(await page.locator('#copy-plan').evaluate(el=>el===document.activeElement));
+  await page.evaluate(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw new Error('NotAllowedError')}}}));
+  await page.click('#copy-plan');assert.equal(await page.locator('.copy-fallback').count(),1);assert(await page.locator('.copy-fallback').isVisible());
+  await page.getByRole('button',{name:'Done',exact:true}).click();assert(await page.locator('#copy-plan').evaluate(el=>el===document.activeElement));
   await page.emulateMedia({media:'print'});assert(await page.locator('#planner').isVisible());assert(await page.locator('#plan-summary').isVisible());assert(await page.locator('#plan-link').isVisible());
   await page.close();
  }
@@ -80,6 +96,8 @@ const path=require('node:path');
  await journey.keyboard.press('Tab');assert((await journey.evaluate(()=>document.activeElement.href)).includes('uri.amap.com'));
  await journey.locator('#return-plan').click();
  assert.equal(await journey.locator('#days').inputValue(),'4');assert.equal(await journey.locator('#extra').inputValue(),'canyon');assert.equal(await journey.locator('#pace').inputValue(),'family');
+ await journey.goBack();assert.equal(new URL(journey.url()).hash,'#place-6');
+ await journey.goBack();assert.equal(await journey.locator('#days').inputValue(),'4');assert.equal(await journey.locator('#pace').inputValue(),'family');
  await journey.close();
  const map=await browser.newPage({viewport:{width:390,height:900}});
  await map.goto('http://127.0.0.1:8765/zhangjiajie-map-transport.html');
@@ -98,11 +116,19 @@ const path=require('node:path');
  assert(targets.every(h=>h>=44),'map touch targets must be at least 44px');
  await map.evaluate(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async text=>{window.__placeCopy=text}}}));
  await map.locator('#place-10 button').click();assert.equal(await map.evaluate(()=>window.__placeCopy),'张家界荷花国际机场');
+ assert.equal(await map.locator('#place-10 .place-copy-status').innerText(),'Copied.');
+ await map.evaluate(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:undefined}));
+ await map.locator('#place-10 button').click();assert.equal(await map.locator('#manual-copy-text').inputValue(),'张家界荷花国际机场');
+ await map.setViewportSize({width:667,height:375});assert(await map.locator('.copy-fallback').evaluate(el=>el.getBoundingClientRect().height<=innerHeight-30));
+ await map.getByRole('button',{name:'Done',exact:true}).click();assert(await map.locator('#place-10 button').evaluate(el=>el===document.activeElement));
  await map.fill('#place-search','airport');await map.emulateMedia({media:'print'});assert.equal(await map.locator('#place-table tbody tr:visible').count(),10);
  await map.close();
  const local=await browser.newPage();const errors=[];local.on('pageerror',e=>errors.push(e.message));
- await local.goto('file://'+path.resolve('dist/index.html'));await local.selectOption('#days','4');assert.equal(await local.locator('#plan-result li').count(),4);assert.deepEqual(errors,[]);await local.close();
+ await local.goto('file://'+path.resolve('dist/index.html'));await local.selectOption('#days','4');assert.equal(await local.locator('#plan-result li').count(),4);assert.deepEqual(errors,[]);
+ await local.evaluate(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:undefined}));await local.click('#copy-plan');
+ const localText=await local.locator('#manual-copy-text').inputValue();assert(!localText.includes('file://'));assert(localText.includes('https://www.chinadiscovery.com/'));
+ await local.getByRole('button',{name:'Done',exact:true}).click();await local.close();
  const nojs=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:900}});
  for(const file of pages){const p=await nojs.newPage();await p.goto('http://127.0.0.1:8765/'+file);assert(await p.locator('h1').isVisible());if(['index.html','zhangjiajie-itinerary.html'].includes(file)){assert.equal(await p.locator('#plan-result li').count(),3);assert.equal(await p.locator('.fields').isVisible(),false);assert.equal(await p.locator('.plan-actions').isVisible(),false);assert.equal(await p.locator('#plan-result .day-links a').count(),6);}if(file==='zhangjiajie-map-transport.html'){assert.equal(await p.locator('#place-table tbody tr:visible').count(),10);assert.equal(await p.locator('.place-tools').isVisible(),false);}await p.close();}
- await browser.close();await new Promise(resolve=>server.close(resolve));console.log(`PASS: ${pages.length} pages at 390/768/1024px; all images; ${combinations} planner cases; invalid/share/file URL; mobile/map targets; English/Chinese lookup; map anchor recovery; planner/map round trip; print content; no-JS fallback`);
+ await browser.close();await new Promise(resolve=>server.close(resolve));console.log(`PASS: ${pages.length} pages at 390/768/1024px; all images; ${combinations} planner cases; invalid/share/file URL; mobile/map targets; English/Chinese lookup; map anchor recovery; planner/map round trip; selectable clipboard fallback and focus; back navigation; 320px enlarged-text reflow; print content; no-JS fallback`);
 })().catch(e=>{console.error(e);process.exit(1)});

@@ -49,8 +49,42 @@
     if(/^https?:$/.test(u.protocol)){var link=document.createElement('a');link.href=u.href;link.textContent='Reopen this plan: '+u.href;saved.appendChild(link);}
   }
   if(days&&extra&&pace){readURL();[days,extra,pace].forEach(function(el){el.addEventListener('change',function(){route(true);});});window.addEventListener('popstate',function(){days.value='3';extra.value='tianmen';pace.value='standard';readURL();route(false);});route(false);}
-  async function copy(text,status){try{if(!navigator.clipboard)throw new Error('Clipboard unavailable');await navigator.clipboard.writeText(text);status.textContent='Copied.';}catch(e){status.textContent='Copy is unavailable here. Select and copy the text above.';}}
-  var button=document.getElementById('copy-plan');if(button)button.addEventListener('click',function(){route(true);copy('Zhangjiajie suggested trip plan\n'+document.getElementById('plan-summary').textContent+'\n'+result.innerText+'\nTiming references reviewed 28 October 2026; see sources on the shared page.\n'+location.href,document.getElementById('copy-status'));});
+  var copyDialog,copyField,copyOpener;
+  function manualCopy(text,opener){
+    if(!copyDialog){
+      copyDialog=document.createElement('dialog');copyDialog.className='copy-fallback';copyDialog.setAttribute('aria-labelledby','manual-copy-title');copyDialog.setAttribute('aria-describedby','manual-copy-help');
+      var heading=document.createElement('h2');heading.id='manual-copy-title';heading.textContent='Copy this text';
+      var help=document.createElement('p');help.id='manual-copy-help';help.textContent='Press Ctrl+C or ⌘C, or touch and hold the selected text to copy it.';
+      var label=document.createElement('label');label.htmlFor='manual-copy-text';label.textContent='Text to copy';
+      copyField=document.createElement('textarea');copyField.id='manual-copy-text';copyField.readOnly=true;copyField.spellcheck=false;
+      var close=document.createElement('button');close.type='button';close.textContent='Done';close.addEventListener('click',function(){if(typeof copyDialog.close==='function')copyDialog.close();else{copyDialog.removeAttribute('open');if(copyOpener)copyOpener.focus();}});
+      copyDialog.addEventListener('close',function(){if(copyOpener&&copyOpener.isConnected)copyOpener.focus();});
+      copyDialog.append(heading,help,label,copyField,close);document.body.appendChild(copyDialog);
+    }
+    copyOpener=opener;copyField.value=text;copyField.rows=text.includes('\n')?12:3;
+    if(!copyDialog.open){if(typeof copyDialog.showModal==='function')copyDialog.showModal();else copyDialog.setAttribute('open','');}
+    copyField.focus();copyField.select();
+  }
+  async function copy(text,status,opener){
+    status.textContent='';
+    try{if(!navigator.clipboard)throw new Error('Clipboard unavailable');await navigator.clipboard.writeText(text);status.textContent='Copied.';}
+    catch(e){status.textContent='Select and copy the text in the open panel.';manualCopy(text,opener);}
+  }
+  function planText(){
+    var sections=['Zhangjiajie suggested trip plan',document.getElementById('plan-summary').textContent];
+    result.querySelectorAll('li').forEach(function(day){
+      sections.push(day.querySelector('h3').textContent);
+      day.querySelectorAll('dt').forEach(function(term){sections.push(term.textContent+': '+term.nextElementSibling.textContent);});
+      day.querySelectorAll('.day-links a').forEach(function(link){
+        if(/^https?:$/.test(new URL(link.href).protocol))sections.push(link.textContent+': '+link.href);
+      });
+    });
+    var references=document.querySelector('#planner .timing-references');
+    if(references){sections.push(references.textContent);references.querySelectorAll('a').forEach(function(link){sections.push(link.href);});}
+    var reopen=document.querySelector('#plan-link a');if(reopen)sections.push(reopen.href);
+    return sections.join('\n');
+  }
+  var button=document.getElementById('copy-plan');if(button)button.addEventListener('click',function(){route(true);copy(planText(),document.getElementById('copy-status'),button);});
   var print=document.getElementById('print-plan');if(print)print.addEventListener('click',function(){window.print();});
 
   var search=document.getElementById('place-search');
@@ -81,5 +115,8 @@
     var arrival=rows.find(function(row){return '#'+row.id===location.hash;});
     if(arrival)arrival.focus({preventScroll:true});
   }
-  document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){copy(b.dataset.copy,document.getElementById('place-status'));});});
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    var feedback=document.createElement('span');feedback.className='place-copy-status';feedback.setAttribute('role','status');b.insertAdjacentElement('afterend',feedback);
+    b.addEventListener('click',function(){document.querySelectorAll('.place-copy-status').forEach(function(s){s.textContent='';});copy(b.dataset.copy,feedback,b);});
+  });
 })();
