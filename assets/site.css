@@ -392,3 +392,21 @@ h1,h2,h3,p,figcaption,summary,.content li{overflow-wrap:anywhere}
 .home-hero .quick a:focus-visible{outline:3px solid #F2E2B0;outline-offset:4px}
 @media(max-width:600px){.brand{font-size:.79rem}.brand span{font-size:1.05em}.home-hero h1{font-size:clamp(2.5rem,10vw,3.6rem)}}
 @media print{.brand::before{background:none;border:1px solid currentColor}}
+
+/* Quick orientation: help first-time visitors choose the correct attraction */
+.choose-first{background:#EAF0E9;padding:44px 0 48px}
+.choose-heading h2{font-size:clamp(1.65rem,3.8vw,2.6rem);margin:0 0 8px;line-height:1.15}
+.choose-heading .kicker{margin-bottom:10px}
+.choose-heading p{color:var(--stone);margin:0 0 20px;font-size:.98rem}
+.choose-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.choose-tile{display:flex;flex-direction:column;align-items:flex-start;min-width:0;gap:4px;padding:22px 20px;background:var(--paper);border:1px solid #C9D6CD;border-radius:12px;color:var(--ink);text-decoration:none;box-shadow:0 2px 0 rgba(16,26,24,.04);transition:transform .2s ease,border-color .2s ease}
+.choose-tile:hover{transform:translateY(-3px);border-color:var(--pine)}
+.choose-tile:focus-visible{outline:3px solid var(--pine);outline-offset:3px}
+.choose-index{font:600 .65rem/1.5 "IBM Plex Mono",monospace;letter-spacing:.04em;text-transform:uppercase;color:#496452}
+.choose-tile strong{font-family:"Bodoni Moda",Georgia,serif;font-size:clamp(1.3rem,2.3vw,1.75rem);line-height:1.15;margin:9px 0 2px}
+.choose-tile>span:nth-last-child(2){font-size:.88rem;color:var(--stone)}
+.choose-link{margin-top:auto;padding-top:18px;font-size:.82rem;font-weight:700;color:var(--pine)}
+.choose-foot{margin:17px 0 0;font-size:.9rem;color:var(--stone)}
+.choose-foot a{font-weight:700}
+@media(max-width:700px){.choose-first{padding:30px 0}.choose-grid{grid-template-columns:1fr;gap:9px}.choose-tile{padding:17px 18px}.choose-tile strong{margin:4px 0 0}.choose-link{padding-top:8px}}
+@media(prefers-reduced-motion:reduce){.choose-tile{transition:none}.choose-tile:hover{transform:none}}
