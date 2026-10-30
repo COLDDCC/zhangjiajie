@@ -162,3 +162,20 @@ body.planner-page{--ink:#172c27;--pine:#295746;--stone:#51635b;--mist:#eaece6;--
  .planner-page .hero-inner.home-hero>div{min-width:0}
  .planner-page .nav-in,.planner-page .quick{min-width:0;max-width:100%}
 }
+
+/* Light editorial hero: warm ivory + fresh forest-green brand, homepage only. */
+.planner-page.home-page .hero{background:#F7F8EF;color:#193E2D;border-bottom:1px solid #DDE6D7}
+.planner-page.home-page .home-hero h1{color:#173E2B}
+.planner-page.home-page .home-hero p{color:#405A4A;font-weight:400}
+.planner-page.home-page .home-hero p strong{color:#214D35}
+.planner-page.home-page .home-hero .eyebrow{color:#386A49}
+.planner-page.home-page .hero-brand.hero-brand-green,
+.planner-page.home-page .hero-brand.hero-brand-green>span,
+.planner-page.home-page .hero-brand.hero-brand-green>span:nth-child(2),
+.planner-page.home-page .hero-brand.hero-brand-green>span:nth-child(3),
+.planner-page.home-page .hero-brand.hero-brand-green em{color:#347D46}
+.planner-page.home-page .quick a{color:#20513A;background:#FFFFFF;border-color:#B9D2B8}
+.planner-page.home-page .quick a:hover{background:#E5F3DE;border-color:#579868}
+.planner-page.home-page .home-hero .quick a:first-child{background:#B8F36B!important;border-color:#93C85D!important;color:#173E2B!important}
+.planner-page.home-page .home-hero>.photo{box-shadow:0 15px 45px rgba(31,74,48,.12)}
+@media print{.planner-page.home-page .hero{background:#fff!important}}
