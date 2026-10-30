@@ -154,3 +154,11 @@ body.planner-page{--ink:#172c27;--pine:#295746;--stone:#51635b;--mist:#eaece6;--
  .planner-page.home-page .hero-brand.hero-brand-green,
  .planner-page.home-page .hero-brand.hero-brand-green>span{color:#265C3C!important}
 }
+
+/* Enlarged-text reflow: keep wordmark readable rather than forcing page overflow. */
+@media(max-width:580px){
+ .planner-page.home-page .hero-brand.hero-brand-green{width:100%;max-width:100%;white-space:normal;flex-wrap:wrap;overflow-wrap:normal}
+ .planner-page.home-page .hero-brand.hero-brand-green>span{white-space:nowrap;flex:0 0 auto}
+ .planner-page .hero-inner.home-hero>div{min-width:0}
+ .planner-page .nav-in,.planner-page .quick{min-width:0;max-width:100%}
+}
