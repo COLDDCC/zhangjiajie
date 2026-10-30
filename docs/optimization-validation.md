@@ -98,3 +98,9 @@ Passed: build/static checks for all 111 files; complete browser regression and 3
 - Added browser coverage for missing and rejecting clipboard APIs, selected fallback text, Escape/Done focus restoration, panel reuse, local-file export, adjacent destination feedback and browser Back restoration of plan choices.
 - All twelve pages pass a 320px layout with root font size 200% and body text 34px, without document-level horizontal overflow or clipped H1 titles. This targeted text-enlargement simulation is not a complete accessibility audit. Tables retain their contained horizontal scrolling.
 - Re-ran build/static assertions, 36 planner cases, all three standard viewport widths, map search, image loading, no-JS fallback and all 36 one-page A4 plan PDFs.
+
+## Release cache consistency fix — 30 October 2026
+
+Live acceptance after the first three deployments exposed a warm-browser mismatch: current planner HTML was running the earlier unversioned `assets/site.js`, so selecting four days produced the old list rather than daily cards. This was not caught by fresh-context local tests.
+
+The deploy build now names CSS and JavaScript with the first 12 characters of their SHA-256 content hash and rewrites all page references to those files. Root source pages retain their directly-openable original paths. Existing static checks remain; new assertions require one versioned CSS and JS reference on every page and verify each filename against its actual bytes. The full local 12-page and 36-case browser suite passes with the generated names. Production acceptance must reload the existing browser tab and verify the new names plus the daily-card interactions before declaring release complete.

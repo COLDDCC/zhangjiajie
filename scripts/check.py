@@ -85,3 +85,15 @@ for name,pg in pages.items():
     html=(ROOT/name).read_text()
     assert html.count('<picture>')==len(pg.imgs),(name,'responsive image coverage')
 print('PASS: every responsive source exists, is used and has a JPEG fallback')
+
+# New HTML must never combine with a cached, unversioned app asset.
+import hashlib
+for name, pg in pages.items():
+    for extension in ('css','js'):
+        matching=[link for link in pg.links if re.fullmatch(r'assets/site-[0-9a-f]{12}\.'+extension,link)]
+        assert len(matching)==1,(name,'missing fingerprinted app asset',extension)
+        target=ROOT/matching[0]
+        fingerprint=hashlib.sha256(target.read_bytes()).hexdigest()[:12]
+        assert target.stem=='site-'+fingerprint,(name,'asset fingerprint does not match content')
+        assert 'assets/site.'+extension not in pg.links,(name,'unversioned app asset')
+print('PASS: every page loads content-fingerprinted CSS and JavaScript')

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Build deployable static files and host-aware SEO metadata. No dependencies."""
-import os, re, shutil, json
+"""Build deployable static files and host-aware SEO metadata and content-addressed assets."""
+import os, re, shutil, json, hashlib
 from datetime import datetime
 from pathlib import Path
 from html import escape
@@ -11,6 +11,7 @@ URL = os.environ.get('SITE_URL', 'https://colddcc.github.io/zhangjiajie').rstrip
 assert URL.startswith('https://'), 'SITE_URL must be an https URL'
 if OUT.exists(): shutil.rmtree(OUT)
 OUT.mkdir()
+asset_names = {name: 'assets/' + Path(name).stem + '-' + hashlib.sha256((ROOT/'assets'/name).read_bytes()).hexdigest()[:12] + Path(name).suffix for name in ('site.css', 'site.js')}
 dates = {}
 for p in ROOT.glob('*.html'):
     s = p.read_text(encoding='utf-8')
@@ -41,12 +42,16 @@ for p in ROOT.glob('*.html'):
     s = s[:match.start(1)] + json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False).replace('<', '\\u003c') + s[match.end(1):]
     # Social crawlers cannot resolve a relative og:image, so it is made absolute here.
     s = s.replace('content="img/', 'content="'+escape(URL, quote=True)+'/img/')
+    for name, versioned in asset_names.items():
+        s = s.replace('"assets/' + name + '"', '"' + versioned + '"')
     # Root source files intentionally have no guessed canonical; deployment injects it.
     (OUT/p.name).write_text(s, encoding='utf-8')
 for name in ['assets', 'img', 'favicon.svg', '.nojekyll']:
     p=ROOT/name
     if p.is_dir(): shutil.copytree(p,OUT/name)
     elif p.exists(): shutil.copy2(p,OUT/name)
+for name, versioned in asset_names.items():
+    shutil.copy2(ROOT/'assets'/name, OUT/versioned)
 variants = generate(OUT/'img')
 for built in OUT.glob('*.html'):
     built.write_text(responsive(built.read_text(), variants), encoding='utf-8')
